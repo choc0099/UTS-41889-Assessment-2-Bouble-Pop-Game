@@ -26,22 +26,22 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ub-pG-DFJ">
-                                        <rect key="frame" x="102.66666666666669" y="162.66666666666669" width="168" height="28.666666666666657"/>
+                                        <rect key="frame" x="102.66666666666669" y="164" width="168" height="28.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qt-Hb-ggF">
-                                        <rect key="frame" x="116.66666666666666" y="297.66666666666669" width="139.99999999999997" height="40"/>
+                                        <rect key="frame" x="99" y="300.33333333333331" width="175" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="140" id="8NX-7B-dRI"/>
                                             <constraint firstAttribute="height" constant="40" id="MxW-lM-dql"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="WFX-gU-TVD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57q-sa-BWw">
-                                        <rect key="frame" x="116.66666666666666" y="423.33333333333337" width="139.99999999999997" height="70"/>
+                                        <rect key="frame" x="116.66666666666666" y="427" width="139.99999999999997" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="Oiu-mD-oyu"/>
                                             <constraint firstAttribute="height" constant="70" id="qr6-h2-tbb"/>
@@ -59,10 +59,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
-                                        <rect key="frame" x="116.66666666666666" y="559" width="139.99999999999997" height="80"/>
+                                        <rect key="frame" x="116.66666666666666" y="569" width="139.99999999999997" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="hbn-V0-6wv"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="hl2-yc-FbE"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="onc-sI-mor"/>
                                             <constraint firstAttribute="width" constant="140" id="qje-DD-BMY"/>
                                         </constraints>
