@@ -32,18 +32,18 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qt-Hb-ggF">
-                                        <rect key="frame" x="99" y="300.33333333333331" width="175" height="40"/>
+                                        <rect key="frame" x="81.666666666666686" y="300.33333333333331" width="210" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="MxW-lM-dql"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="WFX-gU-TVD"/>
+                                            <constraint firstAttribute="width" constant="210" id="icV-Vj-zq4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57q-sa-BWw">
-                                        <rect key="frame" x="116.66666666666666" y="427" width="139.99999999999997" height="70"/>
+                                        <rect key="frame" x="104" y="427" width="165" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="140" id="Oiu-mD-oyu"/>
+                                            <constraint firstAttribute="width" constant="165" id="j6N-gO-tj7"/>
                                             <constraint firstAttribute="height" constant="70" id="qr6-h2-tbb"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
