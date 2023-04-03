@@ -16,6 +16,7 @@
 		323C0C4229D24F5900E54C01 /* Bobble_PopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4129D24F5900E54C01 /* Bobble_PopTests.swift */; };
 		323C0C4C29D24F5900E54C01 /* Bobble_PopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4B29D24F5900E54C01 /* Bobble_PopUITests.swift */; };
 		323C0C4E29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */; };
+		32B7766329DA94A10002368C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7766229DA94A10002368C /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		323C0C4729D24F5900E54C01 /* Bobble PopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bobble PopUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		323C0C4B29D24F5900E54C01 /* Bobble_PopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bobble_PopUITests.swift; sourceTree = "<group>"; };
 		323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bobble_PopUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		32B7766229DA94A10002368C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +101,9 @@
 		323C0C2929D24F5800E54C01 /* Bobble Pop */ = {
 			isa = PBXGroup;
 			children = (
+				32B7766129DA94410002368C /* View Controller */,
 				323C0C2A29D24F5800E54C01 /* AppDelegate.swift */,
 				323C0C2C29D24F5800E54C01 /* SceneDelegate.swift */,
-				323C0C2E29D24F5800E54C01 /* ViewController.swift */,
 				323C0C3029D24F5800E54C01 /* Main.storyboard */,
 				323C0C3329D24F5900E54C01 /* Assets.xcassets */,
 				323C0C3529D24F5900E54C01 /* LaunchScreen.storyboard */,
@@ -125,6 +127,15 @@
 				323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */,
 			);
 			path = "Bobble PopUITests";
+			sourceTree = "<group>";
+		};
+		32B7766129DA94410002368C /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				323C0C2E29D24F5800E54C01 /* ViewController.swift */,
+				32B7766229DA94A10002368C /* SettingsViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				323C0C2F29D24F5800E54C01 /* ViewController.swift in Sources */,
 				323C0C2B29D24F5800E54C01 /* AppDelegate.swift in Sources */,
 				323C0C2D29D24F5800E54C01 /* SceneDelegate.swift in Sources */,
+				32B7766329DA94A10002368C /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
