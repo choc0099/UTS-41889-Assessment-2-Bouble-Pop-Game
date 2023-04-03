@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		322A94B029DAAF7D009A7943 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A94AF29DAAF7D009A7943 /* NewGameViewController.swift */; };
 		323C0C2B29D24F5800E54C01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C2A29D24F5800E54C01 /* AppDelegate.swift */; };
 		323C0C2D29D24F5800E54C01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C2C29D24F5800E54C01 /* SceneDelegate.swift */; };
 		323C0C2F29D24F5800E54C01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C2E29D24F5800E54C01 /* ViewController.swift */; };
@@ -16,7 +17,6 @@
 		323C0C4229D24F5900E54C01 /* Bobble_PopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4129D24F5900E54C01 /* Bobble_PopTests.swift */; };
 		323C0C4C29D24F5900E54C01 /* Bobble_PopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4B29D24F5900E54C01 /* Bobble_PopUITests.swift */; };
 		323C0C4E29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */; };
-		32B7766329DA94A10002368C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7766229DA94A10002368C /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		322A94AF29DAAF7D009A7943 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		323C0C2729D24F5800E54C01 /* Bobble Pop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bobble Pop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		323C0C2A29D24F5800E54C01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		323C0C2C29D24F5800E54C01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		323C0C4729D24F5900E54C01 /* Bobble PopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bobble PopUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		323C0C4B29D24F5900E54C01 /* Bobble_PopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bobble_PopUITests.swift; sourceTree = "<group>"; };
 		323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bobble_PopUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		32B7766229DA94A10002368C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				323C0C2E29D24F5800E54C01 /* ViewController.swift */,
-				32B7766229DA94A10002368C /* SettingsViewController.swift */,
+				322A94AF29DAAF7D009A7943 /* NewGameViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -270,9 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				323C0C2F29D24F5800E54C01 /* ViewController.swift in Sources */,
+				322A94B029DAAF7D009A7943 /* NewGameViewController.swift in Sources */,
 				323C0C2B29D24F5800E54C01 /* AppDelegate.swift in Sources */,
 				323C0C2D29D24F5800E54C01 /* SceneDelegate.swift in Sources */,
-				32B7766329DA94A10002368C /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

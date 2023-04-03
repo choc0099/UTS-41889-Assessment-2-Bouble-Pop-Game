@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TvU-fL-8mD">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -17,38 +17,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bubble Pop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OS-do-Utf">
-                                <rect key="frame" x="65" y="389" width="263" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="56"/>
-                                <color key="textColor" systemColor="systemOrangeColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKD-eb-kOe">
-                                <rect key="frame" x="103" y="571" width="187" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="Hre-WF-uI1"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="ker-CC-Scw"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="NEW GAME">
-                                    <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                    </backgroundConfiguration>
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="26"/>
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="u2u-oF-jQV">
+                                <rect key="frame" x="65" y="264.66666666666669" width="263" height="323.00000000000006"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bubble Pop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OS-do-Utf">
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="73"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="56"/>
+                                        <color key="textColor" systemColor="systemOrangeColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7j-nY-TOs">
+                                        <rect key="frame" x="44" y="123" width="175" height="79"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="79" id="syp-j9-6Kz"/>
+                                            <constraint firstAttribute="width" constant="175" id="vMa-r2-Fct"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="NEW GAME">
+                                            <backgroundConfiguration key="background" strokeWidth="3">
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <color key="strokeColor" systemColor="labelColor"/>
+                                            </backgroundConfiguration>
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="JjK-pr-CJi" kind="show" id="VcL-5g-Ezq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17n-13-hgh">
+                                        <rect key="frame" x="43.666666666666686" y="251.99999999999994" width="176" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="176" id="2hP-Hc-YeD"/>
+                                            <constraint firstAttribute="height" constant="71" id="Ojc-V9-DRj"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="HIGH SCORE">
+                                            <backgroundConfiguration key="background" strokeWidth="3">
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <color key="strokeColor" systemColor="labelColor"/>
+                                            </backgroundConfiguration>
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="oLC-UM-mtx" kind="show" id="gpQ-fc-B30"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u2u-oF-jQV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qon-4f-Fcc"/>
+                            <constraint firstItem="u2u-oF-jQV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZD5-FS-aJl"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ngr-Yn-lIt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
         </scene>
-        <!--View Controller-->
+        <!--High Score-->
+        <scene sceneID="DyG-zJ-cDa">
+            <objects>
+                <viewController id="oLC-UM-mtx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8fa-Tz-rk2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="yhR-7n-A5F"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="High Score" id="SkD-j0-Pd6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITB-k9-OdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1927" y="232"/>
+        </scene>
+        <!--New Game-->
         <scene sceneID="wmw-UX-NTr">
             <objects>
                 <viewController id="JjK-pr-CJi" sceneMemberID="viewController">
@@ -81,7 +129,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="15" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-6I-0H6">
-                                        <rect key="frame" x="12.666666666666671" y="209.33333333333334" width="186" height="31"/>
+                                        <rect key="frame" x="2.6666666666666714" y="209.33333333333334" width="206" height="31"/>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers of Bubbles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyF-E1-RSr">
                                         <rect key="frame" x="0.0" y="280" width="211" height="28.666666666666686"/>
@@ -90,7 +138,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="2" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="CNY-pa-ieW">
-                                        <rect key="frame" x="20.666666666666671" y="349.33333333333326" width="170" height="31"/>
+                                        <rect key="frame" x="10.666666666666671" y="349.33333333333326" width="190" height="31"/>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
                                         <rect key="frame" x="35.666666666666671" y="399.33333333333326" width="140" height="70"/>
@@ -99,7 +147,7 @@
                                             <constraint firstAttribute="width" constant="140" id="qje-DD-BMY"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="PLAY" cornerStyle="medium">
+                                        <buttonConfiguration key="configuration" style="plain" title="START" cornerStyle="medium">
                                             <backgroundConfiguration key="background" strokeWidth="3">
                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <color key="strokeColor" systemColor="labelColor"/>
@@ -110,27 +158,37 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77Q-ha-Adl">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="l68-gK-W0P"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qag-Jo-2QK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ubu-6R-uC8" firstAttribute="centerY" secondItem="2L3-OT-Lxt" secondAttribute="centerY" id="03b-Mp-gPX"/>
-                            <constraint firstItem="77Q-ha-Adl" firstAttribute="trailing" secondItem="Qag-Jo-2QK" secondAttribute="trailing" id="2OJ-rp-KbL"/>
                             <constraint firstItem="ubu-6R-uC8" firstAttribute="centerX" secondItem="2L3-OT-Lxt" secondAttribute="centerX" id="TeO-lI-HkA"/>
-                            <constraint firstItem="77Q-ha-Adl" firstAttribute="leading" secondItem="Qag-Jo-2QK" secondAttribute="leading" id="VRr-CX-6ds"/>
-                            <constraint firstItem="77Q-ha-Adl" firstAttribute="top" secondItem="Qag-Jo-2QK" secondAttribute="top" id="Vco-kv-zv8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New Game" id="Y3C-ip-oJc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="304-Bi-IE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="-57"/>
+            <point key="canvasLocation" x="1929" y="-480"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hRe-CR-uhf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TvU-fL-8mD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LYr-xI-kgL">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="91k-We-e30"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X56-zf-6jG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>
@@ -139,6 +197,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
