@@ -83,7 +83,7 @@
         <!--High Score-->
         <scene sceneID="DyG-zJ-cDa">
             <objects>
-                <viewController id="oLC-UM-mtx" sceneMemberID="viewController">
+                <viewController id="oLC-UM-mtx" customClass="HighScoreViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8fa-Tz-rk2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,7 +99,7 @@
         <!--New Game-->
         <scene sceneID="wmw-UX-NTr">
             <objects>
-                <viewController id="JjK-pr-CJi" sceneMemberID="viewController">
+                <viewController id="JjK-pr-CJi" customClass="NewGameViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2L3-OT-Lxt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,7 +129,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="15" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-6I-0H6">
-                                        <rect key="frame" x="2.6666666666666714" y="209.33333333333334" width="206" height="31"/>
+                                        <rect key="frame" x="-1.3333333333333286" y="209.33333333333334" width="214" height="31"/>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers of Bubbles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyF-E1-RSr">
                                         <rect key="frame" x="0.0" y="280" width="211" height="28.666666666666686"/>
@@ -138,7 +138,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="2" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="CNY-pa-ieW">
-                                        <rect key="frame" x="10.666666666666671" y="349.33333333333326" width="190" height="31"/>
+                                        <rect key="frame" x="6.6666666666666714" y="349.33333333333326" width="198" height="31"/>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
                                         <rect key="frame" x="35.666666666666671" y="399.33333333333326" width="140" height="70"/>
@@ -172,10 +172,25 @@
             </objects>
             <point key="canvasLocation" x="1929" y="-480"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Game Play View Controller-->
+        <scene sceneID="ZDw-ig-px7">
+            <objects>
+                <viewController id="4he-LC-z8O" customClass="GamePlayViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9xV-p8-UFr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="E7J-6A-tz1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zlC-mG-ogo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2913" y="-227"/>
+        </scene>
+        <!--Main Navigation Controller-->
         <scene sceneID="hRe-CR-uhf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TvU-fL-8mD" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TvU-fL-8mD" customClass="MainNavigationController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LYr-xI-kgL">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
