@@ -32,8 +32,8 @@ class NewGameViewController: UIViewController {
     
     
     func updateUI() {
-        var timerSet: Int = Int(timerSlider.value)
-        var bubbleSet: Int = Int(bubblesSlider.value)
+        let timerSet: Int = Int(timerSlider.value)
+        let bubbleSet: Int = Int(bubblesSlider.value)
         
         //display the bubbles and timer value that has been set.
         TimerLabel.text = String(timerSet)
