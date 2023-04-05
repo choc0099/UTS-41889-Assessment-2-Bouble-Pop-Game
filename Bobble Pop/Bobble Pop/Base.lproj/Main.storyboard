@@ -12,8 +12,8 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController storyboardIdentifier="HomeViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="HomeViewController" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -83,7 +83,7 @@
         <!--High Score-->
         <scene sceneID="DyG-zJ-cDa">
             <objects>
-                <viewController id="oLC-UM-mtx" customClass="HighScoreViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HighScoreViewController" id="oLC-UM-mtx" customClass="HighScoreViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8fa-Tz-rk2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,7 +99,7 @@
         <!--New Game-->
         <scene sceneID="wmw-UX-NTr">
             <objects>
-                <viewController id="JjK-pr-CJi" customClass="NewGameViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewGameViewController" id="JjK-pr-CJi" customClass="NewGameViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2L3-OT-Lxt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,7 +222,7 @@
         <!--Game Play View Controller-->
         <scene sceneID="ZDw-ig-px7">
             <objects>
-                <viewController id="4he-LC-z8O" customClass="GamePlayViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GamePlayViewController" id="4he-LC-z8O" customClass="GamePlayViewController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9xV-p8-UFr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -303,7 +303,7 @@
         <!--Main Navigation Controller-->
         <scene sceneID="hRe-CR-uhf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TvU-fL-8mD" customClass="MainNavigationController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="TvU-fL-8mD" customClass="MainNavigationController" customModule="Bobble_Pop" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LYr-xI-kgL">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
