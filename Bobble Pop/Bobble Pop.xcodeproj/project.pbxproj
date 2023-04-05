@@ -23,6 +23,7 @@
 		3284656529DBF58D00AB5330 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656429DBF58D00AB5330 /* HighScoreViewController.swift */; };
 		3284656729DBF6E100AB5330 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656629DBF6E100AB5330 /* MainNavigationController.swift */; };
 		3284656929DBF81400AB5330 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656829DBF81400AB5330 /* GamePlayViewController.swift */; };
+		32CE203929DE16750032773F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE203829DE16750032773F /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		3284656429DBF58D00AB5330 /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		3284656629DBF6E100AB5330 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		3284656829DBF81400AB5330 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
+		32CE203829DE16750032773F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				3264C36729DD49E40097806B /* Game.swift */,
 				3264C36929DD4A0D0097806B /* Score.swift */,
 				3264C36B29DD4A540097806B /* Bubble.swift */,
+				32CE203829DE16750032773F /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32CE203929DE16750032773F /* Player.swift in Sources */,
 				3284656729DBF6E100AB5330 /* MainNavigationController.swift in Sources */,
 				3264C36C29DD4A540097806B /* Bubble.swift in Sources */,
 				323C0C2F29D24F5800E54C01 /* ViewController.swift in Sources */,
