@@ -17,6 +17,9 @@
 		323C0C4229D24F5900E54C01 /* Bobble_PopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4129D24F5900E54C01 /* Bobble_PopTests.swift */; };
 		323C0C4C29D24F5900E54C01 /* Bobble_PopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4B29D24F5900E54C01 /* Bobble_PopUITests.swift */; };
 		323C0C4E29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */; };
+		3264C36829DD49E40097806B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264C36729DD49E40097806B /* Game.swift */; };
+		3264C36A29DD4A0D0097806B /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264C36929DD4A0D0097806B /* Score.swift */; };
+		3264C36C29DD4A540097806B /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264C36B29DD4A540097806B /* Bubble.swift */; };
 		3284656529DBF58D00AB5330 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656429DBF58D00AB5330 /* HighScoreViewController.swift */; };
 		3284656729DBF6E100AB5330 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656629DBF6E100AB5330 /* MainNavigationController.swift */; };
 		3284656929DBF81400AB5330 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656829DBF81400AB5330 /* GamePlayViewController.swift */; };
@@ -54,6 +57,9 @@
 		323C0C4729D24F5900E54C01 /* Bobble PopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bobble PopUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		323C0C4B29D24F5900E54C01 /* Bobble_PopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bobble_PopUITests.swift; sourceTree = "<group>"; };
 		323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bobble_PopUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3264C36729DD49E40097806B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3264C36929DD4A0D0097806B /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		3264C36B29DD4A540097806B /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		3284656429DBF58D00AB5330 /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		3284656629DBF6E100AB5330 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		3284656829DBF81400AB5330 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 		323C0C2929D24F5800E54C01 /* Bobble Pop */ = {
 			isa = PBXGroup;
 			children = (
+				3264C36629DD49C70097806B /* Model */,
 				32B7766129DA94410002368C /* View Controller */,
 				323C0C2A29D24F5800E54C01 /* AppDelegate.swift */,
 				323C0C2C29D24F5800E54C01 /* SceneDelegate.swift */,
@@ -134,6 +141,16 @@
 				323C0C4D29D24F5900E54C01 /* Bobble_PopUITestsLaunchTests.swift */,
 			);
 			path = "Bobble PopUITests";
+			sourceTree = "<group>";
+		};
+		3264C36629DD49C70097806B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3264C36729DD49E40097806B /* Game.swift */,
+				3264C36929DD4A0D0097806B /* Score.swift */,
+				3264C36B29DD4A540097806B /* Bubble.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		32B7766129DA94410002368C /* View Controller */ = {
@@ -279,12 +296,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3284656729DBF6E100AB5330 /* MainNavigationController.swift in Sources */,
+				3264C36C29DD4A540097806B /* Bubble.swift in Sources */,
 				323C0C2F29D24F5800E54C01 /* ViewController.swift in Sources */,
 				3284656529DBF58D00AB5330 /* HighScoreViewController.swift in Sources */,
 				3284656929DBF81400AB5330 /* GamePlayViewController.swift in Sources */,
 				322A94B029DAAF7D009A7943 /* NewGameViewController.swift in Sources */,
 				323C0C2B29D24F5800E54C01 /* AppDelegate.swift in Sources */,
 				323C0C2D29D24F5800E54C01 /* SceneDelegate.swift in Sources */,
+				3264C36A29DD4A0D0097806B /* Score.swift in Sources */,
+				3264C36829DD49E40097806B /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
