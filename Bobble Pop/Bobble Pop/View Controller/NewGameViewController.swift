@@ -17,6 +17,13 @@ class NewGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        var timerSet: Int = Int(timerSlider.value)
+        var bubbleSet: Int = Int(bubblesSlider.value)
+        
+        //display the bubbles and timer value that has been set.
+        TimerLabel.text = String(timerSet)
+        bubblesLabel.text = String(bubbleSet)
     }
 }
 
