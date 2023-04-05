@@ -108,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="133" width="393" height="655"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ubu-6R-uC8">
-                                        <rect key="frame" x="91.666666666666686" y="95" width="210" height="465"/>
+                                        <rect key="frame" x="91.666666666666686" y="44.333333333333314" width="210" height="566.33333333333348"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ub-pG-DFJ">
                                                 <rect key="frame" x="42.666666666666664" y="0.0" width="124.66666666666669" height="20.333333333333332"/>
@@ -117,7 +117,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qt-Hb-ggF">
-                                                <rect key="frame" x="0.0" y="60" width="210" height="40"/>
+                                                <rect key="frame" x="0.0" y="55.333333333333314" width="210" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="MxW-lM-dql"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="icV-Vj-zq4"/>
@@ -126,31 +126,43 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-Iv-5V9">
-                                                <rect key="frame" x="82.999999999999986" y="140" width="43.666666666666671" height="20.333333333333343"/>
+                                                <rect key="frame" x="82.999999999999986" y="130.33333333333334" width="43.666666666666671" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="15" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-6I-0H6">
-                                                <rect key="frame" x="15.333333333333329" y="205" width="179" height="31"/>
+                                                <rect key="frame" x="15.333333333333329" y="190.66666666666666" width="179" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="175" id="tgk-1l-uqR"/>
                                                 </constraints>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cka-b9-qvJ">
+                                                <rect key="frame" x="99.666666666666671" y="260.66666666666663" width="10.333333333333329" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers of Bubbles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyF-E1-RSr">
-                                                <rect key="frame" x="27" y="280" width="155.66666666666666" height="20.333333333333314"/>
+                                                <rect key="frame" x="27" y="325.66666666666663" width="155.66666666666666" height="20.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="2" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="CNY-pa-ieW">
-                                                <rect key="frame" x="15.333333333333329" y="345" width="179" height="31"/>
+                                                <rect key="frame" x="15.333333333333329" y="386" width="179" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="175" id="z1g-A2-aEw"/>
                                                 </constraints>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-Lh-qRD">
+                                                <rect key="frame" x="99.666666666666671" y="456" width="10.333333333333329" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
-                                                <rect key="frame" x="35" y="395" width="140" height="70"/>
+                                                <rect key="frame" x="35" y="496.33333333333326" width="140" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="onc-sI-mor"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="qje-DD-BMY"/>
@@ -190,6 +202,12 @@
                     <navigationItem key="navigationItem" title="New Game" id="Y3C-ip-oJc">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="CDJ-Wz-1rD"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="TimerLabel" destination="Cka-b9-qvJ" id="iTM-CN-udl"/>
+                        <outlet property="bubblesLabel" destination="EpR-Lh-qRD" id="inY-Ib-dtU"/>
+                        <outlet property="bubblesSlider" destination="CNY-pa-ieW" id="wS8-PW-cMh"/>
+                        <outlet property="timerSlider" destination="EGJ-6I-0H6" id="oof-QM-1GM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="304-Bi-IE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
