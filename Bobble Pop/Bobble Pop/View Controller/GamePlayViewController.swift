@@ -14,9 +14,12 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
     
+    var remainingTime = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        remainingTimeLabel.text = String(remainingTime)
     }
     
     

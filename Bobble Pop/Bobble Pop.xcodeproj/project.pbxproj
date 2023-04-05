@@ -121,7 +121,6 @@
 				323C0C3329D24F5900E54C01 /* Assets.xcassets */,
 				323C0C3529D24F5900E54C01 /* LaunchScreen.storyboard */,
 				323C0C3829D24F5900E54C01 /* Info.plist */,
-				3284656629DBF6E100AB5330 /* MainNavigationController.swift */,
 			);
 			path = "Bobble Pop";
 			sourceTree = "<group>";
@@ -160,6 +159,7 @@
 				322A94AF29DAAF7D009A7943 /* NewGameViewController.swift */,
 				3284656429DBF58D00AB5330 /* HighScoreViewController.swift */,
 				3284656829DBF81400AB5330 /* GamePlayViewController.swift */,
+				3284656629DBF6E100AB5330 /* MainNavigationController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
