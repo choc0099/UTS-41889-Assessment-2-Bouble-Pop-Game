@@ -136,6 +136,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="175" id="tgk-1l-uqR"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="timerValueChanged:" destination="JjK-pr-CJi" eventType="valueChanged" id="DqF-zp-Son"/>
+                                                </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cka-b9-qvJ">
                                                 <rect key="frame" x="99.666666666666671" y="260.66666666666663" width="10.333333333333329" height="20.333333333333314"/>
@@ -154,6 +157,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="175" id="z1g-A2-aEw"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="bubbleValueChanged:" destination="JjK-pr-CJi" eventType="valueChanged" id="PNY-mR-l2q"/>
+                                                </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-Lh-qRD">
                                                 <rect key="frame" x="99.666666666666671" y="456" width="10.333333333333329" height="20.333333333333314"/>

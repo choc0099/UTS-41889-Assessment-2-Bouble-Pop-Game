@@ -18,6 +18,20 @@ class NewGameViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        updateUI()
+    }
+    
+    
+    @IBAction func timerValueChanged(_ sender: Any) {
+        updateUI()
+    }
+    
+    @IBAction func bubbleValueChanged(_ sender: Any) {
+        updateUI()
+    }
+    
+    
+    func updateUI() {
         var timerSet: Int = Int(timerSlider.value)
         var bubbleSet: Int = Int(bubblesSlider.value)
         
