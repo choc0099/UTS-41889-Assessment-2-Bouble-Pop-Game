@@ -44,11 +44,13 @@ class GamePlayViewController: UIViewController {
     
     func generateBubble() {
         let bubble = Bubble()
-        //bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
+        bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         self.view.addSubview(bubble)
     }
     
-    
+    @IBAction func bubblePressed(_ sender: UIButton) {
+        sender.removeFromSuperview()
+    }
     
     
 }
