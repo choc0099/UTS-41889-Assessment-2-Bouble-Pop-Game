@@ -15,4 +15,7 @@ class HighScoreViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func returnButtonPressed(_ sender: UIButton) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
