@@ -12,7 +12,7 @@ class Player {
     
     init(playerName: String)
     {
-        self.playerName = playerName
+        self.playerName = playerName 
     }
     
     func getPlayerName() -> String? {

@@ -36,9 +36,13 @@ class GamePlayViewController: UIViewController {
             timer.invalidate()
             //remainingTimeLabel.text = "Done"
             print("Time is over!")
-            
         }
     }
+    
+    /*func generateBubble() {
+        let bubble = Bubble()
+        bubble.addTarget(self, action: #selector(bubblePressed), for: <#T##UIControl.Event#>)
+    }*/
     
     
     
