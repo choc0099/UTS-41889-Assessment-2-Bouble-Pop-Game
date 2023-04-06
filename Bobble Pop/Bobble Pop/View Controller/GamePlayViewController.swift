@@ -25,6 +25,7 @@ class GamePlayViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             self.countingDown()
+            self.generateBubble()
         }
     }
     
@@ -39,10 +40,10 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    /*func generateBubble() {
+    func generateBubble() {
         let bubble = Bubble()
-        bubble.addTarget(self, action: #selector(bubblePressed), for: <#T##UIControl.Event#>)
-    }*/
+        //bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
+    }
     
     
     
