@@ -35,14 +35,17 @@ class GamePlayViewController: UIViewController {
         
         if remainingTime == 0 {
             timer.invalidate()
-            //remainingTimeLabel.text = "Done"
-            print("Time is over!")
+            
+            let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
+            self.navigationController?.pushViewController(VC, animated: true)
+            VC.navigationItem.setHidesBackButton(true, animated: true)
         }
     }
     
     func generateBubble() {
         let bubble = Bubble()
         //bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
+        self.view.addSubview(bubble)
     }
     
     
