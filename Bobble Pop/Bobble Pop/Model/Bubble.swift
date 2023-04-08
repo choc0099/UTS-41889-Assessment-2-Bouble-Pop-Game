@@ -12,6 +12,7 @@ class Bubble: UIButton {
     
     let xPosition = Int.random(in: 20...310)
     let yPosition = Int.random(in: 170...700)
+    //let points: Int?
     
     override init(frame: CGRect){
         super.init(frame: frame)
