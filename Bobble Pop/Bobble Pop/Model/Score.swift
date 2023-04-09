@@ -9,6 +9,11 @@ import Foundation
 
 class Score {
     
+    var highScores: [String: Double] = [:]
+
     
-    
+    func addHighScore(player: Player, highScore: Double) {
+        highScores[player.getPlayerName()!] = highScore
+    }
+
 }

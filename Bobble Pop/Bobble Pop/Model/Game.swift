@@ -8,14 +8,14 @@
 import Foundation
 
 class Game {
-    var playerName: String
-    var numberOfBubbles: Int
-    var timerSet: Int
+    let player: Player
+    //let score: Score
+
     
-    init(playerName: String, numberOfBubbles: Int, timerSet: Int) {
-        self.playerName = playerName
-        self.numberOfBubbles = numberOfBubbles
-        self.timerSet = timerSet
+    init(player: Player) {
+        self.player = player
     }
     
+    
+ 
 }

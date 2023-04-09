@@ -9,9 +9,11 @@ import Foundation
 
 class Player {
     let playerName: String?
+    let playerId: Int?
     
-    init(playerName: String)
+    init(playerName: String, playerId: Int)
     {
+        self.playerId = playerId
         self.playerName = playerName 
     }
     
