@@ -8,14 +8,23 @@
 import Foundation
 
 class Game {
-    let player: Player
+
     //let score: Score
+    
+    var players: [Player] = []
+    var highScores: [String: Double] = [:]
+      
+    
 
     
-    init(player: Player) {
-        self.player = player
+    func addHighScore(player: Player, highScore: Double) {
+        highScores[player.getPlayerName()!] = highScore
     }
+  
     
-    
+    func addPlayers(player: Player)
+    {
+        players.append(player)
+    }
  
 }

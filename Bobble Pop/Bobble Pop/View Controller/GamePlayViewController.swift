@@ -16,6 +16,9 @@ class GamePlayViewController: UIViewController {
     
     var remainingTime = 0
     var timer = Timer()
+    //var game: Game
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -15,12 +15,15 @@ class NewGameViewController: UIViewController {
     @IBOutlet weak var bubblesSlider: UISlider!
     @IBOutlet weak var playerNameText: UITextField!
 
-    
-    
+    var game = Game()
+    var playerIdCounter: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+     
+        
         
         updateUI()
     }
@@ -47,13 +50,13 @@ class NewGameViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGamePlay" {
-            
-        
+            let player = Player(playerName: playerNameText.text!, playerId: playerIdCounter)
+            game.addPlayers(player: player)
             let VC = segue.destination as! GamePlayViewController
             VC.remainingTime = Int(timerSlider.value)
-            print(playerNameText.text!)
-            
+            //VC.game = game //pass the game class data to the view
         }
     }
+    
 }
 
