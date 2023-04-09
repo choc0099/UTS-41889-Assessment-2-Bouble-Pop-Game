@@ -11,10 +11,18 @@ class Player {
     let playerName: String?
     let playerId: Int?
     
+  
+    
     init(playerName: String, playerId: Int)
     {
         self.playerId = playerId
         self.playerName = playerName 
+    }
+    
+    //empty initializer for the game view controllers
+    init() {
+        playerName = nil
+        playerId = nil
     }
     
     func getPlayerName() -> String? {
@@ -24,5 +32,9 @@ class Player {
         else {
             return nil
         }
+    }
+    
+    func getPlayerId() -> Int?+ {
+        return playerId
     }
 }

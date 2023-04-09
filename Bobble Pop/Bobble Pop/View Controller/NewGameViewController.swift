@@ -54,6 +54,7 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
             let VC = segue.destination as! GamePlayViewController
             VC.remainingTime = Int(timerSlider.value)
             VC.game = game //pass the game class data to the view
+            VC.currentPlayer = player //stores the current player.
         }
     }
     
