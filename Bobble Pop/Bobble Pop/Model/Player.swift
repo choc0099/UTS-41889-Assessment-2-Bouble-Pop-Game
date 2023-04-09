@@ -10,8 +10,7 @@ import Foundation
 class Player {
     let playerName: String?
     let playerId: Int?
-    
-  
+    let score = Score()
     
     init(playerName: String, playerId: Int)
     {
@@ -34,7 +33,11 @@ class Player {
         }
     }
     
-    func getPlayerId() -> Int?+ {
+    func getPlayerId() -> Int? {
         return playerId
+    }
+    
+    func getScore() -> Score {
+        return score
     }
 }

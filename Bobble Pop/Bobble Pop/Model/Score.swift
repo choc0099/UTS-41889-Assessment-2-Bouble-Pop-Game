@@ -13,44 +13,28 @@ class Score {
   
     
     //let player: Player?
-    var highScore: Int?
-    let playerId: Int
+    var highScore: Int = 0
+    //let playerId: Int
     
-    init(_ playerId: Int)
+    /*init(_ playerId: Int)
     {
         self.playerId = playerId
-    }
+    }*/
     
     
     
     
     func computeHighScore(currentScore: Int)
     {
-        if var unwrappedHighScore = highScore {
-            unwrappedHighScore += currentScore
-        }
-        else
-        {
-            highScore = currentScore
-        }
+        highScore += currentScore
     }
     
-    func getHighScore() -> Int?
+    func getHighScore() -> Int
     {
-        if highScore != nil {
-            return highScore!
-        }
-        else
-        {
-            return nil
-        }
+        return highScore
     }
 
-    
-    //var highScores: [String: Double] = [:]
 
-    
-    
     /*
     func addHighScore(player: Player, highScore: Double) {
         highScores[player.getPlayerName()!] = highScore

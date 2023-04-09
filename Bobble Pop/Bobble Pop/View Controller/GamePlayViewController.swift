@@ -16,9 +16,11 @@ class GamePlayViewController: UIViewController {
     
     var remainingTime = 0
     var currentScore = 0
+    var playerHighScore = 0
     var timer = Timer()
     var game = Game()
     var currentPlayer = Player()
+   
   
     
     
@@ -72,12 +74,16 @@ class GamePlayViewController: UIViewController {
     func updateUI()
     {
         currentScoreLabel.text = String(currentScore)
+        highScoreLabel.text = String(playerHighScore)
     }
     
     @IBAction func bubblePressed(_ sender: UIButton) {
+        let currentPlayerScore = currentPlayer.getScore()
         
         sender.removeFromSuperview()
         currentScore = 5
+        currentPlayerScore.computeHighScore(currentScore: currentScore)
+        playerHighScore = currentPlayerScore.getHighScore()
         updateUI()
     }
 }
