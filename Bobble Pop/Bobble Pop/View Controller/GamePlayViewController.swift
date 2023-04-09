@@ -16,14 +16,24 @@ class GamePlayViewController: UIViewController {
     
     var remainingTime = 0
     var timer = Timer()
-    //var game: Game
+    var game = Game()
+    //var currentPlayer = Player()
     
+    /*init(game: Game)
+    {
+        self.game = game
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("Failed to implement \(coder) class.")
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
+        game.getPlayers()
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in

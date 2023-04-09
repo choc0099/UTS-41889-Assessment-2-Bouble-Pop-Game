@@ -27,4 +27,11 @@ class Game {
         players.append(player)
     }
  
+    
+    func getPlayers()
+    {
+        for player in players {
+            print("\(player.getPlayerName()!)")
+        }
+    }
 }
