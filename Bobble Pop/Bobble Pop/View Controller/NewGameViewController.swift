@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class NewGameViewController: UIViewController {
+class NewGameViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var TimerLabel: UILabel!
     @IBOutlet weak var bubblesLabel: UILabel!
     @IBOutlet weak var timerSlider: UISlider!
@@ -21,9 +21,7 @@ class NewGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-     
-        
+        playerNameText.delegate = self
         
         updateUI()
     }
@@ -37,7 +35,6 @@ class NewGameViewController: UIViewController {
         updateUI()
     }
     
-    
     func updateUI() {
      
         //display the bubbles and timer value that has been set.
@@ -48,6 +45,8 @@ class NewGameViewController: UIViewController {
         bubblesLabel.text = String(bubbleSet)
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGamePlay" {
             let player = Player(playerName: playerNameText.text!, playerId: playerIdCounter)
@@ -56,6 +55,12 @@ class NewGameViewController: UIViewController {
             VC.remainingTime = Int(timerSlider.value)
             //VC.game = game //pass the game class data to the view
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("return key pressed.")
+        playerNameText.resignFirstResponder()
+        return true
     }
     
 }
