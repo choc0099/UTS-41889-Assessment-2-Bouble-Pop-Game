@@ -20,17 +20,17 @@ class GamePlayViewController: UIViewController {
     var timer = Timer()
     var game = Game()
     var currentPlayer = Player()
-    var currentYPositionMarker = 0
-    var currentXPositionMarker = 0
+    //var currentYPositionMarker = 0
+    //var currentXPositionMarker = 0
     
-    var storedYPositions: [Int] = []
-    var storedXPositions: [Int] = []
-    
+    var storedYPositions: [Int: Int] = [:]
+    var storedXPositions: [Int: Int] = [:]
     
     var bubbleCounterSet = 0
     var bubbleCounter = 0
     
-
+    var bubbleId = 0
+    
     //var score: Score = Score()
     
     /*init(game: Game)
@@ -85,72 +85,110 @@ class GamePlayViewController: UIViewController {
         
         bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
-        //if !isOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+        print("yPos: \(yPosition), xPos: \(xPosition)")
+        if !isOverlap(newXPosition: xPosition, newYPosition: yPosition)
+        {
             self.view.addSubview(bubble)
-        storedXPositions.append(xPosition)
-        storedYPositions.append(yPosition)
-        //}
+            bubbleId += 1
+            storedXPositions[bubbleId] = xPosition
+            storedYPositions[bubbleId] = yPosition
+        }
      
-        print(isOverlap(newXPosition: xPosition, newYPosition: yPosition)) //debug
-        print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
+        //print(isOverlap(newXPosition: xPosition, newYPosition: yPosition)) //debug
+        //print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
     }
     
     //helper functions to check for overlap
-    func isXPosOverlap(newXPosition: Int) -> Bool {
-        let currentXPositionOverlapLeft = currentXPositionMarker - 55
-        let currentXPositionOverlapRight = currentXPositionMarker + 55
+    func isXPosOverlap(currentXPosition: Int, newXPosition: Int) -> Bool {
+        let positionFrame = 25
         
-        if currentXPositionOverlapLeft <= newXPosition {
+        let currentXPositionLeftBounds = currentXPosition - positionFrame
+        let currentXPositionRightBounds = currentXPosition + positionFrame
+        
+        let newXPositionLeftBounds = newXPosition - positionFrame
+        let newXPositionRightBounds = newXPosition + positionFrame
+        
+        if newXPosition <= currentXPositionLeftBounds && newXPosition >= currentXPosition {
             print("The bubble overlapped to the left.")
             return true
         }
-        else if currentXPositionOverlapRight >= newXPosition
+        else if newXPosition >= currentXPositionRightBounds && newXPosition <= currentXPosition
         {
             print("The bubble has been overlapped to the right.")
             return true
         }
         else
         {
-            print("There is no overlaps.")
+            print("xPos not overlapped.")
             return false
         }
     }
     
-    func isYPosOverlap(newYPosition: Int) -> Bool
+    func isYPosOverlap(currentYPosition: Int, newYPosition: Int) -> Bool
     {
-        let currentYPositionOverlapTop = currentYPositionMarker - 45
-        let currentYPositionOverlapBottom = currentYPositionMarker + 45
+        let currentYPositionTopBounds = currentYPosition - 25
+        let currentYPositionBottomBounds = currentYPosition + 25
         
-        if currentYPositionOverlapTop <= newYPosition {
+        if newYPosition <= currentYPositionTopBounds && newYPosition >= currentYPosition {
             print("The bubble overlapped to the top.")
             return true
         }
-        else if currentYPositionOverlapBottom >= newYPosition
+        if newYPosition >= currentYPositionBottomBounds && newYPosition <= currentYPosition
         {
             print("The bubble has been overlapped to the bottom.")
             return true
         }
         else
         {
-            print("There is no overlaps.")
+            print("yPos is not overlapped.")
             return false
         }
     }
     
     func isOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
-        let xPos: Bool = isXPosOverlap(newXPosition: newXPosition)
-        let yPos: Bool = isYPosOverlap(newYPosition: newYPosition)
+        let xPos: Bool = checkOverlapXPositions(newXPosition: newXPosition)
+        let yPos: Bool = checkOverlapYPositions(newYPosition: newYPosition)
         
         if xPos == true || yPos == true {
+            print("overlapped")
             return true
         }
         else
         {
+            print("Not overlapped")
             return false
         }
     }
     
+    func checkOverlapXPositions(newXPosition: Int) -> Bool
+    {
+        for (key, value) in storedXPositions {
+            print("xPos test: bubbleId: \(key), xPos: \(value)")
+            if isXPosOverlap(currentXPosition: value, newXPosition: newXPosition)
+            {
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkOverlapYPositions(newYPosition: Int) -> Bool
+    {
+        for (key, value) in storedYPositions {
+            print("yPos test: bubbleId: \(key), yPos: \(value)")
+            if isYPosOverlap(currentYPosition: value, newYPosition: newYPosition)
+            {
+                
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+        
     func updateUI() {
         currentScoreLabel.text = String(currentScore)
         highScoreLabel.text = String(playerHighScore)
