@@ -71,10 +71,10 @@ class GamePlayViewController: UIViewController {
         highScoreLabel.text = String(playerHighScore)
     }
     
-    @IBAction func bubblePressed(_ sender: UIButton) {
+    @IBAction func bubblePressed(_ sender: Bubble) {
         let currentPlayerScore = currentPlayer.getScore()        
         sender.removeFromSuperview()
-        currentScore = 1
+        currentScore = sender.getPoints()
         currentPlayerScore.computeHighScore(currentScore: currentScore)
         playerHighScore = currentPlayerScore.getHighScore()
         updateUI()
