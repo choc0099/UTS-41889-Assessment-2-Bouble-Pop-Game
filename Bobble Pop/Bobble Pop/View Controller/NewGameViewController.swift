@@ -36,16 +36,12 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateUI() {
-     
         //display the bubbles and timer value that has been set.
         let timerSet: Int = Int(timerSlider.value)
         let bubbleSet: Int = Int(bubblesSlider.value)
-        
         TimerLabel.text = String(timerSet)
         bubblesLabel.text = String(bubbleSet)
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGamePlay" {
@@ -63,6 +59,4 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
         playerNameText.resignFirstResponder()
         return true
     }
-    
 }
-

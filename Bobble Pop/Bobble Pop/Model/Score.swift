@@ -9,9 +9,6 @@ import Foundation
 
 class Score {
     
-  
-  
-    
     //let player: Player?
     var highScore: Int = 0
     //let playerId: Int
@@ -20,9 +17,6 @@ class Score {
     {
         self.playerId = playerId
     }*/
-    
-    
-    
     
     func computeHighScore(currentScore: Int)
     {
@@ -33,7 +27,6 @@ class Score {
     {
         return highScore
     }
-
 
     /*
     func addHighScore(player: Player, highScore: Double) {

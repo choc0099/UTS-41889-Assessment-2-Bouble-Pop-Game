@@ -20,10 +20,6 @@ class GamePlayViewController: UIViewController {
     var timer = Timer()
     var game = Game()
     var currentPlayer = Player()
-   
-  
-    
-    
     
     //var score: Score = Score()
     
@@ -58,7 +54,6 @@ class GamePlayViewController: UIViewController {
         
         if remainingTime == 0 {
             timer.invalidate()
-            
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
@@ -71,17 +66,15 @@ class GamePlayViewController: UIViewController {
         self.view.addSubview(bubble)
     }
     
-    func updateUI()
-    {
+    func updateUI() {
         currentScoreLabel.text = String(currentScore)
         highScoreLabel.text = String(playerHighScore)
     }
     
     @IBAction func bubblePressed(_ sender: UIButton) {
-        let currentPlayerScore = currentPlayer.getScore()
-        
+        let currentPlayerScore = currentPlayer.getScore()        
         sender.removeFromSuperview()
-        currentScore = 5
+        currentScore = 1
         currentPlayerScore.computeHighScore(currentScore: currentScore)
         playerHighScore = currentPlayerScore.getHighScore()
         updateUI()
