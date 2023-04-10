@@ -21,7 +21,7 @@ class GamePlayViewController: UIViewController {
     var game = Game()
     var currentPlayer = Player()
     
-    @IBOutlet weak var bubbleView: UIView!
+
     //var score: Score = Score()
     
     /*init(game: Game)
@@ -36,6 +36,14 @@ class GamePlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //var bubbleView = UIView()
+        
+        let currentViewWidth: Int = Int(self.view.bounds.width)
+        let currentViewHeight: Int = Int(self.view.bounds.height)
+        
+        print(currentViewHeight)
+        
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
         //game.getPlayers()
@@ -45,12 +53,10 @@ class GamePlayViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             self.countingDown()
-            self.generateBubble()
+            self.generateBubble(viewHeight: currentViewHeight, viewWidth: currentViewWidth)
         }
-        
-        print(bubbleView.bounds.width)
     }
-    
+
     @objc func countingDown() {
         remainingTime -= 1
         remainingTimeLabel.text = String(remainingTime)
@@ -63,8 +69,12 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    func generateBubble() {
+    func generateBubble(viewHeight: Int, viewWidth: Int) {
         let bubble = Bubble()
+        let xPosition = Int.random(in: 30...viewWidth - 60)
+        let yPosition = Int.random(in: 160...viewHeight - 80)
+        
+        bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         self.view.addSubview(bubble)
     }

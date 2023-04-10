@@ -10,9 +10,10 @@ import UIKit
 
 class Bubble: UIButton {
     
-    let xPosition = Int.random(in: 20...310)
-    let yPosition = Int.random(in: 170...700)
-    //let points: Int?
+    //let xPosition = Int.random(in: 20...310)
+    //let yPosition = Int.random(in: 170...700)
+    var storedXPos = 0
+    var storedYPos = 0
     
     var points = 0
     
@@ -21,16 +22,24 @@ class Bubble: UIButton {
         let randomNumber = Int.random(in: 0...1000)
         print(randomNumber) // debug
         self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
-        self.frame = CGRect(x: xPosition, y: yPosition, width: 50, height: 50 )
+        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
         self.layer.cornerRadius = 0.5 * self.bounds.size.width
         
         //assign the points to the bubble.
         points = selectPoints(randomOnly: randomNumber)
     }
     
+  
     required init?(coder: NSCoder)
     {
         fatalError("Init(coder: ) has not been implemented")
+    }
+    
+    func changePosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int)
+    {
+        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 50, height: 50)
+        storedXPos = superViewWidth
+        storedYPos = superViewHeight
     }
     
     func animation() {
@@ -59,8 +68,6 @@ class Bubble: UIButton {
     
     //random colour helper function
     func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {
-        //
-        
         switch randomNumber {
         case 0...50:
             print("Black bubble added")
