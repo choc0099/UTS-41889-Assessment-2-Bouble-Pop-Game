@@ -21,6 +21,7 @@ class GamePlayViewController: UIViewController {
     var game = Game()
     var currentPlayer = Player()
     
+    @IBOutlet weak var bubbleView: UIView!
     //var score: Score = Score()
     
     /*init(game: Game)
@@ -39,13 +40,15 @@ class GamePlayViewController: UIViewController {
         remainingTimeLabel.text = String(remainingTime)
         //game.getPlayers()
         //let currentPlayerId = currentPlayer.getPlayerId()
-        print(currentPlayer.getPlayerName()!)
+        //print(currentPlayer.getPlayerName()!)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             self.countingDown()
             self.generateBubble()
         }
+        
+        print(bubbleView.bounds.width)
     }
     
     @objc func countingDown() {

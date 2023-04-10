@@ -303,11 +303,19 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Ht-heF">
+                                <rect key="frame" x="10" y="157.33333333333331" width="408" height="719.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="E7J-6A-tz1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="E7J-6A-tz1" firstAttribute="trailing" secondItem="tgc-Ht-heF" secondAttribute="trailing" constant="10" id="ACE-KX-K3c"/>
+                            <constraint firstItem="E7J-6A-tz1" firstAttribute="bottom" secondItem="tgc-Ht-heF" secondAttribute="bottom" constant="15" id="IU1-ND-zEN"/>
+                            <constraint firstItem="tgc-Ht-heF" firstAttribute="leading" secondItem="E7J-6A-tz1" secondAttribute="leading" constant="10" id="JUG-zW-yZZ"/>
                             <constraint firstItem="odL-RM-yZW" firstAttribute="top" secondItem="E7J-6A-tz1" secondAttribute="top" id="Qyp-Lp-UuE"/>
+                            <constraint firstItem="tgc-Ht-heF" firstAttribute="top" secondItem="odL-RM-yZW" secondAttribute="bottom" constant="20" id="TzC-I9-YVu"/>
                             <constraint firstItem="odL-RM-yZW" firstAttribute="leading" secondItem="E7J-6A-tz1" secondAttribute="leading" id="WEZ-93-gys"/>
                             <constraint firstItem="E7J-6A-tz1" firstAttribute="trailing" secondItem="odL-RM-yZW" secondAttribute="trailing" id="p8y-wL-pYG"/>
                         </constraints>
@@ -316,6 +324,7 @@
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="ebd-i3-DZ5"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bubbleView" destination="tgc-Ht-heF" id="g2W-hh-Pwl"/>
                         <outlet property="currentScoreLabel" destination="ose-0k-Idr" id="Hbc-Ww-iJW"/>
                         <outlet property="highScoreLabel" destination="uGP-ll-NnI" id="7Do-hC-dr0"/>
                         <outlet property="remainingTimeLabel" destination="Fua-aW-WXU" id="usa-fs-xwS"/>
@@ -323,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlC-mG-ogo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2912.2137404580153" y="-227.46478873239437"/>
+            <point key="canvasLocation" x="2911.6822429906542" y="-228.07775377969764"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="hRe-CR-uhf">
