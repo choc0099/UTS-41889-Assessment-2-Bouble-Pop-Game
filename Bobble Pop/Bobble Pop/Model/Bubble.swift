@@ -20,7 +20,7 @@ class Bubble: UIButton {
     override init(frame: CGRect){
         super.init(frame: frame)
         let randomNumber = Int.random(in: 0...1000)
-        print(randomNumber) // debug
+        //print(randomNumber) // debug
         self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
         self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
         self.layer.cornerRadius = 0.5 * self.bounds.size.width
@@ -70,19 +70,19 @@ class Bubble: UIButton {
     func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {
         switch randomNumber {
         case 0...50:
-            print("Black bubble added")
+            //print("Black bubble added")
             return .black
         case 51...150:
             print("Blue bubble added")
             return .blue
         case 151...300:
-            print("Green button added")
+            //print("Green button added")
             return .green
         case 301...600:
-            print("Pink button added.")
+            //print("Pink button added.")
             return .systemPink
         default:
-            print("Red button added")
+            //print("Red button added")
             return .red
         }
     }
@@ -107,5 +107,13 @@ class Bubble: UIButton {
     func getPoints() -> Int
     {
         return points
+    }
+    
+    func getStoredXPos() -> Int {
+        return storedXPos
+    }
+    
+    func getStoredYPos() -> Int {
+        return storedYPos
     }
 }
