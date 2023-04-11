@@ -162,13 +162,13 @@ class GamePlayViewController: UIViewController {
         }
     }
     
+    
     func checkOverlapXPositions(newXPosition: Int) -> Bool
     {
         for (key, value) in storedXPositions {
             print("xPos test: bubbleId: \(key), xPos: \(value)")
             if isXPosOverlap(currentXPosition: value, newXPosition: newXPosition)
             {
-                
                 return true
             }
         }
@@ -181,14 +181,33 @@ class GamePlayViewController: UIViewController {
             print("yPos test: bubbleId: \(key), yPos: \(value)")
             if isYPosOverlap(currentYPosition: value, newYPosition: newYPosition)
             {
-                
                 return true
             }
         }
         return false
     }
     
-    
+    /*
+    func overlapDiaginal(currentXPos: Int, currentYPos: Int, newXPos: Int, newYPos: Int) {
+        let boundsFrame = 20
+        
+        let newPos: [Int] = [newXPos, newYPos]
+        let currentPos: [Int] = [currentXPos, currentYPos]
+        
+        let currentXPosLeftBounds = currentXPos - boundsFrame
+        let currentXPosRightBounds = currentXPos + boundsFrame
+        let currentYPosTopBounds = currentYPos - boundsFrame
+        let currentYPosBottomBounds = currentYPos + boundsFrame
+        
+        let currentPosBottomLeftBounds: [Int] = [currentXPosLeftBounds, currentYPosBottomBounds]
+        let currentPosBottomRightBounds: [Int] = [currentXPosRightBounds, currentYPosBottomBounds]
+        let currentPosTopLeftBounds: [Int] = [currentXPosLeftBounds, currentYPosTopBounds]
+        let currentPosTopRightBounds: [Int] = [currentXPosRightBounds, currentYPosTopBounds]
+        
+        //if (newXPos >= )
+        
+    }
+     */
         
     func updateUI() {
         currentScoreLabel.text = String(currentScore)
