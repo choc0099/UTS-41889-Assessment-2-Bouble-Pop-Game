@@ -100,29 +100,37 @@ class GamePlayViewController: UIViewController {
     }
     
     //helper functions to check for overlap
-    func isXPosOverlap(currentXPosition: Int, newXPosition: Int) -> Bool {
+    func isXPosOverlap(currentXPosition: Int, newXPosition: Int, currentYPosition: Int, newYPosition: Int) -> Bool {
         //let positionFrame = 10
         
         let currentXPositionLeftBounds = currentXPosition - 12
         let currentXPositionRightBounds = currentXPosition + 12
+        let currentYPositionTopBounds = currentYPosition - 20
+        let currentYPositionBottomBounds = currentYPosition + 20
         //let newXPositionLeftBounds = newXPosition - 10
         //let newXPositionRightBounds = newXPosition + 10
         
-        if newXPosition < currentXPosition && newXPosition > currentXPositionLeftBounds {
-            print("The bubble overlapped to the left.")
-            print("Old: \(currentXPosition), new: \(newXPosition), left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
-            return true
+        print("xPos info, old: \(currentXPosition), new: \(newXPosition) left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
+        print("yPos info, old: \(currentYPosition), new: \(newYPosition) left: \(currentYPositionTopBounds), right: \(currentYPositionBottomBounds)")
+        
+        if newYPosition <= currentYPositionTopBounds || newYPosition >= currentYPositionBottomBounds {
+            if newXPosition < currentXPosition && newXPosition > currentXPositionLeftBounds {
+                print("The bubble overlapped to the left.")
+                //print("Old: \(currentXPosition), new: \(newXPosition), left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
+                return true
+            }
+            else if newXPosition > currentXPosition && newXPosition < currentXPositionRightBounds
+            {
+                print("The bubble has been overlapped to the right.")
+                //print("Old: \(currentXPosition), new: \(newXPosition): left: \(currentXPositionLeftBounds) right: \(currentXPositionRightBounds)")
+                return true
+            }
+            return false
         }
-        else if newXPosition > currentXPosition && newXPosition < currentXPositionRightBounds
-        {
-            print("The bubble has been overlapped to the right.")
-            print("Old: \(currentXPosition), new: \(newXPosition): left: \(currentXPositionLeftBounds) right: \(currentXPositionRightBounds)")
-            return true
-        }
+        
         else
         {
             print("xPos not overlapped.")
-            print("old: \(currentXPosition), new: \(newXPosition) left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
             return false
         }
     }
@@ -151,7 +159,7 @@ class GamePlayViewController: UIViewController {
     
     func isOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
-        let xPos: Bool = checkOverlapXPositions(newXPosition: newXPosition)
+        let xPos: Bool = checkOverlapXPositions(newXPosition: newXPosition, newYPosition: newYPosition)
         //let yPos: Bool = checkOverlapYPositions(newYPosition: newYPosition)
         //print()
         if xPos == true {//}|| yPos == true {
@@ -165,11 +173,11 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    func checkOverlapXPositions(newXPosition: Int) -> Bool
+    func checkOverlapXPositions(newXPosition: Int, newYPosition: Int) -> Bool
     {
         for (key, value) in storedXPositions {
             print("Checking xPos: bubbleId: \(key), xPos: \(value)")
-            if isXPosOverlap(currentXPosition: value, newXPosition: newXPosition)
+            if isXPosOverlap(currentXPosition: value, newXPosition: newXPosition, currentYPosition: storedYPositions[key]!, newYPosition: newYPosition)
             {
                 
                 return true
@@ -189,7 +197,7 @@ class GamePlayViewController: UIViewController {
                 return true
             }
         }
-        print()
+        //print()
         return false
     }
     
