@@ -100,7 +100,7 @@ class GamePlayViewController: UIViewController {
     
     //helper functions to check for overlap
     func isXPosOverlap(currentXPosition: Int, newXPosition: Int) -> Bool {
-        let positionFrame = 25
+        let positionFrame = 10
         
         let currentXPositionLeftBounds = currentXPosition - positionFrame
         let currentXPositionRightBounds = currentXPosition + positionFrame
@@ -108,32 +108,33 @@ class GamePlayViewController: UIViewController {
         let newXPositionLeftBounds = newXPosition - positionFrame
         let newXPositionRightBounds = newXPosition + positionFrame
         
-        if newXPosition <= currentXPositionLeftBounds && newXPosition >= currentXPosition {
-            print("The bubble overlapped to the left.")
+        if newXPosition >= currentXPositionLeftBounds && newXPosition <= currentXPosition {
+            print("The bubble overlapped to the left at \(currentXPositionLeftBounds) of \(currentXPosition) from \(newXPosition).")
             return true
         }
-        else if newXPosition >= currentXPositionRightBounds && newXPosition <= currentXPosition
+        else if newXPosition <= currentXPositionRightBounds && newXPosition >= currentXPosition
         {
-            print("The bubble has been overlapped to the right.")
+            print("The bubble has been overlapped to the right at \(currentXPositionRightBounds) of \(currentXPosition) from \(newXPosition).")
             return true
         }
         else
         {
             print("xPos not overlapped.")
+            print("old: \(currentXPosition), new: \(newXPosition) left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
             return false
         }
     }
     
     func isYPosOverlap(currentYPosition: Int, newYPosition: Int) -> Bool
     {
-        let currentYPositionTopBounds = currentYPosition - 25
-        let currentYPositionBottomBounds = currentYPosition + 25
+        let currentYPositionTopBounds = currentYPosition - 15
+        let currentYPositionBottomBounds = currentYPosition + 15
         
-        if newYPosition <= currentYPositionTopBounds && newYPosition >= currentYPosition {
+        if newYPosition >= currentYPositionTopBounds && newYPosition <= currentYPosition {
             print("The bubble overlapped to the top.")
             return true
         }
-        if newYPosition >= currentYPositionBottomBounds && newYPosition <= currentYPosition
+        if newYPosition <= currentYPositionBottomBounds && newYPosition >= currentYPosition
         {
             print("The bubble has been overlapped to the bottom.")
             return true
