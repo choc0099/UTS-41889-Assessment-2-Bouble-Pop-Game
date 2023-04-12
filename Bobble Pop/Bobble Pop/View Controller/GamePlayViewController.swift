@@ -13,7 +13,7 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
-    
+    var bubbleId = 0
     var remainingTime = 0
     var currentScore = 0
     var playerHighScore = 0
@@ -32,7 +32,7 @@ class GamePlayViewController: UIViewController {
     var bubbleCounterSet = 0
     var bubbleCounter = 0
     
-    var bubbleId = 0
+   
     
     //var score: Score = Score()
     
@@ -48,7 +48,7 @@ class GamePlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         //var bubbleView = UIView()
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
@@ -86,14 +86,17 @@ class GamePlayViewController: UIViewController {
         let xPosition = Int.random(in: 50...viewWidth - 60)
         let yPosition = Int.random(in: 160...viewHeight - 80)
         if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+          
             let bubble = Bubble()
             bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
-            bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
-            print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
-                  
-            self.view.addSubview(bubble)
             bubbleId += 1
             bubble.setBubbleId(bubbleId: bubbleId)
+            bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
+            //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
+                  
+            self.view.addSubview(bubble)
+           
+       
             storedBubbles.append(bubble)
             //storedXPositions[bubbleId] = xPosition
             //storedYPositions[bubbleId] = yPosition
@@ -159,12 +162,12 @@ class GamePlayViewController: UIViewController {
         //let yPos: Bool = checkOverlapYPositions(newYPosition: newYPosition)
         
         if xyPos == true {
-            print("overlapped")
+            //print("overlapped")
             return true
         }
         else
         {
-            print("Not overlapped")
+            //print("Not overlapped")
             return false
         }
     }
@@ -176,10 +179,10 @@ class GamePlayViewController: UIViewController {
             let currentBubbleId = bubble.getBubbleId()
             let currentXPos = bubble.getStoredXPos()
             let currentYPos = bubble.getStoredYPos()
-            print("xPos test: bubbleId: \(currentBubbleId) xPos: \(currentXPos), yPos: \(currentYPos)")
+            //print("xPos test: bubbleId: \(currentBubbleId) xPos: \(currentXPos), yPos: \(currentYPos)")
             if isXYPosOverlap(currentXPosition: currentXPos, newXPosition: newXPosition, currentYPosition: currentYPos, newYPosition: newYPosition)
             {
-                print("\(currentBubbleId) is overlapped")
+                //print("\(currentBubbleId) is overlapped")
                 return true
             }
         }
@@ -207,10 +210,32 @@ class GamePlayViewController: UIViewController {
     
     @IBAction func bubblePressed(_ sender: Bubble) {
         let currentPlayerScore = currentPlayer.getScore()        
+       
+        //unmark the x and y positions
+        let bubbleIndex = getBubbleIndexById(bubbleId: sender.getBubbleId())
+        
+        print(bubbleIndex)
         sender.removeFromSuperview()
+        storedBubbles.remove(at: bubbleIndex)
+        
         currentScore = sender.getPoints()
         currentPlayerScore.computeHighScore(currentScore: currentScore)
         playerHighScore = currentPlayerScore.getHighScore()
         updateUI()
     }
+    
+    func getBubbleIndexById(bubbleId: Int) -> Int {
+        var bubbleIndex = 0
+        var indexCounter = 0
+        for bubble in storedBubbles {
+            indexCounter += 1
+            if bubble.getBubbleId() == bubbleId {
+                print("bubble \(bubble.getBubbleId()) is pressed.")
+                bubbleIndex = indexCounter
+            }
+        }
+        return bubbleIndex - 1
+    }
 }
+
+
