@@ -14,7 +14,7 @@ class Bubble: UIButton {
     //let yPosition = Int.random(in: 170...700)
     var storedXPos = 0
     var storedYPos = 0
-    
+    var bubbleId = 0
     var points = 0
     
     override init(frame: CGRect){
@@ -115,5 +115,14 @@ class Bubble: UIButton {
     
     func getStoredYPos() -> Int {
         return storedYPos
+    }
+    
+    func setBubbleId(bubbleId: Int)
+    {
+        self.bubbleId = bubbleId
+    }
+    
+    func getBubbleId() -> Int {
+        return bubbleId
     }
 }
