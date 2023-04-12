@@ -211,17 +211,22 @@ class GamePlayViewController: UIViewController {
     @IBAction func bubblePressed(_ sender: Bubble) {
         let currentPlayerScore = currentPlayer.getScore()        
        
-        //unmark the x and y positions
-        let bubbleIndex = getBubbleIndexById(bubbleId: sender.getBubbleId())
-        
-        print(bubbleIndex)
-        sender.removeFromSuperview()
-        storedBubbles.remove(at: bubbleIndex)
+        handleRemove(bubble: sender)
         
         currentScore = sender.getPoints()
         currentPlayerScore.computeHighScore(currentScore: currentScore)
         playerHighScore = currentPlayerScore.getHighScore()
         updateUI()
+    }
+    
+    func handleRemove(bubble: Bubble)
+    {
+        //unmark the x and y positions
+        let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
+        
+        print(bubbleIndex)
+        bubble.removeFromSuperview()
+        storedBubbles.remove(at: bubbleIndex)
     }
     
     func getBubbleIndexById(bubbleId: Int) -> Int {
