@@ -100,14 +100,14 @@ class GamePlayViewController: UIViewController {
     
     //helper functions to check for overlap
     func isXPosOverlap(currentXPosition: Int, newXPosition: Int) -> Bool {
-        let positionFrame = 10
+        //let positionFrame = 10
         
-        let currentXPositionLeftBounds = currentXPosition - positionFrame
-        let currentXPositionRightBounds = currentXPosition + positionFrame
+        let currentXPositionLeftBounds = currentXPosition - 60
+        let currentXPositionRightBounds = currentXPosition + 60
+        //let newXPositionLeftBounds = newXPosition - positionFrame
+        //let newXPositionRightBounds = newXPosition + positionFrame
         
-        let newXPositionLeftBounds = newXPosition - positionFrame
-        let newXPositionRightBounds = newXPosition + positionFrame
-        
+        print("old: \(currentXPosition), new: \(newXPosition) left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
         if newXPosition >= currentXPositionLeftBounds && newXPosition <= currentXPosition {
             print("The bubble overlapped to the left at \(currentXPositionLeftBounds) of \(currentXPosition) from \(newXPosition).")
             return true
@@ -120,7 +120,7 @@ class GamePlayViewController: UIViewController {
         else
         {
             print("xPos not overlapped.")
-            print("old: \(currentXPosition), new: \(newXPosition) left: \(currentXPositionLeftBounds), right: \(currentXPositionRightBounds)")
+           
             return false
         }
     }
@@ -149,9 +149,9 @@ class GamePlayViewController: UIViewController {
     func isOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
         let xPos: Bool = checkOverlapXPositions(newXPosition: newXPosition)
-        let yPos: Bool = checkOverlapYPositions(newYPosition: newYPosition)
+        //let yPos: Bool = checkOverlapYPositions(newYPosition: newYPosition)
         
-        if xPos == true || yPos == true {
+        if xPos == true { //|| yPos == true {
             print("overlapped")
             return true
         }
