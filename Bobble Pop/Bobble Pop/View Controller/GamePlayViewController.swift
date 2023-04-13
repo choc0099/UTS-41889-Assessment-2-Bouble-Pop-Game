@@ -148,7 +148,7 @@ class GamePlayViewController: UIViewController {
     func checkAllXYPosOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
         for bubble in storedBubbles {
-            let currentBubbleId = bubble.getBubbleId()
+            //let currentBubbleId = bubble.getBubbleId()
             let currentXPos = bubble.getStoredXPos()
             let currentYPos = bubble.getStoredYPos()
             //print("xPos test: bubbleId: \(currentBubbleId) xPos: \(currentXPos), yPos: \(currentYPos)")
@@ -180,9 +180,7 @@ class GamePlayViewController: UIViewController {
         print("pressed points \(previousBubblePoints)")
         if previousBubblePoints == bubble.getPoints()
         {
-            //for _ in 1...sameColourClicked {
-                currentScore *= 1.5
-            //}
+            currentScore *= 1.5
             sameColourClicked += 1
             print("Same color clicked! \(currentScore)")
         }
