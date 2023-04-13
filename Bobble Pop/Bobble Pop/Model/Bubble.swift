@@ -73,7 +73,7 @@ class Bubble: UIButton {
             //print("Black bubble added")
             return .black
         case 51...150:
-            print("Blue bubble added")
+            //print("Blue bubble added")
             return .blue
         case 151...300:
             //print("Green button added")

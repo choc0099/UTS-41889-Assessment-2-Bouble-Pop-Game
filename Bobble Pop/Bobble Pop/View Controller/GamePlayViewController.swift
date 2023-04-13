@@ -15,24 +15,22 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var currentScoreLabel: UILabel!
     var bubbleId = 0
     var remainingTime = 0
-    var currentScore = 0
+    var currentScore: Double = 0
     var playerHighScore = 0
     var timer = Timer()
     var game = Game()
     var currentPlayer = Player()
-    //var currentYPositionMarker = 0
-    //var currentXPositionMarker = 0
+    
     
     //stores all the bubble attributes into an array to mark xPositions and yPositions when the bubble is added onto the screen.
     var storedBubbles: [Bubble] = []
     
-    //var storedYPositions: [Int: Int] = [:]
-    //var storedXPositions: [Int: Int] = [:]
     
     var bubbleCounterSet = 0
     var bubbleCounter = 0
     
-   
+    var sameColourClicked = 1
+    var previousBubblePoints = 0
     
     //var score: Score = Score()
     
@@ -95,14 +93,9 @@ class GamePlayViewController: UIViewController {
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
             self.view.addSubview(bubble)
-           
-       
             storedBubbles.append(bubble)
-            //storedXPositions[bubbleId] = xPosition
-            //storedYPositions[bubbleId] = yPosition
         }
      
-        //print(isOverlap(newXPosition: xPosition, newYPosition: yPosition)) //debug
         //print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
     }
     
@@ -134,27 +127,6 @@ class GamePlayViewController: UIViewController {
         return false
         
     }
-    /*
-    func isYPosOverlap(currentYPosition: Int, newYPosition: Int) -> Bool
-    {
-        let currentYPositionTopBounds = currentYPosition - 15
-        let currentYPositionBottomBounds = currentYPosition + 15
-        
-        if newYPosition >= currentYPositionTopBounds || newYPosition <= currentYPositionBottomBounds {
-            print("The bubble overlapped to the top.")
-            return true
-        }
-        if newYPosition <= currentYPositionBottomBounds && newYPosition >= currentYPosition
-        {
-            print("The bubble has been overlapped to the bottom.")
-            return true
-        }
-        else
-        {
-            print("yPos is not overlapped.")
-            return false
-        }
-    }*/
     
     func isOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
@@ -176,7 +148,7 @@ class GamePlayViewController: UIViewController {
     func checkAllXYPosOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
         for bubble in storedBubbles {
-            let currentBubbleId = bubble.getBubbleId()
+            //let currentBubbleId = bubble.getBubbleId()
             let currentXPos = bubble.getStoredXPos()
             let currentYPos = bubble.getStoredYPos()
             //print("xPos test: bubbleId: \(currentBubbleId) xPos: \(currentXPos), yPos: \(currentYPos)")
@@ -188,35 +160,37 @@ class GamePlayViewController: UIViewController {
         }
         return false
     }
-    /*
-    func checkOverlapYPositions(newYPosition: Int) -> Bool
-    {
-        for (key, value) in storedYPositions {
-            print("yPos test: bubbleId: \(key), yPos: \(value)")
-            if isYPosOverlap(currentYPosition: value, newYPosition: newYPosition)
-            {
-                return true
-            }
-        }
-        return false
-    }
-    */
-  
         
     func updateUI() {
-        currentScoreLabel.text = String(currentScore)
+        currentScoreLabel.text = String(Int(currentScore))
         highScoreLabel.text = String(playerHighScore)
     }
     
     @IBAction func bubblePressed(_ sender: Bubble) {
-        let currentPlayerScore = currentPlayer.getScore()        
-       
+              
+        handleScore(bubble: sender)
         handleRemove(bubble: sender)
-        
-        currentScore = sender.getPoints()
-        currentPlayerScore.computeHighScore(currentScore: currentScore)
-        playerHighScore = currentPlayerScore.getHighScore()
         updateUI()
+    }
+    
+    func handleScore(bubble: Bubble) {
+        
+        let currentPlayerScore = currentPlayer.getScore()
+     
+        print("pressed points \(previousBubblePoints)")
+        if previousBubblePoints == bubble.getPoints()
+        {
+            currentScore *= 1.5
+            sameColourClicked += 1
+            print("Same color clicked! \(currentScore)")
+        }
+        else{
+            currentScore = Double(bubble.getPoints())
+            previousBubblePoints = bubble.getPoints()
+        }
+       
+        currentPlayerScore.computeHighScore(currentScore: Int(currentScore))
+        playerHighScore = currentPlayerScore.getHighScore()
     }
     
     func handleRemove(bubble: Bubble)
@@ -224,7 +198,7 @@ class GamePlayViewController: UIViewController {
         //unmark the x and y positions
         let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
         
-        print(bubbleIndex)
+        //print(bubbleIndex)
         bubble.removeFromSuperview()
         storedBubbles.remove(at: bubbleIndex)
     }
@@ -235,7 +209,7 @@ class GamePlayViewController: UIViewController {
         for bubble in storedBubbles {
             indexCounter += 1
             if bubble.getBubbleId() == bubbleId {
-                print("bubble \(bubble.getBubbleId()) is pressed.")
+                //print("bubble \(bubble.getBubbleId()) is pressed.")
                 bubbleIndex = indexCounter
             }
         }
