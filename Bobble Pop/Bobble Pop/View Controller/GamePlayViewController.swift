@@ -120,7 +120,7 @@ class GamePlayViewController: UIViewController {
     
     //helper functions to check for overlap
     func isXYPosOverlap(currentXPosition: Int, newXPosition: Int, currentYPosition: Int, newYPosition: Int) -> Bool {
-        let positionFrame = 55
+        let positionFrame = 80
         
         //determines the bounderies of each direction
         let currentXPositionMaxLeftBounds = currentXPosition - positionFrame
