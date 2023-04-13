@@ -49,6 +49,7 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
             game.addPlayers(player: player)
             let VC = segue.destination as! GamePlayViewController
             VC.remainingTime = Int(timerSlider.value)
+            VC.numberOfBubbles = Int(bubblesSlider.value)
             VC.game = game //pass the game class data to the view
             VC.currentPlayer = player //stores the current player.
         }

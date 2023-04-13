@@ -27,6 +27,8 @@ class Bubble: UIButton {
         
         //assign the points to the bubble.
         points = selectPoints(randomOnly: randomNumber)
+        //for testing only (vision impairmengt related)
+        //points = 10
     }
     
   

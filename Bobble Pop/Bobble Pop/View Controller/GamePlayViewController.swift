@@ -26,7 +26,7 @@ class GamePlayViewController: UIViewController {
     var storedBubbles: [Bubble] = []
     
     
-    var bubbleCounterSet = 0
+    var numberOfBubbles = 0
     var bubbleCounter = 0
     
     var previousBubblePoints = 0
@@ -63,8 +63,7 @@ class GamePlayViewController: UIViewController {
             timer in
             self.countingDown()
             self.removeAllBubbles()
-            
-            self.renderBubbles(numberOfBubbles: 15, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
         }
     }
 
@@ -82,7 +81,7 @@ class GamePlayViewController: UIViewController {
     
     func renderBubbles(numberOfBubbles: Int, viewHeight: Int, viewWidth: Int) {
         let randomBubbleNumbers = Int.random(in: 1...numberOfBubbles)
-        print("Random number input: \(randomBubbleNumbers)")
+        //print("Random number input: \(randomBubbleNumbers)")
         var numberOfBubblesGenerated = 0
         var loopCounter = 0
         while numberOfBubblesGenerated < randomBubbleNumbers {
@@ -94,7 +93,7 @@ class GamePlayViewController: UIViewController {
             }
             loopCounter += 1
         }
-        print("Number of loops: \(loopCounter)")
+        //print("Number of loops: \(loopCounter)")
         //print("Numbers of bubbles on screen: \(bubbleCounter)")
         
     }
@@ -188,18 +187,19 @@ class GamePlayViewController: UIViewController {
     @IBAction func bubblePressed(_ sender: Bubble) {
               
         handleScore(bubble: sender)
-        handleRemove(bubble: sender)
         updateUI()
+        handleRemove(bubble: sender)
+      
     }
     
     func handleScore(bubble: Bubble) {
         
         let currentPlayerScore = currentPlayer.getScore()
      
-        print("pressed points \(previousBubblePoints)")
+        print("pressed points \(bubble.getPoints())")
         if previousBubblePoints == bubble.getPoints()
         {
-            currentScore *= 1.5
+            currentScore += 1.5 * currentScore
             //sameColourClicked += 1
             print("Same color clicked! \(currentScore)")
         }
