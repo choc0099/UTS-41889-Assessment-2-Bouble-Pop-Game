@@ -29,7 +29,6 @@ class GamePlayViewController: UIViewController {
     var bubbleCounterSet = 0
     var bubbleCounter = 0
     
-    var sameColourClicked = 1
     var previousBubblePoints = 0
     
     //var score: Score = Score()
@@ -64,6 +63,7 @@ class GamePlayViewController: UIViewController {
             timer in
             self.countingDown()
             self.removeAllBubbles()
+            
             self.renderBubbles(numberOfBubbles: 15, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
         }
     }
@@ -81,27 +81,40 @@ class GamePlayViewController: UIViewController {
     }
     
     func renderBubbles(numberOfBubbles: Int, viewHeight: Int, viewWidth: Int) {
-        for _ in 0...numberOfBubbles {
-            generateBubble(viewHeight: viewHeight, viewWidth: viewWidth)
+        let randomBubbleNumbers = Int.random(in: 1...numberOfBubbles)
+        print("Random number input: \(randomBubbleNumbers)")
+        var numberOfBubblesGenerated = 0
+        var loopCounter = 0
+        while numberOfBubblesGenerated < randomBubbleNumbers {
+            let xPosition = Int.random(in: 50...viewWidth - 60)
+            let yPosition = Int.random(in: 160...viewHeight - 80)
+            if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+                generateBubble(xPosition: xPosition, yPosition: yPosition)
+                numberOfBubblesGenerated += 1
+            }
+            loopCounter += 1
         }
+        print("Number of loops: \(loopCounter)")
+        //print("Numbers of bubbles on screen: \(bubbleCounter)")
+        
     }
     
-    func generateBubble(viewHeight: Int, viewWidth: Int) {
-        
-        let xPosition = Int.random(in: 50...viewWidth - 60)
-        let yPosition = Int.random(in: 160...viewHeight - 80)
-        if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+    func generateBubble(xPosition: Int, yPosition: Int) {
+      
+        //if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
           
             let bubble = Bubble()
             bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
             bubbleId += 1
+           
             bubble.setBubbleId(bubbleId: bubbleId)
             bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
             self.view.addSubview(bubble)
             storedBubbles.append(bubble)
-        }
+            bubbleCounter += 1
+        //}
      
         //print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
     }
@@ -187,7 +200,7 @@ class GamePlayViewController: UIViewController {
         if previousBubblePoints == bubble.getPoints()
         {
             currentScore *= 1.5
-            sameColourClicked += 1
+            //sameColourClicked += 1
             print("Same color clicked! \(currentScore)")
         }
         else{
