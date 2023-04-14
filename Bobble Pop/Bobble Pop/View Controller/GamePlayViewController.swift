@@ -85,8 +85,8 @@ class GamePlayViewController: UIViewController {
         var numberOfBubblesGenerated = 0
         var loopCounter = 0
         while numberOfBubblesGenerated < randomBubbleNumbers {
-            let xPosition = Int.random(in: 50...viewWidth - 60)
-            let yPosition = Int.random(in: 160...viewHeight - 80)
+            let xPosition = Int.random(in: 50...viewWidth - 80)
+            let yPosition = Int.random(in: 160...viewHeight - 100)
             if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
                 numberOfBubblesGenerated += 1
