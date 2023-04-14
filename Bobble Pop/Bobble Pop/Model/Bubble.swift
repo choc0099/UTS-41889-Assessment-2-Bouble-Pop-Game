@@ -70,6 +70,7 @@ class Bubble: UIButton {
     }
     
     //random colour helper function
+    //is used to cater for problability of appearance
     func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {
         switch randomNumber {
         case 0...50:
