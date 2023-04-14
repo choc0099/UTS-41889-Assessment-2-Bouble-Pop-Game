@@ -39,7 +39,7 @@ class Bubble: UIButton {
     
     func changePosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int)
     {
-        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 75, height: 75)
+        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 50, height: 50)
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
         storedXPos = superViewWidth
         storedYPos = superViewHeight

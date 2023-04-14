@@ -61,9 +61,11 @@ class GamePlayViewController: UIViewController {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
+            //self.bubbleCounter = 0
             self.countingDown()
-            self.removeAllBubbles()
+            //self.removeAllBubbles()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            //print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
@@ -80,10 +82,14 @@ class GamePlayViewController: UIViewController {
     }
     
     func renderBubbles(numberOfBubbles: Int, viewHeight: Int, viewWidth: Int) {
-        let randomBubbleNumbers = Int.random(in: 1...numberOfBubbles)
+        //let randomBubbleNumbers = Int.random(in: 1...numberOfBubbles)
         //print("Random number input: \(randomBubbleNumbers)")
-        var numberOfBubblesGenerated = 0
-        var loopCounter = 0
+        //var numberOfBubblesGenerated = 0
+        //var loopCounter = 0
+        
+        removeSomeBubbles(numberOfBubbles: numberOfBubbles)
+        addSomeBubbles(numberOfBubbles: numberOfBubbles, viewWidth: viewWidth, viewHeight: viewHeight)
+        /*
         while numberOfBubblesGenerated < randomBubbleNumbers {
             let xPosition = Int.random(in: 50...viewWidth - 80)
             let yPosition = Int.random(in: 160...viewHeight - 100)
@@ -91,11 +97,47 @@ class GamePlayViewController: UIViewController {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
                 numberOfBubblesGenerated += 1
             }
-            loopCounter += 1
-        }
+            //loopCounter += 1
+        }*/
         //print("Number of loops: \(loopCounter)")
         //print("Numbers of bubbles on screen: \(bubbleCounter)")
         
+    }
+    
+    func removeSomeBubbles(numberOfBubbles: Int) {
+        
+        let randomToRemove = Int.random(in: 0...numberOfBubbles / 2)
+       
+        //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
+        for _ in 0...randomToRemove {
+            let randomBubble = storedBubbles.randomElement()
+            if let unwrappedRandomBubble = randomBubble {
+        
+                handleRemove(bubble: unwrappedRandomBubble)
+            }
+        }
+       
+    }
+    
+    
+    func addSomeBubbles(numberOfBubbles: Int, viewWidth: Int, viewHeight: Int)
+    {
+        
+        let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
+        
+        
+        print(numberOfBubbles)
+        
+        var numberOfBubblesGenerated = 0
+        while numberOfBubblesGenerated < randomBubblesToAdd {
+            let xPosition = Int.random(in: 50...viewWidth - 80)
+            let yPosition = Int.random(in: 160...viewHeight - 100)
+            if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+                generateBubble(xPosition: xPosition, yPosition: yPosition)
+                numberOfBubblesGenerated += 1
+            }
+        }
+        //generateBubble(xPosition: xPosition, yPosition: yPosition)
     }
     
     func generateBubble(xPosition: Int, yPosition: Int) {
@@ -120,7 +162,7 @@ class GamePlayViewController: UIViewController {
     
     //helper functions to check for overlap
     func isXYPosOverlap(currentXPosition: Int, newXPosition: Int, currentYPosition: Int, newYPosition: Int) -> Bool {
-        let positionFrame = 80
+        let positionFrame = 55
         
         //determines the bounderies of each direction
         let currentXPositionMaxLeftBounds = currentXPosition - positionFrame
@@ -196,7 +238,7 @@ class GamePlayViewController: UIViewController {
         
         let currentPlayerScore = currentPlayer.getScore()
      
-        print("pressed points \(bubble.getPoints())")
+        //print("pressed points \(bubble.getPoints())")
         if previousBubblePoints == bubble.getPoints()
         {
             currentScore += 1.5 * currentScore
@@ -216,10 +258,11 @@ class GamePlayViewController: UIViewController {
     {
         //unmark the x and y positions
         let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
-        
+        storedBubbles.remove(at: bubbleIndex)
         //print(bubbleIndex)
         bubble.removeFromSuperview()
-        storedBubbles.remove(at: bubbleIndex)
+      
+        bubbleCounter -= 1
     }
     
     func removeAllBubbles() {
@@ -228,19 +271,21 @@ class GamePlayViewController: UIViewController {
             bubble.removeFromSuperview()
         }
         storedBubbles.removeAll()
+        bubbleCounter = 0
     }
     
     func getBubbleIndexById(bubbleId: Int) -> Int {
         var bubbleIndex = 0
         var indexCounter = 0
         for bubble in storedBubbles {
-            indexCounter += 1
             if bubble.getBubbleId() == bubbleId {
                 //print("bubble \(bubble.getBubbleId()) is pressed.")
                 bubbleIndex = indexCounter
             }
+            indexCounter += 1
         }
-        return bubbleIndex - 1
+        print("\(bubbleId) is pressed at index \(bubbleIndex)")
+        return bubbleIndex
     }
     
     
