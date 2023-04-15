@@ -233,22 +233,24 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="onNameTextChanged:" destination="JjK-pr-CJi" eventType="editingChanged" id="qGk-Y3-zvI"/>
+                                                </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
                                                 <rect key="frame" x="35" y="160.33333333333337" width="140" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="onc-sI-mor"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="qje-DD-BMY"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="START" cornerStyle="medium">
-                                                    <backgroundConfiguration key="background" strokeWidth="3">
-                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                        <color key="strokeColor" systemColor="labelColor"/>
-                                                    </backgroundConfiguration>
-                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="26"/>
-                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                                </buttonConfiguration>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="START">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <state key="disabled">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <segue destination="4he-LC-z8O" kind="show" identifier="goToGamePlay" id="HEv-W6-qwq"/>
                                                 </connections>
@@ -296,6 +298,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="playerNameText" destination="2Qt-Hb-ggF" id="8Ax-Be-8Kv"/>
+                        <outlet property="startButton" destination="iOe-kA-U1f" id="o3P-Hb-eci"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="304-Bi-IE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,12 +9,10 @@ import Foundation
 import UIKit
 
 class NewGameViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var TimerLabel: UILabel!
-    @IBOutlet weak var bubblesLabel: UILabel!
-    @IBOutlet weak var timerSlider: UISlider!
-    @IBOutlet weak var bubblesSlider: UISlider!
+    
     @IBOutlet weak var playerNameText: UITextField!
-
+    @IBOutlet weak var startButton: UIButton!
+    
     var game = Game()
     var playerIdCounter: Int = 0
     
@@ -23,25 +21,15 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         playerNameText.delegate = self
         
-        //updateUI()
+        //disables the start button if there is no name entered.
+        disableButton(disabileIt: true)
+        startButton.layer.cornerRadius = 10
+        startButton.layer.borderWidth = 4
+        
+        
     }
     
-    /*
-    @IBAction func timerValueChanged(_ sender: Any) {
-        updateUI()
-    }
     
-    @IBAction func bubbleValueChanged(_ sender: Any) {
-        updateUI()
-    }
-    
-    func updateUI() {
-        //display the bubbles and timer value that has been set.
-        let timerSet: Int = Int(timerSlider.value)
-        let bubbleSet: Int = Int(bubblesSlider.value)
-        TimerLabel.text = String(timerSet)
-        bubblesLabel.text = String(bubbleSet)
-    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGamePlay" {
@@ -65,4 +53,37 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
         playerNameText.resignFirstResponder()
         return true
     }
+    
+    @IBAction func onNameTextChanged(_ sender: UITextField) {
+        if playerNameText.text != "" {
+            disableButton(disabileIt: false)
+        }
+        else
+        {
+            disableButton(disabileIt: true)
+        }
+    }
+    
+    func disableButton(disabileIt isDisabled: Bool)
+    {
+        if isDisabled {
+            
+            
+            startButton.backgroundColor = .red
+          
+            startButton.isEnabled = false
+            //startButton.setTitleColor(.white, for: UIControl.State.disabled)
+            //startButton.tintColor = .red
+            
+        }
+        else
+        {
+            
+            startButton.backgroundColor = .green
+            //startButton.titleLabel?.textColor = .black
+            startButton.isEnabled = true
+        }
+    }
+    
+    
 }
