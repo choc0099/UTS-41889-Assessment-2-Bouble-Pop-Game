@@ -129,7 +129,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="R55-tO-VvK">
-                                <rect key="frame" x="54" y="338.33333333333331" width="285.33333333333337" height="175.66666666666669"/>
+                                <rect key="frame" x="54" y="338.33333333333331" width="285.33333333333331" height="175.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vt-Gd-ZCv">
                                         <rect key="frame" x="0.0" y="0.0" width="285.33333333333331" height="20.333333333333332"/>
@@ -310,8 +310,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="odL-RM-yZW">
-                                <rect key="frame" x="0.0" y="103" width="393" height="46.333333333333343"/>
+                            <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="odL-RM-yZW">
+                                <rect key="frame" x="0.0" y="102.99999999999999" width="393" height="53.333333333333329"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dkq-8s-Ueh">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="21.666666666666668"/>
@@ -337,7 +337,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WNc-Gw-n4n">
-                                        <rect key="frame" x="0.0" y="24.666666666666671" width="393" height="21.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="31.666666666666657" width="393" height="21.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-aW-WXU">
                                                 <rect key="frame" x="0.0" y="0.0" width="131" height="21.666666666666668"/>
@@ -365,9 +365,9 @@
                         <viewLayoutGuide key="safeArea" id="E7J-6A-tz1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="odL-RM-yZW" firstAttribute="top" secondItem="E7J-6A-tz1" secondAttribute="top" id="Qyp-Lp-UuE"/>
-                            <constraint firstItem="odL-RM-yZW" firstAttribute="leading" secondItem="E7J-6A-tz1" secondAttribute="leading" id="WEZ-93-gys"/>
-                            <constraint firstItem="E7J-6A-tz1" firstAttribute="trailing" secondItem="odL-RM-yZW" secondAttribute="trailing" id="p8y-wL-pYG"/>
+                            <constraint firstItem="odL-RM-yZW" firstAttribute="top" secondItem="E7J-6A-tz1" secondAttribute="top" id="5Dg-ak-c98"/>
+                            <constraint firstItem="odL-RM-yZW" firstAttribute="leading" secondItem="E7J-6A-tz1" secondAttribute="leading" id="8Wx-2f-nKw"/>
+                            <constraint firstItem="E7J-6A-tz1" firstAttribute="trailing" secondItem="odL-RM-yZW" secondAttribute="trailing" id="HVt-N3-dDn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FQJ-Nb-bNg">

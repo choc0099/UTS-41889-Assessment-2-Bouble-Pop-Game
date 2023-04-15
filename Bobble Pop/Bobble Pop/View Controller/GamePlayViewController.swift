@@ -64,10 +64,11 @@ class GamePlayViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             //self.bubbleCounter = 0
+            self.resetScore()
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
-            self.resetScore()
-            print("Number of bubbles on screen: \(self.bubbleCounter)")
+          
+            //print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
@@ -78,7 +79,6 @@ class GamePlayViewController: UIViewController {
         if remainingTime == 0 {
             timer.invalidate()
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
-            VC.cigarettes = "Quit smoking"
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
         }
@@ -118,7 +118,7 @@ class GamePlayViewController: UIViewController {
         var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
         while numberOfBubblesGenerated < randomBubblesToAdd && numbersOfOverlaps < 100 {
-            print(numbersOfOverlaps)
+            //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
             let xPosition = Int.random(in: 10...viewWidth - 60)
             let yPosition = Int.random(in: 160...viewHeight - 100)
