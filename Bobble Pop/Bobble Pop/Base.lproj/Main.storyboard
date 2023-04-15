@@ -135,14 +135,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="15" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-cG-4uZ">
-                                <rect key="frame" x="92" y="286" width="179" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="7my-Sh-1hv"/>
-                                </constraints>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8el-UW-wp7">
-                                <rect key="frame" x="176" y="336" width="10.333333333333258" height="20.333333333333485"/>
+                                <rect key="frame" x="167" y="336" width="28" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -155,28 +149,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="2" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="BNh-AW-OXy">
-                                <rect key="frame" x="92" y="417" width="179" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="lGe-e3-gDr"/>
-                                </constraints>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nc-Ev-tdl">
-                                <rect key="frame" x="176" y="467" width="10.333333333333258" height="20.333333333333258"/>
+                                <rect key="frame" x="167" y="467" width="62" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="SXm-n7-vpC">
+                                <rect key="frame" x="122" y="290" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onTimerChanged:" destination="lsC-os-xOf" eventType="valueChanged" id="95H-1L-dsL"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="VOR-Hb-HQV">
+                                <rect key="frame" x="124" y="405" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onBubblesChanged:" destination="lsC-os-xOf" eventType="valueChanged" id="Qdw-wA-Yvs"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O1g-VS-apA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="WWq-co-nUT"/>
+                    <connections>
+                        <outlet property="bubblesSlider" destination="VOR-Hb-HQV" id="wAv-kH-XFM"/>
+                        <outlet property="numberOfBubblesLabel" destination="1Nc-Ev-tdl" id="bBv-QL-l6k"/>
+                        <outlet property="timerLabel" destination="8el-UW-wp7" id="3JZ-Pr-5AR"/>
+                        <outlet property="timerSlider" destination="SXm-n7-vpC" id="RRq-dy-pmj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WN4-mk-nCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1898" y="-1375"/>
+            <point key="canvasLocation" x="2465" y="-1385"/>
         </scene>
         <!--New Game-->
         <scene sceneID="wmw-UX-NTr">
@@ -223,7 +231,7 @@
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="lsC-os-xOf" kind="show" id="kZN-ja-RSa"/>
+                                                    <segue destination="lsC-os-xOf" kind="show" identifier="goToSettings" id="kZN-ja-RSa"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">

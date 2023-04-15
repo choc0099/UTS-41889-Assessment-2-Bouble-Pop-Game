@@ -10,9 +10,12 @@ import UIKit
 
 class HighScoreViewController: UIViewController {
 
+    var cigarettes = "Smoke alarm"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print(cigarettes)
     }
     
     @IBAction func returnButtonPressed(_ sender: UIButton) {

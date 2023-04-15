@@ -14,18 +14,17 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
     var bubbleId = 0
-    var remainingTime = 0
+
     var currentScore: Double = 0
     var playerHighScore = 0
     var timer = Timer()
     var game = Game()
     var currentPlayer = Player()
     
-    
     //stores all the bubble attributes into an array to mark xPositions and yPositions when the bubble is added onto the screen.
     var storedBubbles: [Bubble] = []
     
-    
+    var remainingTime = 0
     var numberOfBubbles = 0
     var bubbleCounter = 0
     
@@ -45,8 +44,11 @@ class GamePlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        //var bubbleView = UIView()
+        let gameSettings = game.getGameSettings()
+        remainingTime = gameSettings.getTimer()
+        numberOfBubbles = gameSettings.getNumberOfBubbles()
+        
+        print("Numbers of bubbles set:  \(numberOfBubbles)")
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
@@ -76,6 +78,7 @@ class GamePlayViewController: UIViewController {
         if remainingTime == 0 {
             timer.invalidate()
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
+            VC.cigarettes = "Quit smoking"
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
         }

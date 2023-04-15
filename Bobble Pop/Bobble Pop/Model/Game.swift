@@ -10,7 +10,9 @@ import Foundation
 class Game {  
     var players: [Player] = []
     var highScores: [String: Double] = [:]
-      
+     
+    let gameSettings = GameSettings()
+    
     func addHighScore(player: Player, highScore: Double) {
         highScores[player.getPlayerName()!] = highScore
     }
@@ -25,5 +27,9 @@ class Game {
         for player in players {
             print("\(player.getPlayerName()!)")
         }
+    }
+    
+    func getGameSettings() -> GameSettings {
+        return gameSettings
     }
 }

@@ -23,10 +23,10 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         playerNameText.delegate = self
         
-        updateUI()
+        //updateUI()
     }
     
-    
+    /*
     @IBAction func timerValueChanged(_ sender: Any) {
         updateUI()
     }
@@ -41,17 +41,22 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
         let bubbleSet: Int = Int(bubblesSlider.value)
         TimerLabel.text = String(timerSet)
         bubblesLabel.text = String(bubbleSet)
-    }
+    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGamePlay" {
             let player = Player(playerName: playerNameText.text!, playerId: playerIdCounter)
             game.addPlayers(player: player)
             let VC = segue.destination as! GamePlayViewController
-            VC.remainingTime = Int(timerSlider.value)
-            VC.numberOfBubbles = Int(bubblesSlider.value)
+            //VC.remainingTime = Int(timerSlider.value)
+            //VC.numberOfBubbles = Int(bubblesSlider.value)
             VC.game = game //pass the game class data to the view
             VC.currentPlayer = player //stores the current player.
+        }
+        else if segue.identifier == "goToSettings"
+        {
+            let VC = segue.destination as! SettingsViewController
+            VC.game = game
         }
     }
     
