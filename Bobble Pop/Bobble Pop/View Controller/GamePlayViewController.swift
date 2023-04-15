@@ -109,7 +109,7 @@ class GamePlayViewController: UIViewController {
     
     func addSomeBubbles(numberOfBubbles: Int, viewWidth: Int, viewHeight: Int)
     {
-        let randomBubblesToAdd = Int.random(in: 1...numberOfBubbles - bubbleCounter)
+        let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
         
         //print(numberOfBubbles)
         
