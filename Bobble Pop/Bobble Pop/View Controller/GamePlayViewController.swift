@@ -118,7 +118,7 @@ class GamePlayViewController: UIViewController {
             print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
             let xPosition = Int.random(in: 10...viewWidth - 60)
-            let yPosition = Int.random(in: 115...viewHeight - 100)
+            let yPosition = Int.random(in: 160...viewHeight - 100)
             //bubbles will be generated and added on screen if there are no overlaps.
             if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
