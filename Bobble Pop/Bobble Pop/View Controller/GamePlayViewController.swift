@@ -64,6 +64,7 @@ class GamePlayViewController: UIViewController {
             //self.bubbleCounter = 0
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            self.resetScore()
             //print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
@@ -248,6 +249,14 @@ class GamePlayViewController: UIViewController {
         bubble.removeFromSuperview()
       
         bubbleCounter -= 1
+    }
+    
+    func resetScore() {
+        currentScore = 0
+        previousBubblePoints = 0
+        //set timer for current score to be displayed in the UI.
+        
+        //updateUI()
     }
     
     func removeAllBubbles() {

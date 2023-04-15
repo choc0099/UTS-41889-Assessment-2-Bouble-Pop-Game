@@ -22,7 +22,7 @@ class Bubble: UIButton {
         let randomNumber = Int.random(in: 0...1000)
         //print(randomNumber) // debug
         self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
-        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
+        //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
       
         
         //assign the points to the bubble.
