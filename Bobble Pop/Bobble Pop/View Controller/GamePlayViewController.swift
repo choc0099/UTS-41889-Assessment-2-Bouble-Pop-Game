@@ -32,16 +32,6 @@ class GamePlayViewController: UIViewController {
     
     //var score: Score = Score()
     
-    /*init(game: Game)
-     {
-     self.game = game
-     super.init(nibName: nil, bundle: nil)
-     }
-     
-     required init?(coder: NSCoder) {
-     fatalError("Failed to implement \(coder) class.")
-     }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let gameSettings = game.getGameSettings()
@@ -52,12 +42,10 @@ class GamePlayViewController: UIViewController {
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
-        
-        //print(currentViewHeight)
+    
         
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
-        //game.getPlayers()
         //let currentPlayerId = currentPlayer.getPlayerId()
         //print(currentPlayer.getPlayerName()!)
         
@@ -81,6 +69,8 @@ class GamePlayViewController: UIViewController {
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
+            //Pass the game object with data stored.
+            VC.game = game
         }
     }
     

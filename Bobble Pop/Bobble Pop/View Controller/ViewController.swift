@@ -11,16 +11,18 @@ class ViewController: UIViewController {
 
     //var gameSettings = GameSettings()
     
-    
+    var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //if segue.identifier =
-    }*/
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToNewGame" {
+            let VC = segue.destination as! NewGameViewController
+            VC.game = game
+        }
+    }
 }
 

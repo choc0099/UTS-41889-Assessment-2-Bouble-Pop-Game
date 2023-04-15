@@ -10,6 +10,10 @@ import Foundation
 class GameSettings {
     var timer: Int = 60
     var numberOfBubbles: Int = 15
+    //var deviceWidth: Int
+    //var deviceHeight: Int
+    //init(deviceWidth: Int, deviceHeight: )
+    
     
     func setTimer(howLong newTimerSet: Int)
     {
