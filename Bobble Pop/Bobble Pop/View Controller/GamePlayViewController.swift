@@ -65,7 +65,7 @@ class GamePlayViewController: UIViewController {
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
             self.resetScore()
-            //print("Number of bubbles on screen: \(self.bubbleCounter)")
+            print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
@@ -112,22 +112,27 @@ class GamePlayViewController: UIViewController {
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
         
         //print(numberOfBubbles)
-        
+        var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
-        while numberOfBubblesGenerated < randomBubblesToAdd {
-            let xPosition = Int.random(in: 50...viewWidth - 80)
-            let yPosition = Int.random(in: 160...viewHeight - 100)
+        while numberOfBubblesGenerated < randomBubblesToAdd && numbersOfOverlaps < 100 {
+            print(numbersOfOverlaps)
+            //sets the x and y positions of the bubble.
+            let xPosition = Int.random(in: 10...viewWidth - 60)
+            let yPosition = Int.random(in: 115...viewHeight - 100)
+            //bubbles will be generated and added on screen if there are no overlaps.
             if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
                 numberOfBubblesGenerated += 1
+                numbersOfOverlaps = 0
             }
+            numbersOfOverlaps += 1
         }
-        print("Bubbles added: \(randomBubblesToAdd)")
-        print("Total: \(bubbleCounter)")
+        
+        //print("Bubbles added: \(randomBubblesToAdd)")
+        //print("Total: \(bubbleCounter)")
     }
     
     func generateBubble(xPosition: Int, yPosition: Int) {
-      
         //if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
           
             let bubble = Bubble()
