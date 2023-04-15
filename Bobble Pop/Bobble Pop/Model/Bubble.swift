@@ -22,11 +22,13 @@ class Bubble: UIButton {
         let randomNumber = Int.random(in: 0...1000)
         //print(randomNumber) // debug
         self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
-        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
-        self.layer.cornerRadius = 0.5 * self.bounds.size.width
+        //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
+      
         
         //assign the points to the bubble.
         points = selectPoints(randomOnly: randomNumber)
+        //for testing only (vision impairmengt related)
+        //points = 10
     }
     
   
@@ -38,6 +40,7 @@ class Bubble: UIButton {
     func changePosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int)
     {
         self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 50, height: 50)
+        self.layer.cornerRadius = 0.50 * self.bounds.size.width
         storedXPos = superViewWidth
         storedYPos = superViewHeight
     }
@@ -67,6 +70,7 @@ class Bubble: UIButton {
     }
     
     //random colour helper function
+    //is used to cater for problability of appearance
     func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {
         switch randomNumber {
         case 0...50:

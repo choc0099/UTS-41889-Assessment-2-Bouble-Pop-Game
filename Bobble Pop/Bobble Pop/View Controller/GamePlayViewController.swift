@@ -26,10 +26,9 @@ class GamePlayViewController: UIViewController {
     var storedBubbles: [Bubble] = []
     
     
-    var bubbleCounterSet = 0
+    var numberOfBubbles = 0
     var bubbleCounter = 0
     
-    var sameColourClicked = 1
     var previousBubblePoints = 0
     
     //var score: Score = Score()
@@ -62,8 +61,11 @@ class GamePlayViewController: UIViewController {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
+            //self.bubbleCounter = 0
             self.countingDown()
-            self.generateBubble(viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            self.resetScore()
+            //print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
@@ -79,22 +81,67 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    func generateBubble(viewHeight: Int, viewWidth: Int) {
+    func renderBubbles(numberOfBubbles: Int, viewHeight: Int, viewWidth: Int) {
         
-        let xPosition = Int.random(in: 50...viewWidth - 60)
-        let yPosition = Int.random(in: 160...viewHeight - 80)
-        if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+        if bubbleCounter > 0 {
+            removeSomeBubbles()
+        }
+        addSomeBubbles(numberOfBubbles: numberOfBubbles, viewWidth: viewWidth, viewHeight: viewHeight)
+        
+    }
+    
+    func removeSomeBubbles() {
+        
+        let randomToRemove = Int.random(in: 0...bubbleCounter)
+       
+        //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
+        for _ in 0...randomToRemove {
+            let randomBubble = storedBubbles.randomElement()
+            if let unwrappedRandomBubble = randomBubble {
+        
+                handleRemove(bubble: unwrappedRandomBubble)
+            }
+        }
+        //print("Bubbles removed: \(randomToRemove) with \(bubbleCounter) left.")
+       
+    }
+    
+    
+    func addSomeBubbles(numberOfBubbles: Int, viewWidth: Int, viewHeight: Int)
+    {
+        let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
+        
+        //print(numberOfBubbles)
+        
+        var numberOfBubblesGenerated = 0
+        while numberOfBubblesGenerated < randomBubblesToAdd {
+            let xPosition = Int.random(in: 50...viewWidth - 80)
+            let yPosition = Int.random(in: 160...viewHeight - 100)
+            if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
+                generateBubble(xPosition: xPosition, yPosition: yPosition)
+                numberOfBubblesGenerated += 1
+            }
+        }
+        print("Bubbles added: \(randomBubblesToAdd)")
+        print("Total: \(bubbleCounter)")
+    }
+    
+    func generateBubble(xPosition: Int, yPosition: Int) {
+      
+        //if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
           
             let bubble = Bubble()
             bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
             bubbleId += 1
+           
             bubble.setBubbleId(bubbleId: bubbleId)
             bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
             self.view.addSubview(bubble)
             storedBubbles.append(bubble)
-        }
+            bubbleCounter += 1
+        //}
      
         //print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
     }
@@ -144,7 +191,6 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    
     func checkAllXYPosOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
         for bubble in storedBubbles {
@@ -169,19 +215,20 @@ class GamePlayViewController: UIViewController {
     @IBAction func bubblePressed(_ sender: Bubble) {
               
         handleScore(bubble: sender)
-        handleRemove(bubble: sender)
         updateUI()
+        handleRemove(bubble: sender)
+      
     }
     
     func handleScore(bubble: Bubble) {
         
         let currentPlayerScore = currentPlayer.getScore()
      
-        print("pressed points \(previousBubblePoints)")
+        //print("pressed points \(bubble.getPoints())")
         if previousBubblePoints == bubble.getPoints()
         {
-            currentScore *= 1.5
-            sameColourClicked += 1
+            currentScore += 1.5 * currentScore
+            //sameColourClicked += 1
             print("Same color clicked! \(currentScore)")
         }
         else{
@@ -197,24 +244,45 @@ class GamePlayViewController: UIViewController {
     {
         //unmark the x and y positions
         let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
-        
+        storedBubbles.remove(at: bubbleIndex)
         //print(bubbleIndex)
         bubble.removeFromSuperview()
-        storedBubbles.remove(at: bubbleIndex)
+      
+        bubbleCounter -= 1
+    }
+    
+    func resetScore() {
+        currentScore = 0
+        previousBubblePoints = 0
+        //set timer for current score to be displayed in the UI.
+        
+        //updateUI()
+    }
+    
+    func removeAllBubbles() {
+        //loop through the stored bubbles
+        for bubble in storedBubbles {
+            bubble.removeFromSuperview()
+        }
+        storedBubbles.removeAll()
+        bubbleCounter = 0
     }
     
     func getBubbleIndexById(bubbleId: Int) -> Int {
         var bubbleIndex = 0
         var indexCounter = 0
         for bubble in storedBubbles {
-            indexCounter += 1
             if bubble.getBubbleId() == bubbleId {
                 //print("bubble \(bubble.getBubbleId()) is pressed.")
                 bubbleIndex = indexCounter
             }
+            indexCounter += 1
         }
-        return bubbleIndex - 1
+        //print("\(bubbleId) is pressed at index \(bubbleIndex)")
+        return bubbleIndex
     }
+    
+    
 }
 
 
