@@ -15,10 +15,11 @@ class HighScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        game.getPlayers()
-        
+          
   
     }
+    
+    //func retrievePlayers()
     
     @IBAction func returnButtonPressed(_ sender: UIButton) {
         let VC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! ViewController

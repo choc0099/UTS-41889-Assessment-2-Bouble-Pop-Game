@@ -106,6 +106,20 @@
                                     <action selector="returnButtonPressed:" destination="oLC-UM-mtx" eventType="touchUpInside" id="mfv-GC-X77"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuU-ve-kCs">
+                                <rect key="frame" x="39" y="152" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KO-pk-0Ld">
+                                <rect key="frame" x="226" y="174" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yhR-7n-A5F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -118,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITB-k9-OdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1924.7663551401868" y="231.31749460043198"/>
+            <point key="canvasLocation" x="1924.4274809160304" y="230.98591549295776"/>
         </scene>
         <!--Settings-->
         <scene sceneID="7Nh-C9-T4e">
@@ -203,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WN4-mk-nCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2465" y="-1385"/>
+            <point key="canvasLocation" x="3118" y="-981"/>
         </scene>
         <!--New Game-->
         <scene sceneID="wmw-UX-NTr">
@@ -385,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlC-mG-ogo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2911.6822429906542" y="-228.07775377969764"/>
+            <point key="canvasLocation" x="2910.6870229007632" y="-228.16901408450704"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="hRe-CR-uhf">
