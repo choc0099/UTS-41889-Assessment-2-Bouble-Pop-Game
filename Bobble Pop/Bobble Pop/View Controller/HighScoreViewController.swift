@@ -16,7 +16,7 @@ class HighScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        renderLabels()
+        renderResults()
     }
     
     //func retrievePlayers()
@@ -27,14 +27,11 @@ class HighScoreViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func renderLabels()
+    func renderResults()
     {
         let gamePlayers = game.getPlayers()
         
         var labelsYPos = 160
-        
-        
-        
         for player in gamePlayers {
             let playerName = player.getPlayerName()!
             let playerScore = player.getScore().getHighScore()
@@ -53,10 +50,12 @@ class HighScoreViewController: UIViewController {
         let scoreLabel = UILabel()
         // sets the positions and sizes for the labels
         nameLabel.frame = CGRect(x: 40, y: yPosition, width: 120, height: 50)
-        scoreLabel.frame = CGRect(x: rightLabelXPos - 60, y: yPosition, width: 120, height: 50)
+        scoreLabel.frame = CGRect(x: rightLabelXPos - 120, y: yPosition, width: 70, height: 50)
         // adds the texts.
         nameLabel.text = playerNameText
         scoreLabel.text = String(playerScoreInt)
+        nameLabel.textAlignment = .left
+        scoreLabel.textAlignment = .right
         //shows the labels on the screen.
         self.view.addSubview(nameLabel)
         self.view.addSubview(scoreLabel)
