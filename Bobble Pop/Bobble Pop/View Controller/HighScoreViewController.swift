@@ -46,16 +46,18 @@ class HighScoreViewController: UIViewController {
     }
     
     func generateLabel(playerName playerNameText: String, playerScore playerScoreInt: Int, yPosition: Int) {
-        var rightLabelXPos = game.getGameSettings().getDeviceWidth()
+        //sets the X position to the right label according to screen width.
+        let rightLabelXPos = game.getGameSettings().getDeviceWidth()
         
-        var nameLabel = UILabel()
-        var scoreLabel = UILabel()
-        
+        let nameLabel = UILabel()
+        let scoreLabel = UILabel()
+        // sets the positions and sizes for the labels
         nameLabel.frame = CGRect(x: 40, y: yPosition, width: 120, height: 50)
         scoreLabel.frame = CGRect(x: rightLabelXPos - 60, y: yPosition, width: 120, height: 50)
-        
+        // adds the texts.
         nameLabel.text = playerNameText
         scoreLabel.text = String(playerScoreInt)
+        //shows the labels on the screen.
         self.view.addSubview(nameLabel)
         self.view.addSubview(scoreLabel)
         //nameLabel.addSubview(self)
