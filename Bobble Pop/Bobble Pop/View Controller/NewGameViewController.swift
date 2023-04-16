@@ -13,6 +13,8 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var playerNameText: UITextField!
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
     var game = Game()
     var playerIdCounter: Int = 0
     
@@ -58,12 +60,16 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onNameTextChanged(_ sender: UITextField) {
+        //let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        checkLetters(name: playerNameText.text!)
         if playerNameText.text != "" {
             disableButton(disabileIt: false)
+            nameLabel.text = "Name is entered."
         }
         else
         {
             disableButton(disabileIt: true)
+            nameLabel.text = "Invalid Input: Enter your name."
         }
     }
     
@@ -83,6 +89,27 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
             startButton.backgroundColor = .green
             //startButton.titleLabel?.textColor = .black
             startButton.isEnabled = true
+        }
+    }
+    
+    func checkLetters(name nameText: String)
+    {
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXUYZabcdefghijklmnopqrstuvwxyz"
+
+        
+        for letter in alphabet {
+            print(letter)
+            for char in nameText {
+                print(char)
+                if char == letter
+                {
+                    print("Letter found")
+                }
+                else
+                {
+                    print("letter not found.")
+                }
+            }
         }
     }
     

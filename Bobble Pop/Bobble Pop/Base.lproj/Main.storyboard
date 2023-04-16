@@ -217,16 +217,10 @@
                                 <rect key="frame" x="0.0" y="133" width="393" height="655"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ubu-6R-uC8">
-                                        <rect key="frame" x="91.666666666666686" y="157.33333333333334" width="210" height="340.33333333333326"/>
+                                        <rect key="frame" x="75.666666666666671" y="157.33333333333334" width="241.66666666666663" height="340.33333333333326"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ub-pG-DFJ">
-                                                <rect key="frame" x="42.666666666666664" y="0.0" width="124.66666666666669" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qt-Hb-ggF">
-                                                <rect key="frame" x="0.0" y="70.333333333333371" width="210" height="40"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter your name." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qt-Hb-ggF">
+                                                <rect key="frame" x="16" y="0.0" width="210" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="MxW-lM-dql"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="icV-Vj-zq4"/>
@@ -237,8 +231,14 @@
                                                     <action selector="onNameTextChanged:" destination="JjK-pr-CJi" eventType="editingChanged" id="qGk-Y3-zvI"/>
                                                 </connections>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your name before playing." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ub-pG-DFJ">
+                                                <rect key="frame" x="0.0" y="90" width="241.66666666666666" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-kA-U1f">
-                                                <rect key="frame" x="35" y="160.33333333333337" width="140" height="70"/>
+                                                <rect key="frame" x="51" y="160.33333333333337" width="140" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="onc-sI-mor"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="qje-DD-BMY"/>
@@ -257,7 +257,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzI-cp-ht3">
-                                                <rect key="frame" x="15" y="280.33333333333331" width="180" height="60"/>
+                                                <rect key="frame" x="31" y="280.33333333333331" width="180" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="925-n3-GKJ"/>
                                                     <constraint firstAttribute="height" constant="60" id="YYf-KW-Vpu"/>
@@ -298,6 +298,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="CDJ-Wz-1rD"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="nameLabel" destination="2ub-pG-DFJ" id="tsX-7z-oMJ"/>
                         <outlet property="playerNameText" destination="2Qt-Hb-ggF" id="8Ax-Be-8Kv"/>
                         <outlet property="startButton" destination="iOe-kA-U1f" id="o3P-Hb-eci"/>
                     </connections>
