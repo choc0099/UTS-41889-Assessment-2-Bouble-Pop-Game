@@ -29,6 +29,11 @@ class ViewController: UIViewController {
             let VC = segue.destination as! NewGameViewController
             VC.game = game
         }
+        else if segue.identifier == "goToHighScore"
+        {
+            let VC = segue.destination as! HighScoreViewController
+            VC.game = game
+        }
     }
 }
 

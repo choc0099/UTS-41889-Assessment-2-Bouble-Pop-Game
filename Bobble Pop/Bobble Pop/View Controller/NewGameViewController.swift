@@ -19,6 +19,9 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        game.gameSettings.setTimer(howLong: 60)
+        game.gameSettings.setNumberOfBubbles(howMany: 15)
+        
         playerNameText.delegate = self
         
         //disables the start button if there is no name entered.
