@@ -15,6 +15,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let gameSettings = game.getGameSettings()
+        let deviceWidth = Int(self.view.bounds.width)
+        let deviceHeight = Int(self.view.bounds.height)
+        
+        gameSettings.setDeviceWdihAndHeight(deviceWidth: deviceWidth, deviceHeight: deviceHeight)
+        
         // Do any additional setup after loading the view.
     }
     

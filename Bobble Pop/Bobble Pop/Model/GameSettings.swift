@@ -10,8 +10,8 @@ import Foundation
 class GameSettings {
     var timer: Int = 60
     var numberOfBubbles: Int = 15
-    //var deviceWidth: Int
-    //var deviceHeight: Int
+    var deviceWidth: Int = 0
+    var deviceHeight: Int = 0
     //init(deviceWidth: Int, deviceHeight: )
     
     
@@ -31,5 +31,18 @@ class GameSettings {
     
     func getNumberOfBubbles() -> Int {
         return numberOfBubbles
+    }
+    
+    func setDeviceWdihAndHeight(deviceWidth: Int, deviceHeight: Int) {
+        self.deviceWidth = deviceWidth
+        self.deviceHeight = deviceHeight
+    }
+    
+    func getDeviceWidth() -> Int {
+        return deviceWidth
+    }
+    
+    func getDeviceHeight() -> Int {
+        return deviceHeight
     }
 }
