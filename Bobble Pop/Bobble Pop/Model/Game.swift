@@ -10,20 +10,31 @@ import Foundation
 class Game {  
     var players: [Player] = []
     var highScores: [String: Double] = [:]
-      
+    
+    let gameSettings = GameSettings()
+    
     func addHighScore(player: Player, highScore: Double) {
         highScores[player.getPlayerName()!] = highScore
     }
-  
+    
     func addPlayers(player: Player)
     {
         players.append(player)
     }
     
-    func getPlayers()
+    func getPlayers() -> [Player]
     {
+        var gamePlayers: [Player] = []
+        
         for player in players {
-            print("\(player.getPlayerName()!)")
+            gamePlayers.append(player)
         }
+        return gamePlayers
+    }
+    
+    func getGameSettings() -> GameSettings {
+        return gameSettings
     }
 }
+    
+    

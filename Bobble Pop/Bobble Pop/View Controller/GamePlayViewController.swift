@@ -14,18 +14,17 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
     var bubbleId = 0
-    var remainingTime = 0
+
     var currentScore: Double = 0
     var playerHighScore = 0
     var timer = Timer()
     var game = Game()
     var currentPlayer = Player()
     
-    
     //stores all the bubble attributes into an array to mark xPositions and yPositions when the bubble is added onto the screen.
     var storedBubbles: [Bubble] = []
     
-    
+    var remainingTime = 0
     var numberOfBubbles = 0
     var bubbleCounter = 0
     
@@ -33,38 +32,30 @@ class GamePlayViewController: UIViewController {
     
     //var score: Score = Score()
     
-    /*init(game: Game)
-     {
-     self.game = game
-     super.init(nibName: nil, bundle: nil)
-     }
-     
-     required init?(coder: NSCoder) {
-     fatalError("Failed to implement \(coder) class.")
-     }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        //var bubbleView = UIView()
+        let gameSettings = game.getGameSettings()
+        remainingTime = gameSettings.getTimer()
+        numberOfBubbles = gameSettings.getNumberOfBubbles()
+        
+        print("Numbers of bubbles set:  \(numberOfBubbles)")
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
-        
-        //print(currentViewHeight)
+    
         
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
-        //game.getPlayers()
         //let currentPlayerId = currentPlayer.getPlayerId()
         //print(currentPlayer.getPlayerName()!)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             //self.bubbleCounter = 0
+            self.resetScore()
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
-            self.resetScore()
+          
             //print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
@@ -78,6 +69,8 @@ class GamePlayViewController: UIViewController {
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
+            //Pass the game object with data stored.
+            VC.game = game
         }
     }
     
@@ -112,22 +105,27 @@ class GamePlayViewController: UIViewController {
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
         
         //print(numberOfBubbles)
-        
+        var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
-        while numberOfBubblesGenerated < randomBubblesToAdd {
-            let xPosition = Int.random(in: 50...viewWidth - 80)
+        while numberOfBubblesGenerated < randomBubblesToAdd && numbersOfOverlaps < 100 {
+            //print(numbersOfOverlaps)
+            //sets the x and y positions of the bubble.
+            let xPosition = Int.random(in: 10...viewWidth - 60)
             let yPosition = Int.random(in: 160...viewHeight - 100)
+            //bubbles will be generated and added on screen if there are no overlaps.
             if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
                 numberOfBubblesGenerated += 1
+                numbersOfOverlaps = 0
             }
+            numbersOfOverlaps += 1
         }
-        print("Bubbles added: \(randomBubblesToAdd)")
-        print("Total: \(bubbleCounter)")
+        
+        //print("Bubbles added: \(randomBubblesToAdd)")
+        //print("Total: \(bubbleCounter)")
     }
     
     func generateBubble(xPosition: Int, yPosition: Int) {
-      
         //if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
           
             let bubble = Bubble()

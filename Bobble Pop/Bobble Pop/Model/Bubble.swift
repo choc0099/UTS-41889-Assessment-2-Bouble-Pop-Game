@@ -16,6 +16,8 @@ class Bubble: UIButton {
     var storedYPos = 0
     var bubbleId = 0
     var points = 0
+    var deviceWidth = 0
+    var deviceHeight = 0
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -43,6 +45,11 @@ class Bubble: UIButton {
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
         storedXPos = superViewWidth
         storedYPos = superViewHeight
+    }
+    
+    func setDeviceWidthAndHeight(deviceWidth: Int, deviceHeight: Int) {
+        self.deviceWidth = deviceWidth
+        self.deviceHeight = deviceHeight
     }
     
     func animation() {
@@ -129,4 +136,8 @@ class Bubble: UIButton {
     func getBubbleId() -> Int {
         return bubbleId
     }
+    
+    
 }
+
+
