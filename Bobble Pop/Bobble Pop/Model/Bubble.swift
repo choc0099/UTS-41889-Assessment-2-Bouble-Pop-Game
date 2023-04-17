@@ -76,6 +76,16 @@ class Bubble: UIButton {
         layer.add(flash, forKey: nil)
     }
     
+    func moveBubblePos()
+    {
+        let moveAnimation = CABasicAnimation(keyPath: "position")
+        
+        moveAnimation.fromValue = [0,0]
+        moveAnimation.toValue = [50,50]
+        //moveAnimation.initialVelocity = 0.5
+        layer.add(moveAnimation, forKey: nil)
+    }
+    
     //random colour helper function
     //is used to cater for problability of appearance
     func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {

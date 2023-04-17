@@ -137,6 +137,7 @@ class GamePlayViewController: UIViewController {
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
             self.view.addSubview(bubble)
+            bubble.moveBubblePos()
             storedBubbles.append(bubble)
             bubbleCounter += 1
         //}
