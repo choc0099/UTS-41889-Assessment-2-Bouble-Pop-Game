@@ -11,8 +11,11 @@ import UIKit
 class HighScoreViewController: UIViewController {
 
    var game = Game()
+
     
     @IBOutlet weak var VerticalScoreStack: UIStackView!
+    
+    //var gamePlayers = copyPlayers()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -60,5 +63,17 @@ class HighScoreViewController: UIViewController {
         self.view.addSubview(nameLabel)
         self.view.addSubview(scoreLabel)
         //nameLabel.addSubview(self)
+    }
+    
+    //this will be used for table view to enable sorting without effecting the original class due to class referencing an object.
+    func copyPlayers() -> [Player]
+    {
+        var copiedPlayers: [Player] = []
+        let players = game.getPlayers()
+        for player in players
+        {
+            copiedPlayers.append(player)
+        }
+        return copiedPlayers
     }
 }

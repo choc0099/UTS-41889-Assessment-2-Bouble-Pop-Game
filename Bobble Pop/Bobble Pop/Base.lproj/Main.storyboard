@@ -106,12 +106,20 @@
                                     <action selector="returnButtonPressed:" destination="oLC-UM-mtx" eventType="touchUpInside" id="mfv-GC-X77"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-E3-Llg">
+                                <rect key="frame" x="16" y="82" width="361" height="584"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yhR-7n-A5F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="x9c-Rj-72C" firstAttribute="centerX" secondItem="8fa-Tz-rk2" secondAttribute="centerX" id="3n9-VK-g0e"/>
                             <constraint firstItem="yhR-7n-A5F" firstAttribute="bottom" secondItem="x9c-Rj-72C" secondAttribute="bottom" constant="60" id="72Q-JN-b8p"/>
+                            <constraint firstItem="yhR-7n-A5F" firstAttribute="bottom" secondItem="bbb-E3-Llg" secondAttribute="bottom" constant="152" id="AqR-XP-Au3"/>
+                            <constraint firstItem="bbb-E3-Llg" firstAttribute="leading" secondItem="yhR-7n-A5F" secondAttribute="leading" constant="16" id="IFa-QV-DMB"/>
+                            <constraint firstItem="yhR-7n-A5F" firstAttribute="top" secondItem="bbb-E3-Llg" secondAttribute="top" constant="21" id="N8L-hz-93R"/>
+                            <constraint firstItem="yhR-7n-A5F" firstAttribute="trailing" secondItem="bbb-E3-Llg" secondAttribute="trailing" constant="16" id="PJg-Jq-CeQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="High Score" id="SkD-j0-Pd6"/>
