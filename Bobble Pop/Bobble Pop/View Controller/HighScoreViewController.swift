@@ -7,13 +7,12 @@
 
 import Foundation
 import UIKit
-
+let KEY_HIGH_SCORE = "highScore"
 class HighScoreViewController: UIViewController {
 
    var game = Game()
 
-    
-    @IBOutlet weak var VerticalScoreStack: UIStackView!
+    @IBOutlet weak var highScoreTableView: UITableView!
     
     //var gamePlayers = copyPlayers()
     override func viewDidLoad() {
@@ -75,5 +74,19 @@ class HighScoreViewController: UIViewController {
             copiedPlayers.append(player)
         }
         return copiedPlayers
+    }
+}
+
+extension HighScoreViewController:UITableViewDelegate {
+    
+}
+
+extension HighScoreViewController:UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
     }
 }
