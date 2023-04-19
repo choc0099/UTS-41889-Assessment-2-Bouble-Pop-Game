@@ -42,7 +42,7 @@ class GamePlayViewController: UIViewController {
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
-    
+        
         
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
@@ -57,6 +57,8 @@ class GamePlayViewController: UIViewController {
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
           
             //print("Number of bubbles on screen: \(self.bubbleCounter)")
+            
+            
         }
     }
 
@@ -66,6 +68,8 @@ class GamePlayViewController: UIViewController {
         
         if remainingTime == 0 {
             timer.invalidate()
+            // writes the game score to the userDefaults database
+            writeHighScore()
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
@@ -281,6 +285,33 @@ class GamePlayViewController: UIViewController {
         return bubbleIndex
     }
     
+    //writes the highscores to the default database
+    
+    func writeHighScore() {
+        // Write high scores to User Defautls
+        let defaults = UserDefaults.standard;
+        // get the current data from current game state.
+        let updatedGameScores = retrieveGameScores()
+        
+        defaults.set(try? PropertyListEncoder().encode(updatedGameScores), forKey: Game.KEY_HIGH_SCORE)
+    }
+    
+    func retrieveGameScores() -> [GameScore]
+    {
+        var gameScores: [GameScore] = []
+        
+        for player in game.getPlayers()
+        {
+            let currentPlayerName = player.getPlayerName()
+            let currentPlayerHightScore = player.getScore().getHighScore()
+            //convert the class objects to the struct object
+            let currentGameScore: GameScore = GameScore(name: currentPlayerName!, score: currentPlayerHightScore)
+            gameScores.append(currentGameScore)
+            
+        }
+        //print(gameScores) //debug
+        return gameScores
+    }
     
 }
 

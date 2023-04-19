@@ -61,7 +61,7 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onNameTextChanged(_ sender: UITextField) {
         //let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-        checkLetters(name: playerNameText.text!)
+        //checkLetters(name: playerNameText.text!)
         if playerNameText.text != "" {
             disableButton(disabileIt: false)
             nameLabel.text = "Name is entered."

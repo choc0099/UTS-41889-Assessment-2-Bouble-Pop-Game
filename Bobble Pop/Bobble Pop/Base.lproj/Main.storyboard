@@ -107,10 +107,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-E3-Llg">
-                                <rect key="frame" x="16" y="82" width="361" height="584"/>
+                                <rect key="frame" x="16" y="53" width="361" height="613"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QbS-Fr-zdY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="gameScore" id="QbS-Fr-zdY">
                                         <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QbS-Fr-zdY" id="9gt-kX-cC4">
@@ -128,7 +128,7 @@
                             <constraint firstItem="yhR-7n-A5F" firstAttribute="bottom" secondItem="x9c-Rj-72C" secondAttribute="bottom" constant="60" id="72Q-JN-b8p"/>
                             <constraint firstItem="yhR-7n-A5F" firstAttribute="bottom" secondItem="bbb-E3-Llg" secondAttribute="bottom" constant="152" id="AqR-XP-Au3"/>
                             <constraint firstItem="bbb-E3-Llg" firstAttribute="leading" secondItem="yhR-7n-A5F" secondAttribute="leading" constant="16" id="IFa-QV-DMB"/>
-                            <constraint firstItem="yhR-7n-A5F" firstAttribute="top" secondItem="bbb-E3-Llg" secondAttribute="top" constant="21" id="N8L-hz-93R"/>
+                            <constraint firstItem="yhR-7n-A5F" firstAttribute="top" secondItem="bbb-E3-Llg" secondAttribute="top" constant="50" id="N8L-hz-93R"/>
                             <constraint firstItem="yhR-7n-A5F" firstAttribute="trailing" secondItem="bbb-E3-Llg" secondAttribute="trailing" constant="16" id="PJg-Jq-CeQ"/>
                         </constraints>
                     </view>

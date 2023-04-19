@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-struct GameScore {
-    var playerName: String
-    var highScore: Int
-}
 
 let KEY_HIGH_SCORE = "highScore"
 class HighScoreViewController: UIViewController {
@@ -27,7 +23,7 @@ class HighScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        renderResults()
+        //renderResults()
     }
     
     //func retrievePlayers()
@@ -89,7 +85,7 @@ class HighScoreViewController: UIViewController {
 extension HighScoreViewController:UITableViewDelegate {
     
 }
-
+/*
 extension HighScoreViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playerScores.count
@@ -98,4 +94,4 @@ extension HighScoreViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
     }
-}
+}*/
