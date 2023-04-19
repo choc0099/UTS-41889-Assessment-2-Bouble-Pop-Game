@@ -18,9 +18,12 @@ class SettingsViewController: UIViewController {
     
     var game = Game()
    
+    @IBOutlet weak var clearScoresButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        clearScoresButton.setTitle("Clear score", for: .normal)
+        //clearScoresButton.high
         updateUI()
     }
     
@@ -42,7 +45,7 @@ class SettingsViewController: UIViewController {
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
         HighScoreManager.clearScores()
         game.clearAllPlayers()
-        
+        clearScoresButton.setTitle("Score cleard.", for: .normal)
     }
     
     func updateUI() {
