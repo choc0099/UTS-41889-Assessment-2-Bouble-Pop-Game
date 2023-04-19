@@ -26,6 +26,8 @@
 		3284656729DBF6E100AB5330 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656629DBF6E100AB5330 /* MainNavigationController.swift */; };
 		3284656929DBF81400AB5330 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284656829DBF81400AB5330 /* GamePlayViewController.swift */; };
 		32CE203929DE16750032773F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE203829DE16750032773F /* Player.swift */; };
+		32ECC22029EF666400409D02 /* GameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECC21F29EF666400409D02 /* GameScore.swift */; };
+		32ECC22229EF72DE00409D02 /* HighScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECC22129EF72DE00409D02 /* HighScoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		3284656629DBF6E100AB5330 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		3284656829DBF81400AB5330 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		32CE203829DE16750032773F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		32ECC21F29EF666400409D02 /* GameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScore.swift; sourceTree = "<group>"; };
+		32ECC22129EF72DE00409D02 /* HighScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,8 @@
 				3264C36B29DD4A540097806B /* Bubble.swift */,
 				32CE203829DE16750032773F /* Player.swift */,
 				3277B38929EA66F200A5E9D2 /* GameSettings.swift */,
+				32ECC21F29EF666400409D02 /* GameScore.swift */,
+				32ECC22129EF72DE00409D02 /* HighScoreManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,7 +321,9 @@
 				323C0C2B29D24F5800E54C01 /* AppDelegate.swift in Sources */,
 				323C0C2D29D24F5800E54C01 /* SceneDelegate.swift in Sources */,
 				3264C36A29DD4A0D0097806B /* Score.swift in Sources */,
+				32ECC22229EF72DE00409D02 /* HighScoreManager.swift in Sources */,
 				3264C36829DD49E40097806B /* Game.swift in Sources */,
+				32ECC22029EF666400409D02 /* GameScore.swift in Sources */,
 				3277B38829EA604500A5E9D2 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

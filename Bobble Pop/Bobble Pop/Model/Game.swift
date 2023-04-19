@@ -13,6 +13,8 @@ class Game {
     
     let gameSettings = GameSettings()
     
+    static let KEY_HIGH_SCORE = "highScore"
+    
     func addHighScore(player: Player, highScore: Double) {
         highScores[player.getPlayerName()!] = highScore
     }
