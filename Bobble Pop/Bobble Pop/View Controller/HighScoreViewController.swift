@@ -23,6 +23,9 @@ class HighScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        playerScores = readHighScroes()
+        print(playerScores)
+        
         //renderResults()
     }
     
@@ -68,7 +71,7 @@ class HighScoreViewController: UIViewController {
         self.view.addSubview(scoreLabel)
         //nameLabel.addSubview(self)
     }
-    
+    /*
     //this will be used for table view to enable sorting without effecting the original class due to class referencing an object.
     func copyPlayers() -> [Player]
     {
@@ -79,7 +82,25 @@ class HighScoreViewController: UIViewController {
             copiedPlayers.append(player)
         }
         return copiedPlayers
+    }*/
+    
+    func readHighScroes() -> [GameScore] {
+        // Read from User Defaults
+        // This should happen at the HighScrollViewController
+        
+        let defaults = UserDefaults.standard;
+        
+        if let savedArrayData = defaults.value(forKey:Game.KEY_HIGH_SCORE) as? Data {
+            if let array = try? PropertyListDecoder().decode(Array<GameScore>.self, from: savedArrayData) {
+                return array
+            } else {
+                return []
+            }
+        } else {
+            return []
+        }
     }
+    
 }
 
 extension HighScoreViewController:UITableViewDelegate {
