@@ -16,15 +16,15 @@ class HighScoreViewController: UIViewController {
 
     @IBOutlet weak var highScoreTableView: UITableView!
     
-    var playerScores: [GameScore] = []
+    var highScores: [GameScore] = []
     
     
     //var gamePlayers = copyPlayers()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        playerScores = readHighScroes()
-        print(playerScores)
+        highScores = readHighScroes()
+        print(highScores)
         
         //renderResults()
     }
@@ -105,14 +105,33 @@ class HighScoreViewController: UIViewController {
 
 extension HighScoreViewController:UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // When a cell is selected, say hello
+        let index = indexPath.row;
+        let name = self.highScores[index]
+        print("Hello \(name)")
+    }
 }
-/*
+
 extension HighScoreViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playerScores.count
+        return highScores.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // As table view, what cell should I display, when user's at this index?
+        
+        // Dequed a reusable cell from the table view
+        let cell = tableView.dequeueReusableCell(withIdentifier: "highScoreCell", for: indexPath);
+        
+        // Updated the UI for this Cell
+        let score = highScores[indexPath.row]
+        
+        cell.textLabel?.text = score.name;
+        cell.detailTextLabel?.text = "Score: \(score.score)";
+        
+        // Return the cell to TableView
+        return cell;
         
     }
-}*/
+}
