@@ -23,7 +23,15 @@ class HighScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+           
         highScores = readHighScroes()
+        
+        //sorts the array with the highest score
+        highScores.sort(by: {
+            $0.score > $1.score
+        })
+        
         print(highScores)
         
         //renderResults()
@@ -128,7 +136,7 @@ extension HighScoreViewController:UITableViewDataSource {
         let score = highScores[indexPath.row]
         
         cell.textLabel?.text = score.name;
-        cell.detailTextLabel?.text = "Score: \(score.score)";
+        cell.detailTextLabel?.text = "\(score.score)";
         
         // Return the cell to TableView
         return cell;
