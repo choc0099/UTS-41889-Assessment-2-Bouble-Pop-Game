@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="R55-tO-VvK">
-                                <rect key="frame" x="54" y="338.33333333333331" width="285.33333333333331" height="175.66666666666669"/>
+                                <rect key="frame" x="54" y="308.66666666666669" width="285.33333333333331" height="235.00000000000006"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vt-Gd-ZCv">
                                         <rect key="frame" x="0.0" y="0.0" width="285.33333333333331" height="20.333333333333332"/>
@@ -179,7 +179,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="SSi-WW-FmB">
-                                        <rect key="frame" x="0.0" y="45.333333333333371" width="285.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="45.333333333333314" width="285.33333333333331" height="30"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="SXm-n7-vpC">
                                                 <rect key="frame" x="-2" y="0.0" width="254" height="31"/>
@@ -199,13 +199,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers of Bubbles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiF-gt-dln">
-                                        <rect key="frame" x="0.0" y="100.33333333333337" width="285.33333333333331" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="100.33333333333331" width="285.33333333333331" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NQf-GO-dv6">
-                                        <rect key="frame" x="0.0" y="145.66666666666669" width="285.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="145.66666666666663" width="285.33333333333331" height="30"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="VOR-Hb-HQV">
                                                 <rect key="frame" x="-2" y="0.0" width="254" height="31"/>
@@ -224,6 +224,14 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXa-lZ-Mbt">
+                                        <rect key="frame" x="0.0" y="200.66666666666663" width="285.33333333333331" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Clear Scores"/>
+                                        <connections>
+                                            <action selector="onClearScoresPressed:" destination="lsC-os-xOf" eventType="touchUpInside" id="Kyi-xt-UBQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>

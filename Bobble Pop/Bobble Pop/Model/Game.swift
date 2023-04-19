@@ -34,11 +34,14 @@ class Game {
         return gamePlayers
     }
     
-    
+    func clearAllPlayers() {
+        players.removeAll()
+    }
     
     func getGameSettings() -> GameSettings {
         return gameSettings
     }
+    
 }
     
     

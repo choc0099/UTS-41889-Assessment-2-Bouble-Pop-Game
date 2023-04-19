@@ -39,6 +39,11 @@ class SettingsViewController: UIViewController {
         updateUI()
     }
     
+    @IBAction func onClearScoresPressed(_ sender: UIButton) {
+        HighScoreManager.clearScores()
+        game.clearAllPlayers()
+        
+    }
     
     func updateUI() {
         //display the bubbles and timer value that has been set.

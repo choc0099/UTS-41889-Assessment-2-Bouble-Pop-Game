@@ -54,5 +54,10 @@ class HighScoreManager {
         return gameScores
     }
     
-
+    static func clearScores() {
+        let defaults = UserDefaults.standard
+        
+        defaults.removeObject(forKey: Game.KEY_HIGH_SCORE)
+        print("Remove score triggered.")
+    }
 }
