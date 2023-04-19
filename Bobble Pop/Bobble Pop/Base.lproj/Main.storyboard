@@ -267,7 +267,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="icV-Vj-zq4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
                                                     <action selector="onNameTextChanged:" destination="JjK-pr-CJi" eventType="editingChanged" id="qGk-Y3-zvI"/>
                                                 </connections>
