@@ -69,7 +69,7 @@ class GamePlayViewController: UIViewController {
         if remainingTime == 0 {
             timer.invalidate()
             // writes the game score to the userDefaults database
-            writeHighScore()
+            HighScoreManager.writeHighScore(gameSession: self.game)
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
@@ -285,8 +285,8 @@ class GamePlayViewController: UIViewController {
         return bubbleIndex
     }
     
+    /*
     //writes the highscores to the default database
-    
     func writeHighScore() {
         // Write high scores to User Defautls
         let defaults = UserDefaults.standard;
@@ -311,7 +311,7 @@ class GamePlayViewController: UIViewController {
         }
         //print(gameScores) //debug
         return gameScores
-    }
+    }*/
     
 }
 

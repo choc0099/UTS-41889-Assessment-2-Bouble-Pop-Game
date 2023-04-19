@@ -26,7 +26,9 @@ class HighScoreManager {
         }
     }
     
-    func writeHighScore(gameSession game: Game) {
+    
+    
+    static func writeHighScore(gameSession game: Game) {
         // Write high scores to User Defautls
         let defaults = UserDefaults.standard;
         // get the current data from current game state.
@@ -35,7 +37,7 @@ class HighScoreManager {
         defaults.set(try? PropertyListEncoder().encode(updatedGameScores), forKey: Game.KEY_HIGH_SCORE)
     }
     
-    func retrieveGameScores(gameSession game: Game) -> [GameScore]
+    private static func retrieveGameScores(gameSession game: Game) -> [GameScore]
     {
         var gameScores: [GameScore] = []
         
