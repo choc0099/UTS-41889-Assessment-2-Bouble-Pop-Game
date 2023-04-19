@@ -38,8 +38,8 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGamePlay" {
-            let player = Player(playerName: playerNameText.text!, playerId: playerIdCounter)
-            game.addPlayers(player: player)
+            let player = Player(playerName: playerNameText.text!)
+            game.addPlayer(player: player)
             let VC = segue.destination as! GamePlayViewController
             //VC.remainingTime = Int(timerSlider.value)
             //VC.numberOfBubbles = Int(bubblesSlider.value)

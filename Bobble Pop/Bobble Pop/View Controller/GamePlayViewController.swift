@@ -52,7 +52,7 @@ class GamePlayViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             //self.bubbleCounter = 0
-            self.resetScore()
+            //self.resetScore()
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
           
@@ -86,7 +86,7 @@ class GamePlayViewController: UIViewController {
         addSomeBubbles(numberOfBubbles: numberOfBubbles, viewWidth: viewWidth, viewHeight: viewHeight)
         
     }
-    
+        
     func removeSomeBubbles() {
         
         let randomToRemove = Int.random(in: 0...bubbleCounter)

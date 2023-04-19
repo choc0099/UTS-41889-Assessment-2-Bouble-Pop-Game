@@ -23,6 +23,11 @@ class Score {
         highScore += currentScore
     }
     
+    func setScore(currentScore: Int)
+    {
+        highScore = currentScore
+    }
+    
     func getHighScore() -> Int
     {
         return highScore
