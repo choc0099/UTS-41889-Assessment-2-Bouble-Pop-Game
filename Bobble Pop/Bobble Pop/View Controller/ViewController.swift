@@ -26,11 +26,11 @@ class ViewController: UIViewController {
         self.initializeGame()
         
         //for testing
-        for player in game.getPlayers()
+        /*for player in game.getPlayers()
         {
             print(player.getPlayerName())
             print(player.getScore().getHighScore())
-        }
+        }*/
         
         // Do any additional setup after loading the view.
     }
@@ -41,9 +41,9 @@ class ViewController: UIViewController {
         {
             for storedPlayer in gameData
             {
-                var player = Player(playerName: storedPlayer.name)
+                let player = Player(playerName: storedPlayer.name)
                 //print(storedPlayer.name)
-                var playerScore = player.getScore()
+                let playerScore = player.getScore()
                 playerScore.setScore(currentScore: storedPlayer.score)
                 game.addPlayer(player: player)
             }
@@ -57,11 +57,11 @@ class ViewController: UIViewController {
             let VC = segue.destination as! NewGameViewController
             VC.game = game
         }
-        else if segue.identifier == "goToHighScore"
+        /*else if segue.identifier == "goToHighScore"
         {
             let VC = segue.destination as! HighScoreViewController
             //VC.game = game
-        }
+        }*/
     }
 }
 
