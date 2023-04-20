@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     //a function that will prevent the game from overwriting the highscores when the app is restarted.
     func initializeGame() {
-        if gameData.count > 0
+        if gameData.count > 0 //prevents the app from crashing if there is nothing on userDefaults
         {
             for storedPlayer in gameData
             {
@@ -46,8 +46,6 @@ class ViewController: UIViewController {
                 game.addPlayer(player: player)
             }
         }
-        print("func ex")
-       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -56,8 +56,6 @@ class GamePlayViewController: UIViewController {
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
           
             //print("Number of bubbles on screen: \(self.bubbleCounter)")
-            
-            
         }
     }
 
@@ -73,7 +71,7 @@ class GamePlayViewController: UIViewController {
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
             //Pass the game object with data stored.
-            VC.game = game
+            //VC.game = game
         }
     }
     
@@ -83,15 +81,14 @@ class GamePlayViewController: UIViewController {
             removeSomeBubbles()
         }
         addSomeBubbles(numberOfBubbles: numberOfBubbles, viewWidth: viewWidth, viewHeight: viewHeight)
-        
     }
         
     func removeSomeBubbles() {
         
-        let randomToRemove = Int.random(in: 0...bubbleCounter)
+        let randomBubblesToRemove = Int.random(in: 0...bubbleCounter)
        
         //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
-        for _ in 0...randomToRemove {
+        for _ in 0...randomBubblesToRemove {
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
         
@@ -140,7 +137,7 @@ class GamePlayViewController: UIViewController {
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
             self.view.addSubview(bubble)
-            //bubble.moveBubblePos()
+            bubble.moveBubblePos()
             storedBubbles.append(bubble)
             bubbleCounter += 1
         //}
@@ -157,8 +154,7 @@ class GamePlayViewController: UIViewController {
         let currentXPositionMaxRightBounds = currentXPosition + positionFrame
         let currentYPositionMaxTopBounds = currentYPosition - positionFrame
         let currentYPositionMaxBottomBounds = currentYPosition + positionFrame
-        
-        
+                
         guard newXPosition > currentXPositionMaxLeftBounds && newXPosition < currentXPositionMaxRightBounds else {
             return false
         }
