@@ -11,8 +11,6 @@ class ViewController: UIViewController {
 
     //var gameSettings = GameSettings()
     
-   
-    
     let gameData = HighScoreManager.readHighScroes()
     var game = Game()
     

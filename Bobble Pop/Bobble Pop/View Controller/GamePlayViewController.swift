@@ -46,8 +46,7 @@ class GamePlayViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
-        //let currentPlayerId = currentPlayer.getPlayerId()
-        //print(currentPlayer.getPlayerName()!)
+
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
@@ -151,30 +150,23 @@ class GamePlayViewController: UIViewController {
     
     //helper functions to check for overlap
     func isXYPosOverlap(currentXPosition: Int, newXPosition: Int, currentYPosition: Int, newYPosition: Int) -> Bool {
-        let positionFrame = 55
+        let positionFrame = 55 // defines an square area of the position bounds.
         
         //determines the bounderies of each direction
-        let currentXPositionMaxLeftBounds = currentXPosition - positionFrame
+        let currentXPositionMaxLeftBounds = currentXPosition - positionFrame // X pos left bounds
         let currentXPositionMaxRightBounds = currentXPosition + positionFrame
         let currentYPositionMaxTopBounds = currentYPosition - positionFrame
         let currentYPositionMaxBottomBounds = currentYPosition + positionFrame
         
-        //print("xPos info, old: \(currentXPosition), new: \(newXPosition) left: \(currentXPositionMaxLeftBounds), right: \(currentXPositionMaxRightBounds)")
-        //print("yPos info, old: \(currentYPosition), new: \(newYPosition) top: \(currentYPositionMaxTopBounds), bottom: \(currentYPositionMaxBottomBounds)")
         
-       
-        if newXPosition > currentXPositionMaxLeftBounds && newXPosition <= currentXPositionMaxRightBounds {
-            //print("xPos is overlapped ")
-            if newYPosition > currentYPositionMaxTopBounds && newYPosition < currentYPositionMaxBottomBounds
-            {
-                //print("yPos is overlapped")
-                return true
-            }
+        guard newXPosition > currentXPositionMaxLeftBounds && newXPosition < currentXPositionMaxRightBounds else {
             return false
-            
         }
-        //print("there was no overlap in both xpos and ypos")
-        return false
+        
+        guard newYPosition > currentYPositionMaxTopBounds && newYPosition < currentYPositionMaxBottomBounds else {
+            return false
+        }
+        return true
         
     }
     
@@ -284,35 +276,6 @@ class GamePlayViewController: UIViewController {
         //print("\(bubbleId) is pressed at index \(bubbleIndex)")
         return bubbleIndex
     }
-    
-    /*
-    //writes the highscores to the default database
-    func writeHighScore() {
-        // Write high scores to User Defautls
-        let defaults = UserDefaults.standard;
-        // get the current data from current game state.
-        let updatedGameScores = retrieveGameScores()
-        
-        defaults.set(try? PropertyListEncoder().encode(updatedGameScores), forKey: Game.KEY_HIGH_SCORE)
-    }
-    
-    func retrieveGameScores() -> [GameScore]
-    {
-        var gameScores: [GameScore] = []
-        
-        for player in game.getPlayers()
-        {
-            let currentPlayerName = player.getPlayerName()
-            let currentPlayerHightScore = player.getScore().getHighScore()
-            //convert the class objects to the struct object
-            let currentGameScore: GameScore = GameScore(name: currentPlayerName!, score: currentPlayerHightScore)
-            gameScores.append(currentGameScore)
-            
-        }
-        //print(gameScores) //debug
-        return gameScores
-    }*/
-    
 }
 
 
