@@ -52,7 +52,7 @@ class GamePlayViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             //self.bubbleCounter = 0
-            self.resetScore()
+            //self.resetScore()
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
           
@@ -69,7 +69,7 @@ class GamePlayViewController: UIViewController {
         if remainingTime == 0 {
             timer.invalidate()
             // writes the game score to the userDefaults database
-            writeHighScore()
+            HighScoreManager.writeHighScore(gameSession: self.game)
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
@@ -86,7 +86,7 @@ class GamePlayViewController: UIViewController {
         addSomeBubbles(numberOfBubbles: numberOfBubbles, viewWidth: viewWidth, viewHeight: viewHeight)
         
     }
-    
+        
     func removeSomeBubbles() {
         
         let randomToRemove = Int.random(in: 0...bubbleCounter)
@@ -285,8 +285,8 @@ class GamePlayViewController: UIViewController {
         return bubbleIndex
     }
     
+    /*
     //writes the highscores to the default database
-    
     func writeHighScore() {
         // Write high scores to User Defautls
         let defaults = UserDefaults.standard;
@@ -311,7 +311,7 @@ class GamePlayViewController: UIViewController {
         }
         //print(gameScores) //debug
         return gameScores
-    }
+    }*/
     
 }
 

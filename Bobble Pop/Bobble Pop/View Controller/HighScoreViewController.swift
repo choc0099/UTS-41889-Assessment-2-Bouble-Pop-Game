@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-let KEY_HIGH_SCORE = "highScore"
+//let KEY_HIGH_SCORE = "highScore"
 class HighScoreViewController: UIViewController {
 
    var game = Game()
@@ -25,7 +25,7 @@ class HighScoreViewController: UIViewController {
         // Do any additional setup after loading the view.
         
            
-        highScores = readHighScroes()
+        highScores = HighScoreManager.readHighScroes()
         
         //sorts the array with the highest score
         highScores.sort(by: {
@@ -33,65 +33,14 @@ class HighScoreViewController: UIViewController {
         })
         
         print(highScores)
-        
-        //renderResults()
     }
-    
-    //func retrievePlayers()
     
     @IBAction func returnButtonPressed(_ sender: UIButton) {
-        let VC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! ViewController
-        VC.game = game
+        //let VC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! ViewController
+        //VC.game = game
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
-    func renderResults()
-    {
-        let gamePlayers = game.getPlayers()
-        
-        var labelsYPos = 160
-        for player in gamePlayers {
-            let playerName = player.getPlayerName()!
-            let playerScore = player.getScore().getHighScore()
-            
-            generateLabel(playerName: playerName, playerScore: playerScore, yPosition: labelsYPos)
-            labelsYPos += 60
-            print("Player Name: \(playerName), player score: \(playerScore)")
-        }
-    }
-    
-    func generateLabel(playerName playerNameText: String, playerScore playerScoreInt: Int, yPosition: Int) {
-        //sets the X position to the right label according to screen width.
-        let rightLabelXPos = game.getGameSettings().getDeviceWidth()
-        
-        let nameLabel = UILabel()
-        let scoreLabel = UILabel()
-        // sets the positions and sizes for the labels
-        nameLabel.frame = CGRect(x: 40, y: yPosition, width: 120, height: 50)
-        scoreLabel.frame = CGRect(x: rightLabelXPos - 120, y: yPosition, width: 70, height: 50)
-        // adds the texts.
-        nameLabel.text = playerNameText
-        scoreLabel.text = String(playerScoreInt)
-        nameLabel.textAlignment = .left
-        scoreLabel.textAlignment = .right
-        //shows the labels on the screen.
-        self.view.addSubview(nameLabel)
-        self.view.addSubview(scoreLabel)
-        //nameLabel.addSubview(self)
-    }
     /*
-    //this will be used for table view to enable sorting without effecting the original class due to class referencing an object.
-    func copyPlayers() -> [Player]
-    {
-        var copiedPlayers: [Player] = []
-        let players = game.getPlayers()
-        for player in players
-        {
-            copiedPlayers.append(player)
-        }
-        return copiedPlayers
-    }*/
-    
     func readHighScroes() -> [GameScore] {
         // Read from User Defaults
         // This should happen at the HighScrollViewController
@@ -107,7 +56,7 @@ class HighScoreViewController: UIViewController {
         } else {
             return []
         }
-    }
+    }*/
     
 }
 

@@ -19,7 +19,7 @@ class Game {
         highScores[player.getPlayerName()!] = highScore
     }
     
-    func addPlayers(player: Player)
+    func addPlayer(player: Player)
     {
         players.append(player)
     }
@@ -34,9 +34,14 @@ class Game {
         return gamePlayers
     }
     
+    func clearAllPlayers() {
+        players.removeAll()
+    }
+    
     func getGameSettings() -> GameSettings {
         return gameSettings
     }
+    
 }
     
     

@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="R55-tO-VvK">
-                                <rect key="frame" x="54" y="338.33333333333331" width="285.33333333333331" height="175.66666666666669"/>
+                                <rect key="frame" x="54" y="308.66666666666669" width="285.33333333333331" height="235.00000000000006"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vt-Gd-ZCv">
                                         <rect key="frame" x="0.0" y="0.0" width="285.33333333333331" height="20.333333333333332"/>
@@ -179,7 +179,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="SSi-WW-FmB">
-                                        <rect key="frame" x="0.0" y="45.333333333333371" width="285.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="45.333333333333314" width="285.33333333333331" height="30"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="SXm-n7-vpC">
                                                 <rect key="frame" x="-2" y="0.0" width="254" height="31"/>
@@ -199,13 +199,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers of Bubbles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiF-gt-dln">
-                                        <rect key="frame" x="0.0" y="100.33333333333337" width="285.33333333333331" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="100.33333333333331" width="285.33333333333331" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NQf-GO-dv6">
-                                        <rect key="frame" x="0.0" y="145.66666666666669" width="285.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="145.66666666666663" width="285.33333333333331" height="30"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="VOR-Hb-HQV">
                                                 <rect key="frame" x="-2" y="0.0" width="254" height="31"/>
@@ -224,6 +224,16 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXa-lZ-Mbt">
+                                        <rect key="frame" x="0.0" y="200.66666666666663" width="285.33333333333331" height="34.333333333333343"/>
+                                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Clear Scores"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Clear Scores"/>
+                                        <connections>
+                                            <action selector="onClearScoresPressed:" destination="lsC-os-xOf" eventType="touchUpInside" id="Kyi-xt-UBQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -237,6 +247,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="WWq-co-nUT"/>
                     <connections>
                         <outlet property="bubblesSlider" destination="VOR-Hb-HQV" id="wAv-kH-XFM"/>
+                        <outlet property="clearScoresButton" destination="pXa-lZ-Mbt" id="i6D-VV-LUa"/>
                         <outlet property="numberOfBubblesLabel" destination="1Nc-Ev-tdl" id="bBv-QL-l6k"/>
                         <outlet property="timerLabel" destination="8el-UW-wp7" id="3JZ-Pr-5AR"/>
                         <outlet property="timerSlider" destination="SXm-n7-vpC" id="RRq-dy-pmj"/>
@@ -463,6 +474,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
