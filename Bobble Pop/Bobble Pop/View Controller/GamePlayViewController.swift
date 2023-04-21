@@ -17,7 +17,7 @@ class GamePlayViewController: UIViewController {
 
     var currentScore: Double = 0
     var playerHighScore = 0
-    var timer = Timer()
+    var gamePlayTimer = Timer()
     var game = Game()
     var currentPlayer = Player()
     
@@ -38,7 +38,7 @@ class GamePlayViewController: UIViewController {
         remainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
         
-        print("Numbers of bubbles set:  \(numberOfBubbles)")
+        //print("Numbers of bubbles set:  \(numberOfBubbles)")
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
@@ -47,8 +47,12 @@ class GamePlayViewController: UIViewController {
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(remainingTime)
 
+       initiateGamePlay(screenViewHeight: currentViewHeight, screenViewWidth: currentViewWidth)
+    }
+    
+    func initiateGamePlay(screenViewHeight currentViewHeight: Int, screenViewWidth currentViewWidth: Int) {
         
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+        gamePlayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             timer in
             //self.bubbleCounter = 0
             //self.resetScore()
@@ -64,7 +68,7 @@ class GamePlayViewController: UIViewController {
         remainingTimeLabel.text = String(remainingTime)
         
         if remainingTime == 0 {
-            timer.invalidate()
+            gamePlayTimer.invalidate()
             // writes the game score to the userDefaults database
             HighScoreManager.writeHighScore(gameSession: self.game)
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
