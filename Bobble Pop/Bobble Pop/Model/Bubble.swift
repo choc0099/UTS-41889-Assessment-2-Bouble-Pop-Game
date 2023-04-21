@@ -159,6 +159,8 @@ class Bubble: UIButton {
     func getBubbleId() -> Int {
         return bubbleId
     }
+    
+ 
 }
 
 

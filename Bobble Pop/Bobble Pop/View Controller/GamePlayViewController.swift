@@ -22,7 +22,7 @@ class GamePlayViewController: UIViewController {
     var currentPlayer = Player()
     
     //stores all the bubble attributes into an array to mark xPositions and yPositions when the bubble is added onto the screen.
-    var storedBubbles: [Bubble] = []
+    //var storedBubbles: [Bubble] = []
     
     var remainingTime = 0
     var numberOfBubbles = 0
@@ -59,7 +59,7 @@ class GamePlayViewController: UIViewController {
             self.countingDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
           
-            //print("Number of bubbles on screen: \(self.bubbleCounter)")
+            print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
@@ -71,6 +71,7 @@ class GamePlayViewController: UIViewController {
             gamePlayTimer.invalidate()
             // writes the game score to the userDefaults database
             HighScoreManager.writeHighScore(gameSession: self.game)
+            self.game.removeAllBubbles()
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
@@ -93,6 +94,7 @@ class GamePlayViewController: UIViewController {
        
         //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
         for _ in 0...randomBubblesToRemove {
+            let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
         
@@ -141,8 +143,8 @@ class GamePlayViewController: UIViewController {
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
             self.view.addSubview(bubble)
-            bubble.moveBubblePos()
-            storedBubbles.append(bubble)
+            //bubble.moveBubblePos()
+            game.storeBubble(bubble: bubble)
             bubbleCounter += 1
         //}
      
@@ -188,6 +190,8 @@ class GamePlayViewController: UIViewController {
     
     func checkAllXYPosOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
+        let storedBubbles = game.getAllBubbles()
+        
         for bubble in storedBubbles {
             //let currentBubbleId = bubble.getBubbleId()
             let currentXPos = bubble.getStoredXPos()
@@ -238,8 +242,8 @@ class GamePlayViewController: UIViewController {
     func handleRemove(bubble: Bubble)
     {
         //unmark the x and y positions
-        let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
-        storedBubbles.remove(at: bubbleIndex)
+        //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
+        game.removeBubble(bubbleId: bubble.getBubbleId())
         //print(bubbleIndex)
         bubble.removeFromSuperview()
       
@@ -254,7 +258,7 @@ class GamePlayViewController: UIViewController {
         //updateUI()
     }
     
-    func removeAllBubbles() {
+    /*func removeAllBubbles() {
         //loop through the stored bubbles
         for bubble in storedBubbles {
             bubble.removeFromSuperview()
@@ -262,7 +266,7 @@ class GamePlayViewController: UIViewController {
         storedBubbles.removeAll()
         bubbleCounter = 0
     }
-    
+    *
     func getBubbleIndexById(bubbleId: Int) -> Int {
         var bubbleIndex = 0
         var indexCounter = 0
@@ -275,5 +279,5 @@ class GamePlayViewController: UIViewController {
         }
         //print("\(bubbleId) is pressed at index \(bubbleIndex)")
         return bubbleIndex
-    }
+    }*/
 }

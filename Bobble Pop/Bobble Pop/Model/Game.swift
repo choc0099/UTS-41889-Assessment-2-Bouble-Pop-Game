@@ -57,12 +57,18 @@ class Game {
             indexCounter += 1
         }
         //print("\(bubbleId) is pressed at index \(bubbleIndex)")
+        // remove the particular bubble from the array
         storedBubbles.remove(at: bubbleIndex)
     }
     
     func getAllBubbles() -> [Bubble]
     {
         return storedBubbles
+    }
+    
+    func removeAllBubbles()
+    {
+        storedBubbles.removeAll()
     }
     
 }
