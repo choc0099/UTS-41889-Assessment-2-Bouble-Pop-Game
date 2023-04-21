@@ -216,12 +216,12 @@ class GamePlayViewController: UIViewController {
     }
     
     func handleScore(bubble: Bubble) {
-        
+        // current score at the time of the bubble been tapped.
         let currentPlayerScore = currentPlayer.getScore()
      
         //print("pressed points \(bubble.getPoints())")
-        if previousBubblePoints == bubble.getPoints()
-        {
+        // if the same bubble colour is pressed after another, the score will increase by 1.5
+        if previousBubblePoints == bubble.getPoints() {
             currentScore += 1.5 * currentScore
             //sameColourClicked += 1
             print("Same color clicked! \(currentScore)")
@@ -277,5 +277,3 @@ class GamePlayViewController: UIViewController {
         return bubbleIndex
     }
 }
-
-
