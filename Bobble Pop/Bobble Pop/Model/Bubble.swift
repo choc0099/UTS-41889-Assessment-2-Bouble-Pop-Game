@@ -26,6 +26,8 @@ class Bubble: UIButton {
     var deviceWidth = 0
     var deviceHeight = 0
     
+    let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
+    
     override init(frame: CGRect){
         super.init(frame: frame)
         let randomNumber = Int.random(in: 0...1000)
@@ -92,6 +94,7 @@ class Bubble: UIButton {
         
         moveAnimation.fromValue = [currentXPos, currentYPos]
         moveAnimation.toValue = [currentXPos + 100, currentYPos + 100]
+       
         //moveAnimation.initialVelocity = 0.5
         layer.add(moveAnimation, forKey: nil)
     }
@@ -156,8 +159,6 @@ class Bubble: UIButton {
     func getBubbleId() -> Int {
         return bubbleId
     }
-    
-    
 }
 
 
