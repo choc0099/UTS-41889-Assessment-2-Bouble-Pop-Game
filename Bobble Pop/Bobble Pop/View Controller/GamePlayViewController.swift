@@ -50,8 +50,8 @@ class GamePlayViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         remainingTimeLabel.text = String(gamePlayRemainingTime)
-        gameStartCountDownLabel.setNumber(number: 5)
-        gameStartCountDownLabel.setPosition(screenHeight: currentViewHeight, screenWidth: currentViewWidth)
+        gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
+        gameStartCountDownLabel.center = self.view.center
         self.view.addSubview(gameStartCountDownLabel)
         
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
@@ -95,11 +95,12 @@ class GamePlayViewController: UIViewController {
     
     @objc func gameStartCountDown(screenWidth: Int, screenHeight: Int)
     {
-       
+        
+        print(gameStartRemainingTime)
         
         gameStartRemainingTime -= 1
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
-        print(gameStartRemainingTime)
+        
         
         if gameStartRemainingTime == 0 {
             gameStartTimer.invalidate()
