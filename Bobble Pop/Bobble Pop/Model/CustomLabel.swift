@@ -30,7 +30,7 @@ class CountDownLabel: UILabel {
         let flash = CABasicAnimation(keyPath: "opacity")
         flash.duration = 0.5
         flash.fromValue = 1
-        flash.toValue = 0.1
+        flash.toValue = 0
         flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         //flash.autoreverses = true
         flash.repeatCount = 0
