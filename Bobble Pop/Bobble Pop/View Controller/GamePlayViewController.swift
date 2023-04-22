@@ -190,8 +190,8 @@ class GamePlayViewController: UIViewController {
     
     func checkAllXYPosOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
+        //gets the stored bubbles from the game session.
         let storedBubbles = game.getAllBubbles()
-        
         for bubble in storedBubbles {
             //let currentBubbleId = bubble.getBubbleId()
             let currentXPos = bubble.getStoredXPos()
