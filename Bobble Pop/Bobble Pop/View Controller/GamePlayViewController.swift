@@ -13,18 +13,22 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
+    var gameStartCountDownLabel = CountDownLabel()
+    
     var bubbleId = 0
 
     var currentScore: Double = 0
     var playerHighScore = 0
     var gamePlayTimer = Timer()
+    var gameStartTimer = Timer()
     var game = Game()
     var currentPlayer = Player()
     
     //stores all the bubble attributes into an array to mark xPositions and yPositions when the bubble is added onto the screen.
     //var storedBubbles: [Bubble] = []
     
-    var remainingTime = 0
+    var gameStartRemainingTime = 3
+    var gamePlayRemainingTime = 0
     var numberOfBubbles = 0
     var bubbleCounter = 0
     
@@ -35,7 +39,7 @@ class GamePlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let gameSettings = game.getGameSettings()
-        remainingTime = gameSettings.getTimer()
+        gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
         
         //print("Numbers of bubbles set:  \(numberOfBubbles)")
@@ -45,38 +49,62 @@ class GamePlayViewController: UIViewController {
         
         
         // Do any additional setup after loading the view.
-        remainingTimeLabel.text = String(remainingTime)
+        remainingTimeLabel.text = String(gamePlayRemainingTime)
+        gameStartCountDownLabel.setNumber(number: 5)
+        gameStartCountDownLabel.setPosition(screenHeight: currentViewHeight, screenWidth: currentViewWidth)
+        self.view.addSubview(gameStartCountDownLabel)
+        
+        gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+            gameStarttimer in
+            self.gameStartCountDown(screenWidth: currentViewWidth, screenHeight: currentViewHeight)
+        }
 
-       initiateGamePlay(screenViewHeight: currentViewHeight, screenViewWidth: currentViewWidth)
+       //initiateGamePlay(screenViewHeight: currentViewHeight, screenViewWidth: currentViewWidth)
     }
     
     func initiateGamePlay(screenViewHeight currentViewHeight: Int, screenViewWidth currentViewWidth: Int) {
         
         gamePlayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
-            timer in
+            gamePlayerTimer in
             //self.bubbleCounter = 0
             //self.resetScore()
-            self.countingDown()
+            self.gamePlayCountDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
           
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
-    @objc func countingDown() {
-        remainingTime -= 1
-        remainingTimeLabel.text = String(remainingTime)
+    @objc func gamePlayCountDown() {
+        gamePlayRemainingTime -= 1
+        remainingTimeLabel.text = String(gamePlayRemainingTime)
         
-        if remainingTime == 0 {
+        if gamePlayRemainingTime == 0 {
             gamePlayTimer.invalidate()
             // writes the game score to the userDefaults database
             HighScoreManager.writeHighScore(gameSession: self.game)
             self.game.removeAllBubbles()
+            //this is used to go to the high score view
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
             //Pass the game object with data stored.
             //VC.game = game
+        }
+    }
+    
+    @objc func gameStartCountDown(screenWidth: Int, screenHeight: Int)
+    {
+       
+        
+        gameStartRemainingTime -= 1
+        gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
+        print(gameStartRemainingTime)
+        
+        if gameStartRemainingTime == 0 {
+            gameStartTimer.invalidate()
+            gameStartCountDownLabel.removeFromSuperview()
+            self.initiateGamePlay(screenViewHeight: screenHeight, screenViewWidth: screenWidth)
         }
     }
     
