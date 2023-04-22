@@ -26,19 +26,14 @@ class CountDownLabel: UILabel {
         self.text = String(number)
     }
     
-    func setPosition(screenHeight: Int, screenWidth: Int)
-    {
-    
-    }
-    
     func flash() {
         let flash = CABasicAnimation(keyPath: "opacity")
-        flash.duration = 0.2
+        flash.duration = 0.5
         flash.fromValue = 1
         flash.toValue = 0.1
         flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        flash.autoreverses = true
-        flash.repeatCount = 3
+        //flash.autoreverses = true
+        flash.repeatCount = 0
         
         layer.add(flash, forKey: nil)
     }

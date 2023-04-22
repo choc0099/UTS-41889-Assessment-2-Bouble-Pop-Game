@@ -52,14 +52,8 @@ class GamePlayViewController: UIViewController {
         
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
-        
-        
-        // Do any additional setup after loading the view.
-        remainingTimeLabel.text = String(gamePlayRemainingTime)
-        gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
-        gameStartCountDownLabel.center = self.view.center
-        self.view.addSubview(gameStartCountDownLabel)
-        
+               
+        self.generateCountDownLabel()
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gameStarttimer in
             self.gameStartCountDown(screenWidth: currentViewWidth, screenHeight: currentViewHeight)
@@ -69,7 +63,7 @@ class GamePlayViewController: UIViewController {
     }
     
     func initiateGamePlay(screenViewHeight currentViewHeight: Int, screenViewWidth currentViewWidth: Int) {
-        
+        self.renderBubbles(numberOfBubbles: numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
         gamePlayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gamePlayerTimer in
             //self.bubbleCounter = 0
@@ -100,6 +94,15 @@ class GamePlayViewController: UIViewController {
         }
     }
     
+    func generateCountDownLabel()
+    {
+        remainingTimeLabel.text = String(gamePlayRemainingTime)
+        gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
+        gameStartCountDownLabel.center = self.view.center
+        self.view.addSubview(gameStartCountDownLabel)
+        gameStartCountDownLabel.flash()
+    }
+    
     @objc func gameStartCountDown(screenWidth: Int, screenHeight: Int)
     {
         
@@ -107,7 +110,7 @@ class GamePlayViewController: UIViewController {
         
         gameStartRemainingTime -= 1
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
-        
+        gameStartCountDownLabel.flash()
         
         if gameStartRemainingTime == 0 {
             gameStartTimer.invalidate()
@@ -141,7 +144,6 @@ class GamePlayViewController: UIViewController {
         //print("Bubbles removed: \(randomToRemove) with \(bubbleCounter) left.")
        
     }
-    
     
     func addSomeBubbles(numberOfBubbles: Int, viewWidth: Int, viewHeight: Int)
     {
@@ -297,27 +299,4 @@ class GamePlayViewController: UIViewController {
         
         //updateUI()
     }
-    
-    /*func removeAllBubbles() {
-        //loop through the stored bubbles
-        for bubble in storedBubbles {
-            bubble.removeFromSuperview()
-        }
-        storedBubbles.removeAll()
-        bubbleCounter = 0
-    }
-    *
-    func getBubbleIndexById(bubbleId: Int) -> Int {
-        var bubbleIndex = 0
-        var indexCounter = 0
-        for bubble in storedBubbles {
-            if bubble.getBubbleId() == bubbleId {
-                //print("bubble \(bubble.getBubbleId()) is pressed.")
-                bubbleIndex = indexCounter
-            }
-            indexCounter += 1
-        }
-        //print("\(bubbleId) is pressed at index \(bubbleIndex)")
-        return bubbleIndex
-    }*/
 }
