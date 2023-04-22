@@ -58,8 +58,6 @@ class GamePlayViewController: UIViewController {
             gameStarttimer in
             self.gameStartCountDown(screenWidth: currentViewWidth, screenHeight: currentViewHeight)
         }
-
-       //initiateGamePlay(screenViewHeight: currentViewHeight, screenViewWidth: currentViewWidth)
     }
     
     func initiateGamePlay(screenViewHeight currentViewHeight: Int, screenViewWidth currentViewWidth: Int) {
@@ -70,8 +68,6 @@ class GamePlayViewController: UIViewController {
             //self.resetScore()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
             self.gamePlayCountDown()
-            
-          
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
@@ -94,8 +90,7 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    func generateCountDownLabel()
-    {
+    func generateCountDownLabel() {
         remainingTimeLabel.text = String(gamePlayRemainingTime)
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
         gameStartCountDownLabel.center = self.view.center
@@ -103,11 +98,8 @@ class GamePlayViewController: UIViewController {
         gameStartCountDownLabel.flash()
     }
     
-    @objc func gameStartCountDown(screenWidth: Int, screenHeight: Int)
-    {
-        
+    @objc func gameStartCountDown(screenWidth: Int, screenHeight: Int) {
         print(gameStartRemainingTime)
-        
         gameStartRemainingTime -= 1
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
         gameStartCountDownLabel.flash()
@@ -121,7 +113,6 @@ class GamePlayViewController: UIViewController {
     }
     
     func renderBubbles(numberOfBubbles: Int, viewHeight: Int, viewWidth: Int) {
-        
         if bubbleCounter > 0 {
             removeSomeBubbles()
         }
@@ -137,7 +128,6 @@ class GamePlayViewController: UIViewController {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
-        
                 handleRemove(bubble: unwrappedRandomBubble)
             }
         }
@@ -177,12 +167,14 @@ class GamePlayViewController: UIViewController {
         bubbleId += 1
            
         bubble.setBubbleId(bubbleId: bubbleId)
-        
+        //this will add labels to the button if the user has enabled it or not.
         bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
+        bubble.moveBubblePos()
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
         self.view.addSubview(bubble)
+   
         //bubble.moveBubblePos()
         game.storeBubble(bubble: bubble)
         bubbleCounter += 1
@@ -196,11 +188,9 @@ class GamePlayViewController: UIViewController {
     }
     
     @IBAction func bubblePressed(_ sender: Bubble) {
-              
         handleScore(bubble: sender)
         updateUI()
         handleRemove(bubble: sender)
-      
     }
     
     func handleScore(bubble: Bubble) {
@@ -223,8 +213,7 @@ class GamePlayViewController: UIViewController {
         playerHighScore = currentPlayerScore.getHighScore()
     }
     
-    func handleRemove(bubble: Bubble)
-    {
+    func handleRemove(bubble: Bubble) {
         //unmark the x and y positions
         //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
         game.removeBubble(bubbleId: bubble.getBubbleId())

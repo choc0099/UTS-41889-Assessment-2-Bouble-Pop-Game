@@ -44,5 +44,4 @@ class BubbleManager {
         }
         return false
     }
-      
 }

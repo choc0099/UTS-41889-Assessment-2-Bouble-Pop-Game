@@ -87,6 +87,28 @@ class Bubble: UIButton {
         layer.add(flash, forKey: nil)
     }
     
+    func toValueXYPos() -> [Int] {
+        let randomDirection = animationDirectionArray.randomElement()
+        
+        var newXPos = storedXPos
+        var newYPos = storedYPos
+        
+        switch randomDirection {
+        case .left:
+            newXPos -= 150
+        case .right:
+            newXPos += 150
+        case .up:
+            newYPos -= 200
+        case .down:
+            newYPos += 200
+        default:
+            newXPos = 0
+            newYPos = 0
+        }
+        return [newXPos, newYPos]
+    }
+    
     func moveBubblePos()
     {
         let moveAnimation = CABasicAnimation(keyPath: "position")
@@ -95,10 +117,11 @@ class Bubble: UIButton {
         let currentYPos = getStoredYPos()
         
         moveAnimation.fromValue = [currentXPos, currentYPos]
-        moveAnimation.toValue = [currentXPos + 100, currentYPos + 100]
-       
+        moveAnimation.toValue = toValueXYPos()
+        moveAnimation.speed = 0.05
         //moveAnimation.initialVelocity = 0.5
         layer.add(moveAnimation, forKey: nil)
+        self.frame = CGRect(x: toValueXYPos()[0], y: toValueXYPos()[1], width: 50, height: 50)
     }
     
     //random colour helper function
@@ -144,7 +167,6 @@ class Bubble: UIButton {
     //function to display letters for colour blindness
     func addButtonTitles() -> String
     {
-        
         switch storedRandomNumber {
         case 0...50:
             //self.setTitleColor(.white, for: .normal)
@@ -191,8 +213,4 @@ class Bubble: UIButton {
     func getBubbleId() -> Int {
         return bubbleId
     }
-    
- 
 }
-
-
