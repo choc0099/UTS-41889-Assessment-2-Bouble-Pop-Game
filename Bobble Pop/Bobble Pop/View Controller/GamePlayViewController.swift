@@ -176,6 +176,8 @@ class GamePlayViewController: UIViewController {
             bubbleId += 1
            
             bubble.setBubbleId(bubbleId: bubbleId)
+        
+        bubble.enableColorBlindnessLabels(isColorBlind: true)
             bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   

@@ -25,7 +25,7 @@ class Bubble: UIButton {
     var points = 0
     var deviceWidth = 0
     var deviceHeight = 0
-    
+    var storedRandomNumber = 0
     let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
     
     override init(frame: CGRect){
@@ -33,6 +33,8 @@ class Bubble: UIButton {
         let randomNumber = Int.random(in: 0...1000)
         //print(randomNumber) // debug
         self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
+        self.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        self.storedRandomNumber = randomNumber
         //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
       
         
@@ -135,6 +137,36 @@ class Bubble: UIButton {
             return 2
         default:
             return 1
+        }
+    }
+    
+    //accessibility features
+    //function to display letters for colour blindness
+    func addButtonTitles() -> String
+    {
+        
+        switch storedRandomNumber {
+        case 0...50:
+            //self.setTitleColor(.white, for: .normal)
+            return "BK"
+        case 51...150:
+            self.setTitleColor(.black, for: .normal)
+            return "B"
+        case 151...300:
+            self.setTitleColor(.black, for: .normal)
+            return "G"
+        case 301...600:
+            //self.setTitleColor(.black, for: .normal)
+            return "P"
+        default:
+            //self.setTitleColor(.white, for: .normal)
+            return "R"
+        }
+    }
+    
+    func enableColorBlindnessLabels(isColorBlind: Bool) {
+        if isColorBlind {
+            self.setTitle(addButtonTitles(), for: .normal)
         }
     }
     
