@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var timerSlider: UISlider!
     @IBOutlet weak var bubblesSlider: UISlider!
     
+    @IBOutlet weak var isColorBlindSwitch: UISwitch!
     var game = Game()
    
     @IBOutlet weak var clearScoresButton: UIButton!
@@ -34,8 +35,6 @@ class SettingsViewController: UIViewController {
         updateUI()
     }
     
-   
-    
     @IBAction func onBubblesChanged(_ sender: Any) {
         let gameSettings = game.getGameSettings()
         gameSettings.setNumberOfBubbles(howMany: Int(bubblesSlider.value))
@@ -48,6 +47,8 @@ class SettingsViewController: UIViewController {
         clearScoresButton.setTitle("Score cleard.", for: .normal)
     }
     
+    
+    
     func updateUI() {
         //display the bubbles and timer value that has been set.
         let timerSet: Int = Int(timerSlider.value)
@@ -55,4 +56,11 @@ class SettingsViewController: UIViewController {
         timerLabel.text = String(timerSet)
         numberOfBubblesLabel.text = String(bubbleSet)
     }
+    
+    @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
+        let gameSettings = game.getGameSettings()
+        let isColorBlind = isColorBlindSwitch.isOn
+        gameSettings.setColorBlind(isColorBlind: isColorBlind)
+    }
+    
 }

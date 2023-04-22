@@ -8,12 +8,13 @@
 import Foundation
 import UIKit
 
-class CountDownLabel: UILabel
-{
+class CountDownLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.font = .boldSystemFont(ofSize: 72)
+        self.frame = CGRect(x: 0, y: 0, width: 125 , height: 125)
+        self.font = .boldSystemFont(ofSize: 96)
         self.textAlignment = .center
+        //self.backgroundColor = .systemGray
     }
     
     required init?(coder: NSCoder) {
@@ -25,11 +26,15 @@ class CountDownLabel: UILabel
         self.text = String(number)
     }
     
-    func setPosition(screenHeight: Int, screenWidth: Int)
-    {
-        self.frame = CGRect(x: screenHeight / 2, y: screenWidth / 2, width: 150, height: 150)
+    func flash() {
+        let flash = CABasicAnimation(keyPath: "opacity")
+        flash.duration = 0.5
+        flash.fromValue = 1
+        flash.toValue = 0
+        flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        //flash.autoreverses = true
+        flash.repeatCount = 0
+        
+        layer.add(flash, forKey: nil)
     }
-    
-    
-    
 }
