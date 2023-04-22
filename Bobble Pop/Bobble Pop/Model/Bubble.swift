@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+enum animationDirection {
+    case left
+    case right
+    case up
+    case down
+}
+
 class Bubble: UIButton {
     
     //let xPosition = Int.random(in: 20...310)
@@ -18,6 +25,8 @@ class Bubble: UIButton {
     var points = 0
     var deviceWidth = 0
     var deviceHeight = 0
+    
+    let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -80,8 +89,12 @@ class Bubble: UIButton {
     {
         let moveAnimation = CABasicAnimation(keyPath: "position")
         
-        moveAnimation.fromValue = [0,0]
-        moveAnimation.toValue = [50,50]
+        let currentXPos = getStoredXPos()
+        let currentYPos = getStoredYPos()
+        
+        moveAnimation.fromValue = [currentXPos, currentYPos]
+        moveAnimation.toValue = [currentXPos + 100, currentYPos + 100]
+       
         //moveAnimation.initialVelocity = 0.5
         layer.add(moveAnimation, forKey: nil)
     }
@@ -147,7 +160,7 @@ class Bubble: UIButton {
         return bubbleId
     }
     
-    
+ 
 }
 
 
