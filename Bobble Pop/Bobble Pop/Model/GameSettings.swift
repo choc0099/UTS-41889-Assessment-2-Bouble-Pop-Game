@@ -12,6 +12,7 @@ class GameSettings {
     var numberOfBubbles: Int = 15
     var deviceWidth: Int = 0
     var deviceHeight: Int = 0
+    var isColorBlind: Bool = false
     //init(deviceWidth: Int, deviceHeight: )
     
     
@@ -44,5 +45,14 @@ class GameSettings {
     
     func getDeviceHeight() -> Int {
         return deviceHeight
+    }
+    
+    func setColorBlind(isColorBlind: Bool)
+    {
+        self.isColorBlind = isColorBlind
+    }
+    
+    func getIsColorBlind() -> Bool {
+        return isColorBlind
     }
 }

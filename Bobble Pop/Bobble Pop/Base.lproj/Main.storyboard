@@ -235,6 +235,9 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MqU-Dx-OHi">
                                                 <rect key="frame" x="236.33333333333331" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="onIsColorBlindSwitchToggle:" destination="lsC-os-xOf" eventType="valueChanged" id="Rd9-LY-r7M"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
@@ -262,6 +265,7 @@
                     <connections>
                         <outlet property="bubblesSlider" destination="VOR-Hb-HQV" id="wAv-kH-XFM"/>
                         <outlet property="clearScoresButton" destination="pXa-lZ-Mbt" id="i6D-VV-LUa"/>
+                        <outlet property="isColorBlindSwitch" destination="MqU-Dx-OHi" id="VqN-3K-wgF"/>
                         <outlet property="numberOfBubblesLabel" destination="1Nc-Ev-tdl" id="bBv-QL-l6k"/>
                         <outlet property="timerLabel" destination="8el-UW-wp7" id="3JZ-Pr-5AR"/>
                         <outlet property="timerSlider" destination="SXm-n7-vpC" id="RRq-dy-pmj"/>

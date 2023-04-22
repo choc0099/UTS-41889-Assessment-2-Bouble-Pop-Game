@@ -172,12 +172,13 @@ class GamePlayViewController: UIViewController {
         //if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
           
             let bubble = Bubble()
+        let gameSettings = game.getGameSettings()
             bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
             bubbleId += 1
            
             bubble.setBubbleId(bubbleId: bubbleId)
         
-        bubble.enableColorBlindnessLabels(isColorBlind: true)
+        bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
             bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
             //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
