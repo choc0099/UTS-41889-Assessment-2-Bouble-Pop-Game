@@ -432,6 +432,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentScoreLabel" destination="ose-0k-Idr" id="Hbc-Ww-iJW"/>
+                        <outlet property="gamePlayStack" destination="odL-RM-yZW" id="y8m-53-WD0"/>
                         <outlet property="highScoreLabel" destination="uGP-ll-NnI" id="7Do-hC-dr0"/>
                         <outlet property="remainingTimeLabel" destination="Fua-aW-WXU" id="usa-fs-xwS"/>
                     </connections>

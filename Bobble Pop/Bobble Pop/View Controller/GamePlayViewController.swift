@@ -13,6 +13,8 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
+    @IBOutlet weak var gamePlayStack: UIStackView!
+    
     var gameStartCountDownLabel = CountDownLabel()
     
     var bubbleId = 0
@@ -37,6 +39,10 @@ class GamePlayViewController: UIViewController {
     //var score: Score = Score()
     
     override func viewDidLoad() {
+        
+        // the game play stack is hidden when there is a countdown before the game starts.
+        gamePlayStack.isHidden = true
+        
         super.viewDidLoad()
         let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
@@ -68,8 +74,9 @@ class GamePlayViewController: UIViewController {
             gamePlayerTimer in
             //self.bubbleCounter = 0
             //self.resetScore()
-            self.gamePlayCountDown()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            self.gamePlayCountDown()
+            
           
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
@@ -105,6 +112,7 @@ class GamePlayViewController: UIViewController {
         if gameStartRemainingTime == 0 {
             gameStartTimer.invalidate()
             gameStartCountDownLabel.removeFromSuperview()
+            gamePlayStack.isHidden = false
             self.initiateGamePlay(screenViewHeight: screenHeight, screenViewWidth: screenWidth)
         }
     }
@@ -145,8 +153,8 @@ class GamePlayViewController: UIViewController {
         while numberOfBubblesGenerated < randomBubblesToAdd && numbersOfOverlaps < 100 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
-            let xPosition = Int.random(in: 10...viewWidth - 60)
-            let yPosition = Int.random(in: 160...viewHeight - 100)
+            let xPosition = Int.random(in: 20...viewWidth - 60)
+            let yPosition = Int.random(in: 170...viewHeight - 100)
             //bubbles will be generated and added on screen if there are no overlaps.
             if !checkAllXYPosOverlap(newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
