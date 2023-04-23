@@ -32,7 +32,7 @@ class Bubble: UIButton {
         super.init(frame: frame)
         let randomNumber = Int.random(in: 0...1000)
         //print(randomNumber) // debug
-        self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
+        self.selectAttributes(randomOnly: randomNumber)
         self.titleLabel?.font = .boldSystemFont(ofSize: 14)
         self.storedRandomNumber = randomNumber
         //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
@@ -91,7 +91,7 @@ class Bubble: UIButton {
         scaleOUtAnnimation.toValue = 0
         scaleOUtAnnimation.duration = 1
         scaleOUtAnnimation.speed = 0.5
-        
+        scaleOUtAnnimation.isRemovedOnCompletion = true
         layer.add(scaleOUtAnnimation, forKey: nil)
         //self.removeFromSuperview()
     }
@@ -141,6 +141,7 @@ class Bubble: UIButton {
         moveAnimation.fromValue = [currentXPos, currentYPos]
         moveAnimation.toValue = toValueXYPos()
         moveAnimation.speed = 0.05
+        
         //moveAnimation.initialVelocity = 0.5
         layer.add(moveAnimation, forKey: nil)
         self.frame = CGRect(x: toValueXYPos()[0], y: toValueXYPos()[1], width: 50, height: 50)
@@ -148,23 +149,23 @@ class Bubble: UIButton {
     
     //random colour helper function
     //is used to cater for problability of appearance
-    func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {
+    func selectAttributes(randomOnly randomNumber: Int) {
         switch randomNumber {
         case 0...50:
-            //print("Black bubble added")
-            return .black
+            self.backgroundColor = .black
+            self.points = 10
         case 51...150:
-            //print("Blue bubble added")
-            return .blue
+            self.backgroundColor = .blue
+            self.points = 8
         case 151...300:
-            //print("Green button added")
-            return .green
+            self.backgroundColor = .green
+            self.points = 5
         case 301...600:
-            //print("Pink button added.")
-            return .systemPink
+            self.backgroundColor = .systemPink
+            self.points = 2
         default:
-            //print("Red button added")
-            return .red
+            self.backgroundColor = .red
+            self.points = 1
         }
     }
     
