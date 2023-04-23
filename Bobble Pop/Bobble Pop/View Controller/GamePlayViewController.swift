@@ -163,7 +163,7 @@ class GamePlayViewController: UIViewController {
     func generateBubble(xPosition: Int, yPosition: Int) {
         let bubble = Bubble()
         let gameSettings = game.getGameSettings()
-        bubble.changePosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
+        bubble.setPosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
         bubbleId += 1
            
         bubble.setBubbleId(bubbleId: bubbleId)

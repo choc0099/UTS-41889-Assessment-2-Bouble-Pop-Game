@@ -39,7 +39,7 @@ class Bubble: UIButton {
       
         
         //assign the points to the bubble.
-        points = selectPoints(randomOnly: randomNumber)
+
         //for testing only (vision impairmengt related)
         //points = 10
     }
@@ -50,8 +50,7 @@ class Bubble: UIButton {
         fatalError("Init(coder: ) has not been implemented")
     }
     
-    func changePosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int)
-    {
+    func setPosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int) {
         self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 50, height: 50)
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
         storedXPos = superViewWidth
@@ -131,8 +130,7 @@ class Bubble: UIButton {
         return [newXPos, newYPos]
     }
     
-    func moveBubblePos()
-    {
+    func moveBubblePos() {
         let moveAnimation = CABasicAnimation(keyPath: "position")
         
         let currentXPos = getStoredXPos()
@@ -154,69 +152,38 @@ class Bubble: UIButton {
         case 0...50:
             self.backgroundColor = .black
             self.points = 10
+            self.setTitle("BK", for: .normal)
         case 51...150:
             self.backgroundColor = .blue
             self.points = 8
+            self.setTitle("B", for: .normal)
+            self.setTitleColor(.black, for: .normal)
         case 151...300:
             self.backgroundColor = .green
             self.points = 5
+            self.setTitle("G", for: .normal)
+            self.setTitleColor(.black, for: .normal)
         case 301...600:
             self.backgroundColor = .systemPink
             self.points = 2
+            self.setTitle("P", for: .normal)
         default:
             self.backgroundColor = .red
             self.points = 1
+            self.setTitle("R", for: .normal)
         }
     }
     
-    //helper function to select the points based on button color
-    func selectPoints(randomOnly randomNumber: Int) -> Int
-    {
-        switch randomNumber {
-        case 0...50:
-            return 10
-        case 51...150:
-            return 8
-        case 151...300:
-            return 5
-        case 301...600:
-            return 2
-        default:
-            return 1
-        }
-    }
     
     //accessibility features
-    //function to display letters for colour blindness
-    func addButtonTitles() -> String
-    {
-        switch storedRandomNumber {
-        case 0...50:
-            //self.setTitleColor(.white, for: .normal)
-            return "BK"
-        case 51...150:
-            self.setTitleColor(.black, for: .normal)
-            return "B"
-        case 151...300:
-            self.setTitleColor(.black, for: .normal)
-            return "G"
-        case 301...600:
-            //self.setTitleColor(.black, for: .normal)
-            return "P"
-        default:
-            //self.setTitleColor(.white, for: .normal)
-            return "R"
-        }
-    }
-    
+    //function to clear the text labels if the user is not colour blind.
     func enableColorBlindnessLabels(isColorBlind: Bool) {
-        if isColorBlind {
-            self.setTitle(addButtonTitles(), for: .normal)
+        if !isColorBlind {
+            self.setTitle("", for: .normal)
         }
     }
     
-    func getPoints() -> Int
-    {
+    func getPoints() -> Int {
         return points
     }
     
@@ -228,8 +195,7 @@ class Bubble: UIButton {
         return storedYPos
     }
     
-    func setBubbleId(bubbleId: Int)
-    {
+    func setBubbleId(bubbleId: Int) {
         self.bubbleId = bubbleId
     }
     
