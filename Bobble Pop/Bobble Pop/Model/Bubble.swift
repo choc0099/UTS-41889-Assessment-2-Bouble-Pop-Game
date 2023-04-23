@@ -74,14 +74,21 @@ class Bubble: UIButton {
     }
     
     func scaleOut() {
-        let scaleOUtAnnimation = CABasicAnimation(keyPath: "transform.scale")
+        let scaleOUtAnnimation = CASpringAnimation(keyPath: "transform.scale")
         
         scaleOUtAnnimation.fromValue = 1
-        scaleOUtAnnimation.toValue = 0
+        scaleOUtAnnimation.toValue = 0.1
         scaleOUtAnnimation.duration = 1
         scaleOUtAnnimation.speed = 0.5
-        scaleOUtAnnimation.isRemovedOnCompletion = true
+        scaleOUtAnnimation.isRemovedOnCompletion = false
         layer.add(scaleOUtAnnimation, forKey: nil)
+
+        let transaction = CATransaction()
+        
+    
+        
+        //frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        //self.alpha = 0
         //self.removeFromSuperview()
     }
 

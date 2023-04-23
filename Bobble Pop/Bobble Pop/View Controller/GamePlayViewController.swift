@@ -216,13 +216,14 @@ class GamePlayViewController: UIViewController {
     
     func handleRemove(bubble: Bubble) {
         bubbleCounter -= 1
-        bubble.scaleOut()
+        
         //unmark the x and y positions
         //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
         game.removeBubble(bubbleId: bubble.getBubbleId())
         //print(bubbleIndex)
-       
+        bubble.scaleOut()
         bubble.removeFromSuperview()
+ 
       
       
     }
