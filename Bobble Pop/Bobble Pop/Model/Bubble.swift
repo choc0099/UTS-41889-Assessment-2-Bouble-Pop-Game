@@ -66,14 +66,36 @@ class Bubble: UIButton {
     func animation() {
         let springAnimation = CASpringAnimation(keyPath: "transform.scale")
         springAnimation.duration = 0.6
-        springAnimation.fromValue = 1
+        springAnimation.fromValue = 0.1
         springAnimation.toValue = 0.8
         springAnimation.repeatCount = 1
         springAnimation.initialVelocity = 0.5
-        springAnimation.damping = 1
+        //springAnimation.damping = 1
         
         layer.add(springAnimation, forKey: nil)
     }
+    
+    func scaleIn() {
+        let scaleInAnnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleInAnnimation.fromValue = 0
+        scaleInAnnimation.toValue = 1
+        scaleInAnnimation.duration = 0.2
+        
+        layer.add(scaleInAnnimation, forKey: nil)
+    }
+    
+    func scaleOut() {
+        let scaleOUtAnnimation = CABasicAnimation(keyPath: "transform.scale")
+        
+        scaleOUtAnnimation.fromValue = 1
+        scaleOUtAnnimation.toValue = 0
+        scaleOUtAnnimation.duration = 1
+        scaleOUtAnnimation.speed = 0.5
+        
+        layer.add(scaleOUtAnnimation, forKey: nil)
+        //self.removeFromSuperview()
+    }
+
     
     func flash() {
         let flash = CABasicAnimation(keyPath: "opacity")
