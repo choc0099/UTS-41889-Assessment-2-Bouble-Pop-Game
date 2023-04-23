@@ -25,7 +25,6 @@ class Bubble: UIButton {
     var points = 0
     var deviceWidth = 0
     var deviceHeight = 0
-    var storedRandomNumber = 0
     let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
     
     override init(frame: CGRect){
@@ -34,17 +33,8 @@ class Bubble: UIButton {
         //print(randomNumber) // debug
         self.selectAttributes(randomOnly: randomNumber)
         self.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        self.storedRandomNumber = randomNumber
-        //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
-      
-        
-        //assign the points to the bubble.
-
-        //for testing only (vision impairmengt related)
-        //points = 10
     }
     
-  
     required init?(coder: NSCoder)
     {
         fatalError("Init(coder: ) has not been implemented")
@@ -179,7 +169,7 @@ class Bubble: UIButton {
     //function to clear the text labels if the user is not colour blind.
     func enableColorBlindnessLabels(isColorBlind: Bool) {
         if !isColorBlind {
-            self.setTitle("", for: .normal)
+            self.setTitle(nil, for: .normal)
         }
     }
     
