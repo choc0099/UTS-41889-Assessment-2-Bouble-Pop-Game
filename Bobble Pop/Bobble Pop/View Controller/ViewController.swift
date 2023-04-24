@@ -16,21 +16,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gameSettings = game.getGameSettings()
-        let deviceWidth = Int(self.view.bounds.width)
-        let deviceHeight = Int(self.view.bounds.height)
-        
-        gameSettings.setDeviceWdihAndHeight(deviceWidth: deviceWidth, deviceHeight: deviceHeight)
+      
         self.initializeGame()
-        
-        //for testing
-        /*for player in game.getPlayers()
-        {
-            print(player.getPlayerName())
-            print(player.getScore().getHighScore())
-        }*/
-        
-        // Do any additional setup after loading the view.
     }
     
     //a function that will prevent the game from overwriting the highscores when the app is restarted.
@@ -53,11 +40,16 @@ class ViewController: UIViewController {
             let VC = segue.destination as! NewGameViewController
             VC.game = game
         }
-        /*else if segue.identifier == "goToHighScore"
-        {
-            let VC = segue.destination as! HighScoreViewController
-            //VC.game = game
-        }*/
     }
+    /*
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            print("landscape")
+        }
+        else{
+            print("Portriat")
+        }
+    }*/
 }
 

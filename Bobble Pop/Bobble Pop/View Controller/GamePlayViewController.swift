@@ -51,8 +51,10 @@ class GamePlayViewController: UIViewController {
         //print("Numbers of bubbles set:  \(numberOfBubbles)")
         
         //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
-        //let currentViewWidth: Int = Int(self.view.bounds.width)
-        //let currentViewHeight: Int = Int(self.view.bounds.height)
+        let currentViewWidth: Int = Int(self.view.bounds.width)
+        let currentViewHeight: Int = Int(self.view.bounds.height)
+        
+        gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
         //needed to display the first sequence of the countdown before the timer initiates.
         self.generateCountDownLabel()
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
@@ -228,9 +230,6 @@ class GamePlayViewController: UIViewController {
         //print(bubbleIndex)
       
         bubble.removeFromSuperview()
- 
-      
-      
     }
     
     func resetScore() {
