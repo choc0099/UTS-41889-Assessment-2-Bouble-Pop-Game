@@ -26,6 +26,8 @@ class Bubble: UIButton {
     var deviceWidth = 0
     var deviceHeight = 0
     let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
+    //var timer = Timer()
+    
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -84,12 +86,6 @@ class Bubble: UIButton {
         flyOutAnimation.speed = 0.5
         flyOutAnimation.isRemovedOnCompletion = true
         layer.add(flyOutAnimation, forKey: nil)
-        //layer.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        //alpha = 0
-        //self.removeFromSuperview()
-        //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        //self.alpha = 0
-       
     }
 
     //experimental function

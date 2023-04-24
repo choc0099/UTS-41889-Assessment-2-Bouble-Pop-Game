@@ -10,6 +10,9 @@ import UIKit
 
 class GamePlayViewController: UIViewController {
     
+    var game = Game()
+    var currentPlayer = Player()
+    
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
@@ -21,22 +24,20 @@ class GamePlayViewController: UIViewController {
 
     var currentScore: Double = 0
     var playerHighScore = 0
+    
+    //timers
     var gamePlayTimer = Timer()
     var gameStartTimer = Timer()
-    var game = Game()
-    var currentPlayer = Player()
+    var removeBubbleTimer = Timer()
     
-    //stores all the bubble attributes into an array to mark xPositions and yPositions when the bubble is added onto the screen.
-    //var storedBubbles: [Bubble] = []
-    
+
     var gameStartRemainingTime = 3
     var gamePlayRemainingTime = 0
     var numberOfBubbles = 0
     var bubbleCounter = 0
-    
+    var animationRemainingTime = 2
     var previousBubblePoints = 0
-    
-    //var score: Score = Score()
+   
     
     override func viewDidLoad() {
         
@@ -69,7 +70,7 @@ class GamePlayViewController: UIViewController {
             gamePlayerTimer in
             //self.bubbleCounter = 0
             //self.resetScore()
-            self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
+            //self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
@@ -198,7 +199,26 @@ class GamePlayViewController: UIViewController {
         handleScore(bubble: sender)
         updateUI()
         sender.flyOut()
-        handleRemove(bubble: sender)
+        
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true)
+        {
+            removeBubbleTimer in
+            //self.animationRemainingTime = 2
+            self.timeToRemove(bubble: sender)
+            
+        }
+        //handleRemove(bubble: sender)
+    }
+    
+    @objc func timeToRemove(bubble: Bubble) {
+       
+        animationRemainingTime -= 1
+        if animationRemainingTime == 0
+        {
+            removeBubbleTimer.invalidate()
+            handleRemove(bubble: bubble)
+            animationRemainingTime = 2
+        }
     }
     
     func handleScore(bubble: Bubble) {
