@@ -79,13 +79,14 @@ class Bubble: UIButton {
     }
     
     func scaleOutAndRemove() {
-        let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
-        scaleInAnnimation.fromValue = 1
-        scaleInAnnimation.toValue = 0
-        scaleInAnnimation.duration = 0.15
-        scaleInAnnimation.initialVelocity = 0.2
-        scaleInAnnimation.damping = 1
-        layer.add(scaleInAnnimation, forKey: nil)
+        let scaleOutAnnimation = CASpringAnimation(keyPath: "transform.scale")
+        scaleOutAnnimation.fromValue = 1
+        scaleOutAnnimation.toValue = 0
+        scaleOutAnnimation.duration = 0.5
+        scaleOutAnnimation.speed = 0.8
+        scaleOutAnnimation.initialVelocity = 0.2
+       // scaleInAnnimation.damping = 1
+        layer.add(scaleOutAnnimation, forKey: nil)
         
         removeAfterAnimation()
         
@@ -96,7 +97,7 @@ class Bubble: UIButton {
         
         flyOutAnimation.fromValue = getStoredYPos()
         flyOutAnimation.toValue = 0
-        flyOutAnimation.duration = 1
+        flyOutAnimation.duration = 0.5
         flyOutAnimation.speed = 0.8
         flyOutAnimation.isRemovedOnCompletion = true
         layer.add(flyOutAnimation, forKey: nil)
@@ -105,7 +106,7 @@ class Bubble: UIButton {
     }
     
     func removeAfterAnimation() {
-        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.50, repeats: true)
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.30, repeats: true)
         {
             removeBubbleTimer in
             self.timeToRemove()

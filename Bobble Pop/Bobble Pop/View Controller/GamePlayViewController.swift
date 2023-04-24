@@ -128,16 +128,14 @@ class GamePlayViewController: UIViewController {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
-                //unwrappedRandomBubble.scaleOutAndRemove()
-                handleRemove(bubble: unwrappedRandomBubble)
+                handleRemove(isPressed: false, bubble: unwrappedRandomBubble)
             }
         }
         //print("Bubbles removed: \(randomToRemove) with \(bubbleCounter) left.")
        
     }
     
-    func addSomeBubbles(numberOfBubbles: Int)
-    {
+    func addSomeBubbles(numberOfBubbles: Int) {
         let gameSettings = game.getGameSettings()
         let screenWidth = gameSettings.getDeviceWidth()
         let screenHeight = gameSettings.getDeviceHeight()
@@ -197,9 +195,7 @@ class GamePlayViewController: UIViewController {
     @IBAction func bubblePressed(_ sender: Bubble) {
         handleScore(bubble: sender)
         updateUI()
-        sender.flyOutAndRemove()
-        
-        //handleRemove(bubble: sender)
+        handleRemove(isPressed: true, bubble: sender)
     }
     
     
@@ -224,15 +220,25 @@ class GamePlayViewController: UIViewController {
         playerHighScore = currentPlayerScore.getHighScore()
     }
     
-    func handleRemove(bubble: Bubble) {
+    func handleRemove(isPressed: Bool, bubble: Bubble) {
         bubbleCounter -= 1
+       
+        game.removeBubble(bubbleId: bubble.getBubbleId())
+        
+        if isPressed {
+            bubble.flyOutAndRemove()
+        }
+        else {
+            bubble.scaleOutAndRemove()
+        }
+    
         
         //unmark the x and y positions
         //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
-        game.removeBubble(bubbleId: bubble.getBubbleId())
+      
         //print(bubbleIndex)
         
-        bubble.removeFromSuperview()
+        //bubble.removeFromSuperview()
     }
     
     func resetScore() {
