@@ -169,8 +169,9 @@ class GamePlayViewController: UIViewController {
         bubble.setBubbleId(bubbleId: bubbleId)
         //this will add labels to the button if the user has enabled it or not.
         bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
-        //bubble.moveBubblePos()
+      
         bubble.scaleIn()
+        //bubble.moveBubblePos()
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
                   
@@ -191,6 +192,7 @@ class GamePlayViewController: UIViewController {
     @IBAction func bubblePressed(_ sender: Bubble) {
         handleScore(bubble: sender)
         updateUI()
+        sender.flyOut()
         handleRemove(bubble: sender)
     }
     
@@ -221,7 +223,7 @@ class GamePlayViewController: UIViewController {
         //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
         game.removeBubble(bubbleId: bubble.getBubbleId())
         //print(bubbleIndex)
-        bubble.scaleOut()
+      
         bubble.removeFromSuperview()
  
       

@@ -72,22 +72,24 @@ class Bubble: UIButton {
         scaleInAnnimation.initialVelocity = 0.2
         scaleInAnnimation.damping = 1
         layer.add(scaleInAnnimation, forKey: nil)
+        
     }
     
-    func scaleOut() {
-        let scaleOUtAnnimation = CASpringAnimation(keyPath: "transform.scale")
+    func flyOut() {
+        let flyOutAnimation = CASpringAnimation(keyPath: "position.y")
         
-        scaleOUtAnnimation.fromValue = 1
-        scaleOUtAnnimation.toValue = 0.1
-        scaleOUtAnnimation.duration = 1
-        scaleOUtAnnimation.speed = 0.5
-        scaleOUtAnnimation.isRemovedOnCompletion = false
-        layer.add(scaleOUtAnnimation, forKey: nil)
-    
-        
-        //frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        //self.alpha = 0
+        flyOutAnimation.fromValue = getStoredYPos()
+        flyOutAnimation.toValue = 0
+        flyOutAnimation.duration = 1
+        flyOutAnimation.speed = 0.5
+        flyOutAnimation.isRemovedOnCompletion = true
+        layer.add(flyOutAnimation, forKey: nil)
+        //layer.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        //alpha = 0
         //self.removeFromSuperview()
+        //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        //self.alpha = 0
+       
     }
 
     
@@ -134,9 +136,10 @@ class Bubble: UIButton {
         moveAnimation.fromValue = [currentXPos, currentYPos]
         moveAnimation.toValue = toValueXYPos()
         moveAnimation.speed = 0.05
-        
+        //moveAnimation.beginTime = 2
         //moveAnimation.initialVelocity = 0.5
         layer.add(moveAnimation, forKey: nil)
+        self.removeFromSuperview()
         self.frame = CGRect(x: toValueXYPos()[0], y: toValueXYPos()[1], width: 50, height: 50)
     }
     
