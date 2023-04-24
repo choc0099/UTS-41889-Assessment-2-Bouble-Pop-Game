@@ -30,6 +30,9 @@ class Bubble: UIButton {
     var animationRemainingTime = 1
     var removeBubbleTimer = Timer()
     
+    //stores the game session to the Bubble class
+    var game = Game()
+    
     override init(frame: CGRect){
         super.init(frame: frame)
         let randomNumber = Int.random(in: 0...1000)
@@ -78,49 +81,49 @@ class Bubble: UIButton {
         
     }
     
-    func scaleOutAndRemove(gameSession game: Game) {
+    func scaleOutAndRemove() {
         let scaleOutAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
-        scaleOutAnnimation.duration = 0.5
-        scaleOutAnnimation.speed = 0.8
-        scaleOutAnnimation.initialVelocity = 0.2
-        scaleOutAnnimation.damping = 1
+        scaleOutAnnimation.duration = 1
+        scaleOutAnnimation.speed = 1
+        //scaleOutAnnimation.initialVelocity = 0.2
+        //scaleOutAnnimation.damping = 1
         layer.add(scaleOutAnnimation, forKey: nil)
         
-        removeAfterAnimation(gameSession: game)
+        removeAfterAnimation()
         
     }
     
-    func flyOutAndRemove(gameSession game: Game) {
+    func flyOutAndRemove() {
         let flyOutAnimation = CASpringAnimation(keyPath: "position.y")
         
         flyOutAnimation.fromValue = getStoredYPos()
         flyOutAnimation.toValue = 0
         flyOutAnimation.duration = 0.5
         flyOutAnimation.speed = 0.8
-        flyOutAnimation.isRemovedOnCompletion = true
         layer.add(flyOutAnimation, forKey: nil)
-        removeAfterAnimation(gameSession: game)
+        removeAfterAnimation()
     }
     
-    func removeAfterAnimation(gameSession game: Game) {
-        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false)
+    func removeAfterAnimation() {
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false)
         {
             removeBubbleTimer in
-            self.timeToRemove(gameSession: game)
+            self.timeToRemove()
         }
     }
 
-    func timeToRemove(gameSession game: Game) {
+    @objc func timeToRemove() {
        
         animationRemainingTime -= 1
         if animationRemainingTime == 0
         {
             removeBubbleTimer.invalidate()
-            game.removeBubble(bubbleId: self.getBubbleId())
             self.removeFromSuperview()
-            animationRemainingTime = 1
+            game.removeBubble(bubbleId: self.getBubbleId())
+   
+            //animationRemainingTime = 1
         }
     }
     
@@ -219,5 +222,10 @@ class Bubble: UIButton {
     
     func getBubbleId() -> Int {
         return bubbleId
+    }
+    
+    func initiateGameSession(gameSession game: Game)
+    {
+        self.game = game
     }
 }

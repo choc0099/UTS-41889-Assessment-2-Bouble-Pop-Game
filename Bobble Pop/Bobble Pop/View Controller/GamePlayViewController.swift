@@ -166,6 +166,7 @@ class GamePlayViewController: UIViewController {
     func generateBubble(xPosition: Int, yPosition: Int) {
         let bubble = Bubble()
         let gameSettings = game.getGameSettings()
+        bubble.initiateGameSession(gameSession: game)
         bubble.setPosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
         bubbleId += 1
            
@@ -226,10 +227,10 @@ class GamePlayViewController: UIViewController {
         //game.removeBubble(bubbleId: bubble.getBubbleId())
         
         if isPressed {
-            bubble.flyOutAndRemove(gameSession: game)
+            bubble.flyOutAndRemove()
         }
         else {
-            bubble.scaleOutAndRemove(gameSession: game)
+            bubble.scaleOutAndRemove()
         }
     
         
