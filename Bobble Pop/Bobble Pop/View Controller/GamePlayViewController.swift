@@ -51,23 +51,23 @@ class GamePlayViewController: UIViewController {
         //print("Numbers of bubbles set:  \(numberOfBubbles)")
         
         //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
-        let currentViewWidth: Int = Int(self.view.bounds.width)
-        let currentViewHeight: Int = Int(self.view.bounds.height)
-               
+        //let currentViewWidth: Int = Int(self.view.bounds.width)
+        //let currentViewHeight: Int = Int(self.view.bounds.height)
+        //needed to display the first sequence of the countdown before the timer initiates.
         self.generateCountDownLabel()
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gameStarttimer in
-            self.gameStartCountDown(screenWidth: currentViewWidth, screenHeight: currentViewHeight)
+            self.gameStartCountDown()
         }
     }
     
-    func initiateGamePlay(screenViewHeight currentViewHeight: Int, screenViewWidth currentViewWidth: Int) {
-        self.renderBubbles(numberOfBubbles: numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+    func initiateGamePlay() {
+        self.renderBubbles(numberOfBubbles: numberOfBubbles)
         gamePlayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gamePlayerTimer in
             //self.bubbleCounter = 0
             //self.resetScore()
-            self.renderBubbles(numberOfBubbles: self.numberOfBubbles, viewHeight: currentViewHeight, viewWidth: currentViewWidth)
+            self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
@@ -97,7 +97,7 @@ class GamePlayViewController: UIViewController {
         gameStartCountDownLabel.flash()
     }
     
-    @objc func gameStartCountDown(screenWidth: Int, screenHeight: Int) {
+    @objc func gameStartCountDown() {
         print(gameStartRemainingTime)
         gameStartRemainingTime -= 1
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
@@ -107,15 +107,15 @@ class GamePlayViewController: UIViewController {
             gameStartTimer.invalidate()
             gameStartCountDownLabel.removeFromSuperview()
             gamePlayStack.isHidden = false
-            self.initiateGamePlay(screenViewHeight: screenHeight, screenViewWidth: screenWidth)
+            self.initiateGamePlay()
         }
     }
     
-    func renderBubbles(numberOfBubbles: Int, viewHeight: Int, viewWidth: Int) {
+    func renderBubbles(numberOfBubbles: Int) {
         if bubbleCounter > 0 {
             removeSomeBubbles()
         }
-        addSomeBubbles(numberOfBubbles: numberOfBubbles, viewWidth: viewWidth, viewHeight: viewHeight)
+        addSomeBubbles(numberOfBubbles: numberOfBubbles)
     }
         
     func removeSomeBubbles() {
@@ -134,8 +134,12 @@ class GamePlayViewController: UIViewController {
        
     }
     
-    func addSomeBubbles(numberOfBubbles: Int, viewWidth: Int, viewHeight: Int)
+    func addSomeBubbles(numberOfBubbles: Int)
     {
+        let gameSettings = game.getGameSettings()
+        let screenWidth = gameSettings.getDeviceWidth()
+        let screenHeight = gameSettings.getDeviceHeight()
+        
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
         
         //print(numberOfBubbles)
@@ -144,8 +148,8 @@ class GamePlayViewController: UIViewController {
         while numberOfBubblesGenerated < randomBubblesToAdd && numbersOfOverlaps < 100 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
-            let xPosition = Int.random(in: 20...viewWidth - 60)
-            let yPosition = Int.random(in: 170...viewHeight - 100)
+            let xPosition = Int.random(in: 20...screenWidth - 60)
+            let yPosition = Int.random(in: 170...screenHeight - 100)
             //bubbles will be generated and added on screen if there are no overlaps.
             if !BubbleManager.isOverlap(storedBubbles: game.getAllBubbles(), newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
