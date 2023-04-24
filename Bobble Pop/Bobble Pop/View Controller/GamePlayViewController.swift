@@ -223,13 +223,13 @@ class GamePlayViewController: UIViewController {
     func handleRemove(isPressed: Bool, bubble: Bubble) {
         bubbleCounter -= 1
        
-        game.removeBubble(bubbleId: bubble.getBubbleId())
+        //game.removeBubble(bubbleId: bubble.getBubbleId())
         
         if isPressed {
-            bubble.flyOutAndRemove()
+            bubble.flyOutAndRemove(gameSession: game)
         }
         else {
-            bubble.scaleOutAndRemove()
+            bubble.scaleOutAndRemove(gameSession: game)
         }
     
         

@@ -78,21 +78,21 @@ class Bubble: UIButton {
         
     }
     
-    func scaleOutAndRemove() {
+    func scaleOutAndRemove(gameSession game: Game) {
         let scaleOutAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
         scaleOutAnnimation.duration = 0.5
         scaleOutAnnimation.speed = 0.8
         scaleOutAnnimation.initialVelocity = 0.2
-       // scaleInAnnimation.damping = 1
+        scaleOutAnnimation.damping = 1
         layer.add(scaleOutAnnimation, forKey: nil)
         
-        removeAfterAnimation()
+        removeAfterAnimation(gameSession: game)
         
     }
     
-    func flyOutAndRemove() {
+    func flyOutAndRemove(gameSession game: Game) {
         let flyOutAnimation = CASpringAnimation(keyPath: "position.y")
         
         flyOutAnimation.fromValue = getStoredYPos()
@@ -101,27 +101,26 @@ class Bubble: UIButton {
         flyOutAnimation.speed = 0.8
         flyOutAnimation.isRemovedOnCompletion = true
         layer.add(flyOutAnimation, forKey: nil)
-        removeAfterAnimation()
-       
+        removeAfterAnimation(gameSession: game)
     }
     
-    func removeAfterAnimation() {
-        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.30, repeats: true)
+    func removeAfterAnimation(gameSession game: Game) {
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false)
         {
             removeBubbleTimer in
-            self.timeToRemove()
-            
+            self.timeToRemove(gameSession: game)
         }
     }
 
-    @objc func timeToRemove() {
+    func timeToRemove(gameSession game: Game) {
        
         animationRemainingTime -= 1
         if animationRemainingTime == 0
         {
             removeBubbleTimer.invalidate()
+            game.removeBubble(bubbleId: self.getBubbleId())
             self.removeFromSuperview()
-            animationRemainingTime = 2
+            animationRemainingTime = 1
         }
     }
     
