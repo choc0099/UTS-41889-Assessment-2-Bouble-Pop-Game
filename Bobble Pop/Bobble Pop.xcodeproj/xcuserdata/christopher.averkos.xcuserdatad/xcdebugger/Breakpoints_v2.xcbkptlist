@@ -14,8 +14,8 @@
             filePath = "Bobble Pop/View Controller/GamePlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "addSomeBubbles(numberOfBubbles:viewWidth:viewHeight:)"
             landmarkType = "7">
          </BreakpointContent>

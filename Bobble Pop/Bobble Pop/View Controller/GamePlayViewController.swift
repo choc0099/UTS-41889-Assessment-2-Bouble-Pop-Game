@@ -42,14 +42,15 @@ class GamePlayViewController: UIViewController {
         
         // the game play stack is hidden when there is a countdown before the game starts.
         gamePlayStack.isHidden = true
-        
+       
         super.viewDidLoad()
         let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
-        
+        remainingTimeLabel.text = String(gamePlayRemainingTime)
         //print("Numbers of bubbles set:  \(numberOfBubbles)")
         
+        //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
                
@@ -85,13 +86,11 @@ class GamePlayViewController: UIViewController {
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
             VC.navigationItem.setHidesBackButton(true, animated: true)
-            //Pass the game object with data stored.
-            //VC.game = game
         }
     }
-    
+    // A helper function used to generate the game countdown label attributes.
     func generateCountDownLabel() {
-        remainingTimeLabel.text = String(gamePlayRemainingTime)
+        
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
         gameStartCountDownLabel.center = self.view.center
         self.view.addSubview(gameStartCountDownLabel)

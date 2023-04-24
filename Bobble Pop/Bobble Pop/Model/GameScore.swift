@@ -7,6 +7,7 @@
 
 import Foundation
 
+//This is used to help with storing score data to the tableView.
 struct GameScore: Codable {
     var name: String
     var score: Int
