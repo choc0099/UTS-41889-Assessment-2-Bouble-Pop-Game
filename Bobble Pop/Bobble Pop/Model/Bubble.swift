@@ -26,8 +26,9 @@ class Bubble: UIButton {
     var deviceWidth = 0
     var deviceHeight = 0
     let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
-    //var timer = Timer()
-    
+   
+    var animationRemainingTime = 1
+    var removeBubbleTimer = Timer()
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -77,17 +78,52 @@ class Bubble: UIButton {
         
     }
     
-    func flyOut() {
+    func scaleOutAndRemove() {
+        let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
+        scaleInAnnimation.fromValue = 1
+        scaleInAnnimation.toValue = 0
+        scaleInAnnimation.duration = 0.15
+        scaleInAnnimation.initialVelocity = 0.2
+        scaleInAnnimation.damping = 1
+        layer.add(scaleInAnnimation, forKey: nil)
+        
+        removeAfterAnimation()
+        
+    }
+    
+    func flyOutAndRemove() {
         let flyOutAnimation = CASpringAnimation(keyPath: "position.y")
         
         flyOutAnimation.fromValue = getStoredYPos()
         flyOutAnimation.toValue = 0
         flyOutAnimation.duration = 1
-        flyOutAnimation.speed = 0.5
+        flyOutAnimation.speed = 0.8
         flyOutAnimation.isRemovedOnCompletion = true
         layer.add(flyOutAnimation, forKey: nil)
+        removeAfterAnimation()
+       
+    }
+    
+    func removeAfterAnimation() {
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.50, repeats: true)
+        {
+            removeBubbleTimer in
+            self.timeToRemove()
+            
+        }
     }
 
+    @objc func timeToRemove() {
+       
+        animationRemainingTime -= 1
+        if animationRemainingTime == 0
+        {
+            removeBubbleTimer.invalidate()
+            self.removeFromSuperview()
+            animationRemainingTime = 2
+        }
+    }
+    
     //experimental function
     func toValueXYPos() -> [Int] {
         let randomDirection = animationDirectionArray.randomElement()

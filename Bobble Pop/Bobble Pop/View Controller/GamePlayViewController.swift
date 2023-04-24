@@ -28,14 +28,12 @@ class GamePlayViewController: UIViewController {
     //timers
     var gamePlayTimer = Timer()
     var gameStartTimer = Timer()
-    var removeBubbleTimer = Timer()
     
-
     var gameStartRemainingTime = 3
     var gamePlayRemainingTime = 0
     var numberOfBubbles = 0
     var bubbleCounter = 0
-    var animationRemainingTime = 2
+    
     var previousBubblePoints = 0
    
     
@@ -70,7 +68,7 @@ class GamePlayViewController: UIViewController {
             gamePlayerTimer in
             //self.bubbleCounter = 0
             //self.resetScore()
-            //self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
+            self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
@@ -130,6 +128,7 @@ class GamePlayViewController: UIViewController {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
+                //unwrappedRandomBubble.scaleOutAndRemove()
                 handleRemove(bubble: unwrappedRandomBubble)
             }
         }
@@ -198,28 +197,12 @@ class GamePlayViewController: UIViewController {
     @IBAction func bubblePressed(_ sender: Bubble) {
         handleScore(bubble: sender)
         updateUI()
-        sender.flyOut()
+        sender.flyOutAndRemove()
         
-        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true)
-        {
-            removeBubbleTimer in
-            //self.animationRemainingTime = 2
-            self.timeToRemove(bubble: sender)
-            
-        }
         //handleRemove(bubble: sender)
     }
     
-    @objc func timeToRemove(bubble: Bubble) {
-       
-        animationRemainingTime -= 1
-        if animationRemainingTime == 0
-        {
-            removeBubbleTimer.invalidate()
-            handleRemove(bubble: bubble)
-            animationRemainingTime = 2
-        }
-    }
+    
     
     func handleScore(bubble: Bubble) {
         // current score at the time of the bubble been tapped.
@@ -248,7 +231,7 @@ class GamePlayViewController: UIViewController {
         //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
         game.removeBubble(bubbleId: bubble.getBubbleId())
         //print(bubbleIndex)
-      
+        
         bubble.removeFromSuperview()
     }
     
