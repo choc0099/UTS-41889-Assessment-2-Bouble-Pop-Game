@@ -83,9 +83,6 @@ class Bubble: UIButton {
         scaleOUtAnnimation.speed = 0.5
         scaleOUtAnnimation.isRemovedOnCompletion = false
         layer.add(scaleOUtAnnimation, forKey: nil)
-
-        let transaction = CATransaction()
-        
     
         
         //frame = CGRect(x: 0, y: 0, width: 50, height: 50)
