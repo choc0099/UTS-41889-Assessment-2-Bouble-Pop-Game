@@ -114,7 +114,6 @@ class Bubble: UIButton {
         removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false)  {
             removeBubbleTimer in
             self.timeToRemove(isFlyOut: isFlyOut)
-            
         }
     }
 
@@ -127,9 +126,6 @@ class Bubble: UIButton {
                 //game.removeBubble(bubbleId: self.getBubbleId())
             //}
             self.removeFromSuperview()
-            
-            
-           
         }
     }
     
