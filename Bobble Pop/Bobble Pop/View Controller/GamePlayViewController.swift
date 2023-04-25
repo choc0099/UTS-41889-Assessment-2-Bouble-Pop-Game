@@ -129,9 +129,9 @@ class GamePlayViewController: UIViewController {
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
                 //This will help prevent the bubble that is already clicked removed.
-                if unwrappedRandomBubble.getBubbleId() == previousRemoveBubbleId {
+                /*if unwrappedRandomBubble.getBubbleId() == previousRemoveBubbleId {
                     continue
-                }
+                }*/
                 handleRemove(isPressed: false, bubble: unwrappedRandomBubble)
             }
         }
@@ -237,7 +237,9 @@ class GamePlayViewController: UIViewController {
             bubble.flyOutAndRemove()
         }
         else {
-            bubble.scaleOutAndRemove()
+            //bubble.scaleOutAndRemove()
+            game.removeBubble(bubbleId: bubble.getBubbleId())
+            bubble.removeFromSuperview()            
         }
     
         
