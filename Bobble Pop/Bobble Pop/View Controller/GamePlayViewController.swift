@@ -197,6 +197,8 @@ class GamePlayViewController: UIViewController {
     func updateUI() {
         currentScoreLabel.text = String(Int(currentScore))
         highScoreLabel.text = String(playerHighScore)
+        self.currentScoreAnimation()
+        self.highScoreAnnimation()
     }
     
     @IBAction func bubblePressed(_ sender: Bubble) {
@@ -249,6 +251,27 @@ class GamePlayViewController: UIViewController {
         //print(bubbleIndex)
         
         //bubble.removeFromSuperview()
+    }
+    
+    func currentScoreAnimation() {
+        let bloopingAnimation = CASpringAnimation(keyPath: "transform.scale")
+        
+        bloopingAnimation.fromValue = 1
+        bloopingAnimation.toValue = 2
+        bloopingAnimation.speed = 1
+        bloopingAnimation.autoreverses = true
+        currentScoreLabel.layer.add(bloopingAnimation, forKey: nil)
+        
+    }
+    
+    func highScoreAnnimation() {
+        let flash = CABasicAnimation(keyPath: "opacity")
+        flash.fromValue = 1
+        flash.toValue = 0
+        flash.autoreverses = true
+        flash.speed = 0.8
+        
+        highScoreLabel.layer.add(flash, forKey: nil)
     }
     
     func resetScore() {
