@@ -8,8 +8,16 @@
 import Foundation
 
 class BubbleManager {
+    
+    let game: Game
+    
+    init(game: Game)
+    {
+        self.game = game
+    }
+    
     //helper functions to check for overlap
-   static private func checkBubbleOverlap(currentXPosition: Int, newXPosition: Int, currentYPosition: Int, newYPosition: Int) -> Bool {
+   private func checkBubbleOverlap(currentXPosition: Int, newXPosition: Int, currentYPosition: Int, newYPosition: Int) -> Bool {
         let positionFrame = 55 // defines an square area of the position bounds.
         
         //determines the bounderies of each direction
@@ -29,8 +37,10 @@ class BubbleManager {
         
     }
     
-    static func isOverlap(storedBubbles: [Bubble], newXPosition: Int, newYPosition: Int) -> Bool
+    func isOverlap(newXPosition: Int, newYPosition: Int) -> Bool
     {
+        let storedBubbles = game.getAllBubbles()
+        
         for bubble in storedBubbles {
             //let currentBubbleId = bubble.getBubbleId()
             let currentXPos = bubble.getStoredXPos()

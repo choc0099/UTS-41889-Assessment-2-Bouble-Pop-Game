@@ -35,7 +35,7 @@ class GamePlayViewController: UIViewController {
     var bubbleCounter = 0
     
     var previousBubblePoints = 0
-   
+    var previousRemoveBubbleId = 0
     
     override func viewDidLoad() {
         
@@ -128,6 +128,10 @@ class GamePlayViewController: UIViewController {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
+                //This will help prevent the bubble that is already clicked removed.
+                if unwrappedRandomBubble.getBubbleId() == previousRemoveBubbleId {
+                    continue
+                }
                 handleRemove(isPressed: false, bubble: unwrappedRandomBubble)
             }
         }
@@ -137,6 +141,8 @@ class GamePlayViewController: UIViewController {
     
     func addSomeBubbles(numberOfBubbles: Int) {
         let gameSettings = game.getGameSettings()
+        let bubbleManager = BubbleManager(game: game)
+        
         let screenWidth = gameSettings.getDeviceWidth()
         let screenHeight = gameSettings.getDeviceHeight()
         
@@ -145,13 +151,13 @@ class GamePlayViewController: UIViewController {
         //print(numberOfBubbles)
         var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
-        while numberOfBubblesGenerated < randomBubblesToAdd && numbersOfOverlaps < 100 {
+        while self.bubbleCounter < randomBubblesToAdd && numbersOfOverlaps < 100 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
             let xPosition = Int.random(in: 20...screenWidth - 60)
             let yPosition = Int.random(in: 170...screenHeight - 100)
             //bubbles will be generated and added on screen if there are no overlaps.
-            if !BubbleManager.isOverlap(storedBubbles: game.getAllBubbles(), newXPosition: xPosition, newYPosition: yPosition) {
+            if !bubbleManager.isOverlap(newXPosition: xPosition, newYPosition: yPosition) {
                 generateBubble(xPosition: xPosition, yPosition: yPosition)
                 numberOfBubblesGenerated += 1
                 numbersOfOverlaps = 0
@@ -197,6 +203,8 @@ class GamePlayViewController: UIViewController {
         handleScore(bubble: sender)
         updateUI()
         handleRemove(isPressed: true, bubble: sender)
+        previousRemoveBubbleId = sender.getBubbleId()
+        print("Number of elements: \(game.getAllBubbles().count)")
     }
     
     
@@ -209,7 +217,6 @@ class GamePlayViewController: UIViewController {
         // if the same bubble colour is pressed after another, the score will increase by 1.5
         if previousBubblePoints == bubble.getPoints() {
             currentScore += 1.5 * currentScore
-            //sameColourClicked += 1
             print("Same color clicked! \(currentScore)")
         }
         else{
