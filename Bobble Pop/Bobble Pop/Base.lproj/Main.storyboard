@@ -235,6 +235,9 @@
                                         <subviews>
                                             <slider opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="25" maxValue="75" translatesAutoresizingMaskIntoConstraints="NO" id="Q63-jR-5u9">
                                                 <rect key="frame" x="-2" y="0.0" width="278" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="250" id="Ud7-pi-wV7"/>
+                                                </constraints>
                                                 <connections>
                                                     <action selector="onBubbleSliderChange:" destination="lsC-os-xOf" eventType="valueChanged" id="AB9-sL-PFn"/>
                                                 </connections>
