@@ -140,11 +140,7 @@ class GamePlayViewController: UIViewController {
     }
     
     func addSomeBubbles(numberOfBubbles: Int) {
-        let gameSettings = game.getGameSettings()
-        let bubbleManager = BubbleManager(game: game)
         
-        let screenWidth = gameSettings.getDeviceWidth()
-        let screenHeight = gameSettings.getDeviceHeight()
         
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
         
@@ -154,14 +150,13 @@ class GamePlayViewController: UIViewController {
         while self.bubbleCounter < randomBubblesToAdd && numbersOfOverlaps < 100 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
-            let xPosition = Int.random(in: 20...screenWidth - 60)
-            let yPosition = Int.random(in: 170...screenHeight - 100)
+            
             //bubbles will be generated and added on screen if there are no overlaps.
-            if !bubbleManager.isOverlap(newXPosition: xPosition, newYPosition: yPosition) {
-                generateBubble(xPosition: xPosition, yPosition: yPosition)
+            //if !bubbleManager.isOverlap(newBubble: <#T##Bubble#>){
+                generateBubble()
                 numberOfBubblesGenerated += 1
-                numbersOfOverlaps = 0
-            }
+                //numbersOfOverlaps = 0
+            //}
             numbersOfOverlaps += 1
         }
         
@@ -169,10 +164,17 @@ class GamePlayViewController: UIViewController {
         //print("Total: \(bubbleCounter)")
     }
     
-    func generateBubble(xPosition: Int, yPosition: Int) {
+    func generateBubble() {
+        let bubbleManager = BubbleManager(game: game)
+        
         let bubble = Bubble()
         let gameSettings = game.getGameSettings()
+        
+        let screenWidth = gameSettings.getDeviceWidth()
+        let screenHeight = gameSettings.getDeviceHeight()
         bubble.initiateGameSession(gameSession: game)
+        let xPosition = Int.random(in: 20...screenWidth - 60)
+        let yPosition = Int.random(in: 170...screenHeight - 100)
         bubble.setPosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
         bubbleId += 1
            
@@ -184,12 +186,13 @@ class GamePlayViewController: UIViewController {
         //bubble.moveBubblePos()
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
-                  
-        self.view.addSubview(bubble)
-   
-        //bubble.moveBubblePos()
-        game.storeBubble(bubble: bubble)
-        bubbleCounter += 1
+        if !bubbleManager.isOverlap(newBubble: bubble) {
+            self.view.addSubview(bubble)
+            //bubble.moveBubblePos()
+            game.storeBubble(bubble: bubble)
+            bubbleCounter += 1
+        }
+        
      
         //print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
     }

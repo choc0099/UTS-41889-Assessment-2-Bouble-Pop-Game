@@ -39,6 +39,7 @@ class Bubble: UIButton {
         //print(randomNumber) // debug
         self.selectAttributes(randomOnly: randomNumber)
         self.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     }
     
     required init?(coder: NSCoder)

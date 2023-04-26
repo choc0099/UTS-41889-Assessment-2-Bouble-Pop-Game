@@ -37,16 +37,16 @@ class BubbleManager {
         
     }
     
-    func isOverlap(newXPosition: Int, newYPosition: Int) -> Bool
+    func isOverlap(newBubble: Bubble) -> Bool
     {
         let storedBubbles = game.getAllBubbles()
         
         for bubble in storedBubbles {
             //let currentBubbleId = bubble.getBubbleId()
-            let currentXPos = bubble.getStoredXPos()
-            let currentYPos = bubble.getStoredYPos()
+            //let currentXPos = bubble.getStoredXPos()
+            //let currentYPos = bubble.getStoredYPos()
             //print("xPos test: bubbleId: \(currentBubbleId) xPos: \(currentXPos), yPos: \(currentYPos)")
-            if checkBubbleOverlap(currentXPosition: currentXPos, newXPosition: newXPosition, currentYPosition: currentYPos, newYPosition: newYPosition)
+            if newBubble.frame.intersects(bubble.frame)
             {
                 //print("\(currentBubbleId) is overlapped")
                 return true
