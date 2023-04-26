@@ -54,6 +54,9 @@ class Game {
                 print("\(bubbleId) is pressed at index \(indexCounter)")
                 break
             }
+            else {
+                print("Bubble not removed from array.")
+            }
             indexCounter += 1
         }
         

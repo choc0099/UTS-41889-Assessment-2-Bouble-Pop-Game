@@ -245,12 +245,13 @@ class GamePlayViewController: UIViewController {
         
         if isPressed {
             bubble.flyOutAndRemove()
+            //game.removeBubble(bubbleId: bubble.getBubbleId())
             //bubble.removeFromSuperview()
         }
         else {
             bubble.scaleOutAndRemove()
-            //game.removeBubble(bubbleId: bubble.getBubbleId())
-            //bubble.removeFromSuperview()            
+            
+            //bubble.removeFromSuperview()
         }
     
         

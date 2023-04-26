@@ -38,7 +38,7 @@ class Bubble: UIButton {
         let randomNumber = Int.random(in: 0...1000)
         //print(randomNumber) // debug
         self.selectAttributes(randomOnly: randomNumber)
-        self.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        self.titleLabel?.font = .boldSystemFont(ofSize: 21)
         self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     }
     
@@ -65,8 +65,8 @@ class Bubble: UIButton {
         springAnimation.fromValue = 0.1
         springAnimation.toValue = 0.8
         springAnimation.repeatCount = 1
-        springAnimation.initialVelocity = 0.5
-        //springAnimation.damping = 1
+        //springAnimation.initialVelocity = 0.5
+        springAnimation.damping = 1
         
         layer.add(springAnimation, forKey: nil)
     }
@@ -76,6 +76,7 @@ class Bubble: UIButton {
         scaleInAnnimation.fromValue = 0
         scaleInAnnimation.toValue = 1
         scaleInAnnimation.duration = 0.15
+        scaleInAnnimation.speed = 1
         scaleInAnnimation.initialVelocity = 0.2
         scaleInAnnimation.damping = 1
         layer.add(scaleInAnnimation, forKey: nil)
@@ -88,7 +89,7 @@ class Bubble: UIButton {
         scaleOutAnnimation.toValue = 0
         scaleOutAnnimation.duration = 1
         scaleOutAnnimation.speed = 1
-        //scaleOutAnnimation.initialVelocity = 0.2
+        scaleOutAnnimation.initialVelocity = 0.7
         //scaleOutAnnimation.damping = 1
         layer.add(scaleOutAnnimation, forKey: nil)
         
@@ -103,7 +104,7 @@ class Bubble: UIButton {
         flyOutAnimation.fromValue = getStoredYPos()
         flyOutAnimation.toValue = 0
         flyOutAnimation.duration = 1
-        flyOutAnimation.speed = 0.8
+        flyOutAnimation.speed = 1
         
         layer.add(flyOutAnimation, forKey: nil)
         
@@ -123,7 +124,7 @@ class Bubble: UIButton {
         if animationRemainingTime == 0
         {
             removeBubbleTimer.invalidate()
-            /*if isFlyOut {
+            /*if !isFlyOut {
                 game.removeBubble(bubbleId: self.getBubbleId())
             }*/
             self.removeFromSuperview()
