@@ -45,7 +45,7 @@ class Game {
     }
     
     func removeBubble(bubbleId: Int) {
-        var bubbleIndex = 0
+        
         var indexCounter = 0
         for bubble in storedBubbles {
             if bubble.getBubbleId() == bubbleId {

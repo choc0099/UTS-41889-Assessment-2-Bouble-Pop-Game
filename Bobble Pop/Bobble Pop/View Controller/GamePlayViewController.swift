@@ -175,7 +175,7 @@ class GamePlayViewController: UIViewController {
         let xPosition = Int.random(in: 20...screenWidth - 60)
         let yPosition = Int.random(in: 170...screenHeight - 100)
         //due to init does not work on the bubble class, I had to create a seperate function to set the position.
-        bubble.setPosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
+        bubble.setPositionAndSize(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition, bubbleSize: gameSettings.getBubbleSize())
         
         //this will add labels to the button if the user has enabled it or not.
         bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())

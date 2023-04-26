@@ -47,8 +47,8 @@ class Bubble: UIButton {
         fatalError("Init(coder: ) has not been implemented")
     }
     
-    func setPosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int) {
-        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 50, height: 50)
+    func setPositionAndSize(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int, bubbleSize: Int) {
+        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: bubbleSize, height: bubbleSize)
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
         storedXPos = superViewWidth
         storedYPos = superViewHeight
