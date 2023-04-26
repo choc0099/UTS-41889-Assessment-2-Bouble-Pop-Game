@@ -93,7 +93,7 @@ class Bubble: UIButton {
         layer.add(scaleOutAnnimation, forKey: nil)
         
         removeAfterAnimation(isFlyOut: false)
-        game.removeBubble(bubbleId: self.getBubbleId())
+        //game.removeBubble(bubbleId: self.getBubbleId())
         
     }
     
@@ -108,7 +108,7 @@ class Bubble: UIButton {
         layer.add(flyOutAnimation, forKey: nil)
         
         removeAfterAnimation(isFlyOut: true)
-        game.removeBubble(bubbleId: self.getBubbleId())
+        //game.removeBubble(bubbleId: self.getBubbleId())
     }
     
     func removeAfterAnimation(isFlyOut: Bool) {
@@ -123,9 +123,9 @@ class Bubble: UIButton {
         if animationRemainingTime == 0
         {
             removeBubbleTimer.invalidate()
-            //if isFlyOut {
-                //game.removeBubble(bubbleId: self.getBubbleId())
-            //}
+            if isFlyOut {
+                game.removeBubble(bubbleId: self.getBubbleId())
+            }
             self.removeFromSuperview()
         }
     }

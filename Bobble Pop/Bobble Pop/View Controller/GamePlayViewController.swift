@@ -33,7 +33,7 @@ class GamePlayViewController: UIViewController {
     var gamePlayRemainingTime = 0
     var numberOfBubbles = 0
     var bubbleCounter = 0
-    
+    var overlapCounter = 0
     var previousBubblePoints = 0
     var previousRemoveBubbleId = 0
     
@@ -68,7 +68,7 @@ class GamePlayViewController: UIViewController {
             gamePlayerTimer in
             //self.bubbleCounter = 0
             //self.resetScore()
-            self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
+            //self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
@@ -91,7 +91,6 @@ class GamePlayViewController: UIViewController {
     }
     // A helper function used to generate the game countdown label attributes.
     func generateCountDownLabel() {
-        
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
         gameStartCountDownLabel.center = self.view.center
         self.view.addSubview(gameStartCountDownLabel)
@@ -120,7 +119,6 @@ class GamePlayViewController: UIViewController {
     }
         
     func removeSomeBubbles() {
-        
         let randomBubblesToRemove = Int.random(in: 0...bubbleCounter)
        
         //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
@@ -141,23 +139,22 @@ class GamePlayViewController: UIViewController {
     
     func addSomeBubbles(numberOfBubbles: Int) {
         
-        
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
         
         //print(numberOfBubbles)
-        var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
+        //var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
-        while self.bubbleCounter < randomBubblesToAdd && numbersOfOverlaps < 100 {
+        while self.bubbleCounter < randomBubblesToAdd && overlapCounter < 100 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
             
             //bubbles will be generated and added on screen if there are no overlaps.
-            //if !bubbleManager.isOverlap(newBubble: <#T##Bubble#>){
+            //if !bubbleManager.isOverlap(newBubble: T##Bubble){
                 generateBubble()
                 numberOfBubblesGenerated += 1
                 //numbersOfOverlaps = 0
             //}
-            numbersOfOverlaps += 1
+            //numbersOfOverlaps += 1
         }
         
         //print("Bubbles added: \(randomBubblesToAdd)")
@@ -165,32 +162,43 @@ class GamePlayViewController: UIViewController {
     }
     
     func generateBubble() {
+        //iniates the bubble manager class
         let bubbleManager = BubbleManager(game: game)
-        
+        //creates the bubble
         let bubble = Bubble()
+        //retrieve the game settings to get device width and height.
         let gameSettings = game.getGameSettings()
-        
         let screenWidth = gameSettings.getDeviceWidth()
         let screenHeight = gameSettings.getDeviceHeight()
+        //passes the game session to the bubble class
         bubble.initiateGameSession(gameSession: game)
+        //generates the random positions.
         let xPosition = Int.random(in: 20...screenWidth - 60)
         let yPosition = Int.random(in: 170...screenHeight - 100)
+        //due to init does not work on the bubble class, I had to create a seperate function to set the position.
         bubble.setPosition(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition)
-        bubbleId += 1
-           
-        bubble.setBubbleId(bubbleId: bubbleId)
+        
         //this will add labels to the button if the user has enabled it or not.
         bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
-      
+        //scale in bubble animation
         bubble.scaleIn()
-        //bubble.moveBubblePos()
+        //bubble.moveBubblePos() //not yet ready - still in development.
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
         if !bubbleManager.isOverlap(newBubble: bubble) {
+            bubbleId += 1 // this is for the unique bubble identifier.
+            //sets the bubble id in the bubble class.
+            bubble.setBubbleId(bubbleId: bubbleId)
+            //adds the vubble onto the gameplay view
             self.view.addSubview(bubble)
             //bubble.moveBubblePos()
             game.storeBubble(bubble: bubble)
             bubbleCounter += 1
+            overlapCounter = 0
+        }
+        else
+        {
+            overlapCounter += 1
         }
         
      
@@ -212,8 +220,6 @@ class GamePlayViewController: UIViewController {
         print("Number of elements: \(game.getAllBubbles().count)")
     }
     
-    
-    
     func handleScore(bubble: Bubble) {
         // current score at the time of the bubble been tapped.
         let currentPlayerScore = currentPlayer.getScore()
@@ -224,7 +230,7 @@ class GamePlayViewController: UIViewController {
             currentScore += 1.5 * currentScore
             print("Same color clicked! \(currentScore)")
         }
-        else{
+        else {
             currentScore = Double(bubble.getPoints())
             previousBubblePoints = bubble.getPoints()
         }
@@ -236,14 +242,15 @@ class GamePlayViewController: UIViewController {
     func handleRemove(isPressed: Bool, bubble: Bubble) {
         bubbleCounter -= 1
        
-        //game.removeBubble(bubbleId: bubble.getBubbleId())
+        game.removeBubble(bubbleId: bubble.getBubbleId())
         
         if isPressed {
             bubble.flyOutAndRemove()
+            //bubble.removeFromSuperview()
         }
         else {
             //bubble.scaleOutAndRemove()
-            game.removeBubble(bubbleId: bubble.getBubbleId())
+            //game.removeBubble(bubbleId: bubble.getBubbleId())
             bubble.removeFromSuperview()            
         }
     
