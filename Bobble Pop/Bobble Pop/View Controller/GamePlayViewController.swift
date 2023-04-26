@@ -66,9 +66,8 @@ class GamePlayViewController: UIViewController {
         self.renderBubbles(numberOfBubbles: numberOfBubbles)
         gamePlayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gamePlayerTimer in
-            //self.bubbleCounter = 0
             //self.resetScore()
-            //self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
+            self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
             print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
@@ -77,7 +76,7 @@ class GamePlayViewController: UIViewController {
     @objc func gamePlayCountDown() {
         gamePlayRemainingTime -= 1
         remainingTimeLabel.text = String(gamePlayRemainingTime)
-        
+        print("Number of stored bubbles \(game.getAllBubbles().count)")
         if gamePlayRemainingTime == 0 {
             gamePlayTimer.invalidate()
             // writes the game score to the userDefaults database
@@ -112,14 +111,14 @@ class GamePlayViewController: UIViewController {
     }
     
     func renderBubbles(numberOfBubbles: Int) {
-        if bubbleCounter > 0 {
+        //if bubbleCounter > 0 {
             removeSomeBubbles()
-        }
+        //}
         addSomeBubbles(numberOfBubbles: numberOfBubbles)
     }
         
     func removeSomeBubbles() {
-        let randomBubblesToRemove = Int.random(in: 0...bubbleCounter)
+        let randomBubblesToRemove = Int.random(in: 0...game.getAllBubbles().count)
        
         //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
         for _ in 0...randomBubblesToRemove {
@@ -139,12 +138,12 @@ class GamePlayViewController: UIViewController {
     
     func addSomeBubbles(numberOfBubbles: Int) {
         
-        let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles - bubbleCounter)
+        let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles)
         
         //print(numberOfBubbles)
         //var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
-        while self.bubbleCounter < randomBubblesToAdd && overlapCounter < 100 {
+        while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 100 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
             
