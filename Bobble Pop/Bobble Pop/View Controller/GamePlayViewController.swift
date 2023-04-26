@@ -248,9 +248,9 @@ class GamePlayViewController: UIViewController {
             //bubble.removeFromSuperview()
         }
         else {
-            //bubble.scaleOutAndRemove()
+            bubble.scaleOutAndRemove()
             //game.removeBubble(bubbleId: bubble.getBubbleId())
-            bubble.removeFromSuperview()            
+            //bubble.removeFromSuperview()            
         }
     
         

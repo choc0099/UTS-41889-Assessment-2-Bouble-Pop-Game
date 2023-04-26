@@ -123,9 +123,9 @@ class Bubble: UIButton {
         if animationRemainingTime == 0
         {
             removeBubbleTimer.invalidate()
-            if isFlyOut {
+            /*if isFlyOut {
                 game.removeBubble(bubbleId: self.getBubbleId())
-            }
+            }*/
             self.removeFromSuperview()
         }
     }
