@@ -84,7 +84,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
-        var alert = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
             self.handleClearScores()
         })

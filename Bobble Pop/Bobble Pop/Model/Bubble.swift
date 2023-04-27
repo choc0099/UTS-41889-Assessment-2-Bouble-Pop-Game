@@ -87,13 +87,13 @@ class Bubble: UIButton {
         let scaleOutAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
-        scaleOutAnnimation.duration = 1
-        scaleOutAnnimation.speed = 0.3
+        scaleOutAnnimation.duration = 0.5
+        scaleOutAnnimation.speed = 0.8
         scaleOutAnnimation.initialVelocity = 0.7
         //scaleOutAnnimation.damping = 1
         layer.add(scaleOutAnnimation, forKey: nil)
         
-        removeAfterAnimation(timeInterval: 1)
+        removeAfterAnimation(timeInterval: 0.5)
         //game.removeBubble(bubbleId: self.getBubbleId())
         
     }
@@ -137,13 +137,13 @@ class Bubble: UIButton {
         
         if remainingTimePercent < 50 && remainingTimePercent > 25 {
             print("Less than 50% triggered.")
-            movingSpeed = 1.5
+            movingSpeed = 1.4
             movingDuration = 0.7
         }
         else if remainingTimePercent < 25{
             print("Less than 25% trigered.")
-            movingSpeed = 2
-            movingDuration = 0.7
+            movingSpeed = 1.7
+            movingDuration = 0.8
         }
         else
         {
