@@ -38,27 +38,33 @@ class GamePlayViewController: UIViewController {
     var previousRemoveBubbleId = 0
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         // the game play stack is hidden when there is a countdown before the game starts.
         gamePlayStack.isHidden = true
-       
-        super.viewDidLoad()
+        
+        //needed to display the first sequence of the countdown before the timer initiates.
+        self.generateCountDownLabel()
+        
+        initiateGameData()
+        startGame() // starts the game timers, intiates countdown and generates bubbles.
+     
+    }
+    
+    func initiateGameData() {
+        //loads game settings set by the player.
         let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
         remainingTimeLabel.text = String(gamePlayRemainingTime)
-        //print("Numbers of bubbles set:  \(numberOfBubbles)")
         
         //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
         
         gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
-        //needed to display the first sequence of the countdown before the timer initiates.
-        self.generateCountDownLabel()
-        
-
-        
+    }
+    
+    func startGame() {
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gameStarttimer in
             self.gameStartCountDown()
