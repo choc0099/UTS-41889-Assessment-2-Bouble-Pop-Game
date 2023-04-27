@@ -124,7 +124,7 @@ class GamePlayViewController: UIViewController {
         let randomBubblesToRemove = Int.random(in: 0...game.getAllBubbles().count)
        
         //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
-        for _ in 0...randomBubblesToRemove {
+        while game.getAllBubbles().count > randomBubblesToRemove {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {

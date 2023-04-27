@@ -102,12 +102,12 @@ class Bubble: UIButton {
         let flyOutAnimation = CABasicAnimation(keyPath: "position.y")
         
         flyOutAnimation.fromValue = getStoredYPos()
-        flyOutAnimation.toValue = 0
+        flyOutAnimation.toValue = -50
         flyOutAnimation.duration = 1
         flyOutAnimation.speed = 1
         
         layer.add(flyOutAnimation, forKey: nil)
-        self.frame = CGRect(x: 0, y: 0, width: 0, height: 0) //this is used to prevent bubbles stuck on the top of the screen after is animated
+        //self.frame = CGRect(x: 0, y: 0, width: 0, height: 0) //this is used to prevent bubbles stuck on the top of the screen after is animated
         removeAfterAnimation(isFlyOut: true)
         //game.removeBubble(bubbleId: self.getBubbleId())
     }
