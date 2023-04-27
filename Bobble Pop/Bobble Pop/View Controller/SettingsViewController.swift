@@ -112,10 +112,12 @@ class SettingsViewController: UIViewController {
         //display the bubbles and timer value that has been set.
         let timerSet: Int = Int(timerSlider.value)
         let bubbleSet: Int = Int(bubblesSlider.value)
-        let bubbleSizeSet: Int = Int(bubbleSizeSlider.value)
+        let bubbleSizeSet = bubbleSizeSlider.value - bubbleSizeSlider.minimumValue
+        let maxBubbleSize = bubbleSizeSlider.maximumValue - bubbleSizeSlider.minimumValue
+        let bubbleSizePercantge = ((bubbleSizeSet / maxBubbleSize) * 100)
         timerLabel.text = String(timerSet)
         numberOfBubblesLabel.text = String(bubbleSet)
-        bubbleSizeLabel.text = String(bubbleSizeSet)
+        bubbleSizeLabel.text = "\(Int(bubbleSizePercantge))%"
     }
     
     @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
