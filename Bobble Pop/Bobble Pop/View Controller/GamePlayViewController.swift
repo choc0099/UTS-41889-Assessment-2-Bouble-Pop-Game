@@ -18,6 +18,9 @@ class GamePlayViewController: UIViewController {
     @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet weak var gamePlayStack: UIStackView!
     
+    @IBOutlet weak var timerProgress: UIProgressView!
+    
+    
     var gameStartCountDownLabel = CountDownLabel()
     
     var bubbleId = 0
@@ -41,6 +44,7 @@ class GamePlayViewController: UIViewController {
         super.viewDidLoad()
         // the game play stack is hidden when there is a countdown before the game starts.
         gamePlayStack.isHidden = true
+        timerProgress.transform = timerProgress.transform.scaledBy(x: 1, y: 4)
         
         initiateGameData()
         startGame() // starts the game timers, intiates countdown and generates bubbles.
@@ -51,6 +55,7 @@ class GamePlayViewController: UIViewController {
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
         remainingTimeLabel.text = String(gamePlayRemainingTime)
+        setTimerProgress()
     }
     
     func startGame() {
@@ -72,9 +77,18 @@ class GamePlayViewController: UIViewController {
            // print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
+    
+    func setTimerProgress() {
+        let remainingTimeFloat: Float = Float(gamePlayRemainingTime)
+        let gameSettings = game.getGameSettings()
+        let gamePlayTimerSet: Float = Float(gameSettings.getTimer())
+        let remainingTimePercantage: Float = remainingTimeFloat / gamePlayTimerSet
+        timerProgress.setProgress(remainingTimePercantage, animated: true)
+    }
 
     @objc func gamePlayCountDown() {
         gamePlayRemainingTime -= 1
+        setTimerProgress()
         remainingTimeLabel.text = String(gamePlayRemainingTime)
         print("Number of stored bubbles \(game.getAllBubbles().count)")
         if gamePlayRemainingTime == 0 {
