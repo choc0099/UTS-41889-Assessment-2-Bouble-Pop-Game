@@ -69,7 +69,7 @@ class GamePlayViewController: UIViewController {
             //self.resetScore()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
-            print("Number of bubbles on screen: \(self.bubbleCounter)")
+           // print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
 
@@ -135,7 +135,7 @@ class GamePlayViewController: UIViewController {
         
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles)
         
-
+        overlapCounter = 0
         var numberOfBubblesGenerated = 0
         while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 50 {
             generateBubble()
@@ -193,6 +193,7 @@ class GamePlayViewController: UIViewController {
         else
         {
             overlapCounter += 1
+            print("Number of overlaps: \(overlapCounter)")
         }
         
      
