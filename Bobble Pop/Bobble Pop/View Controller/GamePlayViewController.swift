@@ -124,10 +124,6 @@ class GamePlayViewController: UIViewController {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
             if let unwrappedRandomBubble = randomBubble {
-                //This will help prevent the bubble that is already clicked removed.
-                /*if unwrappedRandomBubble.getBubbleId() == previousRemoveBubbleId {
-                    continue
-                }*/
                 handleRemove(isPressed: false, bubble: unwrappedRandomBubble)
             }
         }
@@ -139,20 +135,11 @@ class GamePlayViewController: UIViewController {
         
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles)
         
-        //print(numberOfBubbles)
-        //var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
+
         var numberOfBubblesGenerated = 0
         while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 50 {
-            //print(numbersOfOverlaps)
-            //sets the x and y positions of the bubble.
-            
-            //bubbles will be generated and added on screen if there are no overlaps.
-            //if !bubbleManager.isOverlap(newBubble: T##Bubble){
-                generateBubble()
-                numberOfBubblesGenerated += 1
-                //numbersOfOverlaps = 0
-            //}
-            //numbersOfOverlaps += 1
+            generateBubble()
+            numberOfBubblesGenerated += 1
         }
         
         //print("Bubbles added: \(randomBubblesToAdd)")
@@ -220,6 +207,7 @@ class GamePlayViewController: UIViewController {
     }
     
     @IBAction func bubblePressed(_ sender: Bubble) {
+        print("pressed")
         handleScore(bubble: sender)
         updateUI()
         handleRemove(isPressed: true, bubble: sender)
@@ -252,12 +240,12 @@ class GamePlayViewController: UIViewController {
         game.removeBubble(bubbleId: bubble.getBubbleId())
         
         if isPressed {
-            bubble.flyOutAndRemove()
+            bubble.scaleOutAndRemove()
             //game.removeBubble(bubbleId: bubble.getBubbleId())
             //bubble.removeFromSuperview()
         }
         else {
-            bubble.scaleOutAndRemove()
+            bubble.moveAwayAnimation(remainingTime: gamePlayRemainingTime)
             
             //bubble.removeFromSuperview()
         }
