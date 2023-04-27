@@ -20,15 +20,25 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var bubbleSizeSlider: UISlider!
     @IBOutlet weak var isColorBlindSwitch: UISwitch!
     var game = Game()
-    
    
     @IBOutlet weak var clearScoresButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        retrieveSettings()
+        
         clearScoresButton.setTitle("Clear score", for: .normal)
         //clearScoresButton.high
-        updateUI()
+        
+    }
+    
+    func retrieveSettings() {
+        let gameSettings = game.getGameSettings()
+        timerSlider.value = Float(gameSettings.getTimer())
+        bubblesSlider.value = Float(gameSettings.getNumberOfBubbles())
+        isColorBlindSwitch.isOn = gameSettings.getIsColorBlind()
+        bubbleSizeSlider.value = Float(gameSettings.getBubbleSize())
+        updateUILabels()
     }
     
     func changeSettings() {
@@ -42,17 +52,17 @@ class SettingsViewController: UIViewController {
     
     @IBAction func onBubbleSliderChange(_ sender: Any) {
         changeSettings()
-        updateUI()
+        updateUILabels()
     }
     
     @IBAction func onTimerChanged(_ sender: UISlider) {
         changeSettings()
-        updateUI()
+        updateUILabels()
     }
     
     @IBAction func onBubblesChanged(_ sender: Any) {
         changeSettings()
-        updateUI()
+        updateUILabels()
     }
     
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
@@ -63,7 +73,7 @@ class SettingsViewController: UIViewController {
     
     
     
-    func updateUI() {
+    func updateUILabels() {
         //display the bubbles and timer value that has been set.
         let timerSet: Int = Int(timerSlider.value)
         let bubbleSet: Int = Int(bubblesSlider.value)

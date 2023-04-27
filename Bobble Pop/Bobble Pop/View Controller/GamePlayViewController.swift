@@ -42,10 +42,8 @@ class GamePlayViewController: UIViewController {
         // the game play stack is hidden when there is a countdown before the game starts.
         gamePlayStack.isHidden = true
         
-        
         initiateGameData()
         startGame() // starts the game timers, intiates countdown and generates bubbles.
-     
     }
     
     func initiateGameData() {
@@ -63,7 +61,6 @@ class GamePlayViewController: UIViewController {
     }
     
     func startGame() {
-       
         //needed to display the first sequence of the countdown before the timer initiates.
         self.generateCountDownLabel()
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
