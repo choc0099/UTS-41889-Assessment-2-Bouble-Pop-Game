@@ -51,11 +51,11 @@ class Game {
             if bubble.getBubbleId() == bubbleId {
                 //print("bubble \(bubble.getBubbleId()) is pressed.")
                 storedBubbles.remove(at: indexCounter)
-                print("\(bubbleId) is pressed at index \(indexCounter)")
+                //print("\(bubbleId) is pressed at index \(indexCounter)")
                 break
             }
             else {
-                print("Bubble not removed from array.")
+                //print("Bubble not removed from array.")
             }
             indexCounter += 1
         }

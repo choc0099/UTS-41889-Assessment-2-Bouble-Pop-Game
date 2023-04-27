@@ -236,8 +236,12 @@ class GamePlayViewController: UIViewController {
     
     func handleRemove(isPressed: Bool, bubble: Bubble) {
         bubbleCounter -= 1
-       
         game.removeBubble(bubbleId: bubble.getBubbleId())
+        let gameSettings = game.getGameSettings()
+        let timerSet = gameSettings.getTimer()
+        let remainingTimeDouble: Double = Double(gamePlayRemainingTime)
+        let timerSetDouble: Double =  Double(timerSet)
+        let gamePlayRemainingTimePercent: Double = ((remainingTimeDouble / timerSetDouble) * 100)
         
         if isPressed {
             bubble.scaleOutAndRemove()
@@ -245,7 +249,7 @@ class GamePlayViewController: UIViewController {
             //bubble.removeFromSuperview()
         }
         else {
-            bubble.moveAwayAnimation(remainingTime: gamePlayRemainingTime)
+            bubble.moveAwayAnimation(remainingTimePercent: Int(gamePlayRemainingTimePercent))
             
             //bubble.removeFromSuperview()
         }

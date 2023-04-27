@@ -104,7 +104,7 @@ class Bubble: UIButton {
         flyOutAnimation.fromValue = getStoredYPos()
         flyOutAnimation.toValue = -50
         flyOutAnimation.duration = 1
-        flyOutAnimation.speed = 0.9
+        flyOutAnimation.speed = 1
         
         layer.add(flyOutAnimation, forKey: nil)
         //self.frame = CGRect(x: 0, y: 0, width: 0, height: 0) //this is used to prevent bubbles stuck on the top of the screen after is animated
@@ -112,7 +112,7 @@ class Bubble: UIButton {
         //game.removeBubble(bubbleId: self.getBubbleId())
     }
     
-    func moveAwayAnimation(remainingTime: Int)
+    func moveAwayAnimation(remainingTimePercent: Int)
     {
         let gameSettings = game.gameSettings
         let screenHeight = gameSettings.getDeviceHeight()
@@ -132,13 +132,32 @@ class Bubble: UIButton {
             toValueYPos = screenHeight + 100
         }
         
+        var movingDuration: Float = 0
+        var movingSpeed: Double = 0
+        
+        if remainingTimePercent < 50 && remainingTimePercent > 25 {
+            print("Less than 50% triggered.")
+            movingSpeed = 1.5
+            movingDuration = 0.7
+        }
+        else if remainingTimePercent < 25{
+            print("Less than 25% trigered.")
+            movingSpeed = 2
+            movingDuration = 0.7
+        }
+        else
+        {
+            movingSpeed = 1
+            movingDuration = 1
+        }
+        
         let moveAway = CABasicAnimation(keyPath: "position")
         moveAway.fromValue = [storedXPos, storedYPos]
         moveAway.toValue = [toValueXPos, toValueYPos]
-        moveAway.duration = 1
-        moveAway.speed = 0.7
+        moveAway.duration = movingSpeed
+        moveAway.speed = movingDuration
         layer.add(moveAway, forKey: nil)
-        removeAfterAnimation(timeInterval: 1)
+        removeAfterAnimation(timeInterval: Double(movingDuration))
         
     }
     
