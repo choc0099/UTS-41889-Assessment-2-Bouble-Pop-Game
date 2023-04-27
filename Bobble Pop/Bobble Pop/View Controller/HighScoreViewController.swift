@@ -18,12 +18,14 @@ class HighScoreViewController: UIViewController {
     
     var highScores: [GameScore] = []
     
+    @IBOutlet weak var returnButton: UIButton!
+    var isReturnButtonHidden: Bool = false
     
     //var gamePlayers = copyPlayers()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        hideHomeButton(hideIt: isReturnButtonHidden)
            
         highScores = HighScoreManager.readHighScroes()
         
@@ -39,6 +41,13 @@ class HighScoreViewController: UIViewController {
         //let VC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! ViewController
         //VC.game = game
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func hideHomeButton(hideIt isHidden: Bool)
+    {
+        if isHidden{
+            returnButton.alpha = 0
+        }
     }
     /*
     func readHighScroes() -> [GameScore] {

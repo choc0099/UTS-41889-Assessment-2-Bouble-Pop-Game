@@ -38,6 +38,11 @@ class ViewController: UIViewController {
             let VC = segue.destination as! NewGameViewController
             VC.game = game
         }
+        else if segue.identifier == "goToHighScore" {
+            let VC = segue.destination as! HighScoreViewController
+            //hides the return button when you press on the High Score view from the main menur.
+            VC.isReturnButtonHidden = true
+        }
     }
     /*
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
