@@ -16,8 +16,11 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var timerSlider: UISlider!
     @IBOutlet weak var bubblesSlider: UISlider!
     
+    @IBOutlet weak var bubbleSizeLabel: UILabel!
+    @IBOutlet weak var bubbleSizeSlider: UISlider!
     @IBOutlet weak var isColorBlindSwitch: UISwitch!
     var game = Game()
+    
    
     @IBOutlet weak var clearScoresButton: UIButton!
     override func viewDidLoad() {
@@ -28,16 +31,27 @@ class SettingsViewController: UIViewController {
         updateUI()
     }
     
-    
-    @IBAction func onTimerChanged(_ sender: UISlider) {
+    func changeSettings() {
         let gameSettings = game.getGameSettings()
         gameSettings.setTimer(howLong: Int(timerSlider.value))
+        gameSettings.setNumberOfBubbles(howMany: Int(bubblesSlider.value))
+        let isColorBlind = isColorBlindSwitch.isOn
+        gameSettings.setColorBlind(isColorBlind: isColorBlind)
+        gameSettings.setBubbbleSize(bubbleSize: Int(bubbleSizeSlider.value))
+    }
+    
+    @IBAction func onBubbleSliderChange(_ sender: Any) {
+        changeSettings()
+        updateUI()
+    }
+    
+    @IBAction func onTimerChanged(_ sender: UISlider) {
+        changeSettings()
         updateUI()
     }
     
     @IBAction func onBubblesChanged(_ sender: Any) {
-        let gameSettings = game.getGameSettings()
-        gameSettings.setNumberOfBubbles(howMany: Int(bubblesSlider.value))
+        changeSettings()
         updateUI()
     }
     
@@ -53,14 +67,14 @@ class SettingsViewController: UIViewController {
         //display the bubbles and timer value that has been set.
         let timerSet: Int = Int(timerSlider.value)
         let bubbleSet: Int = Int(bubblesSlider.value)
+        let bubbleSizeSet: Int = Int(bubbleSizeSlider.value)
         timerLabel.text = String(timerSet)
         numberOfBubblesLabel.text = String(bubbleSet)
+        bubbleSizeLabel.text = String(bubbleSizeSet)
     }
     
     @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
-        let gameSettings = game.getGameSettings()
-        let isColorBlind = isColorBlindSwitch.isOn
-        gameSettings.setColorBlind(isColorBlind: isColorBlind)
+        
     }
     
 }

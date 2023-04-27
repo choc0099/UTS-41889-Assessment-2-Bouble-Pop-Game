@@ -13,6 +13,7 @@ class GameSettings {
     var deviceWidth: Int = 0
     var deviceHeight: Int = 0
     var isColorBlind: Bool = false
+    var bubbleSize: Int = 50
     //init(deviceWidth: Int, deviceHeight: )
     
     
@@ -54,5 +55,13 @@ class GameSettings {
     
     func getIsColorBlind() -> Bool {
         return isColorBlind
+    }
+    
+    func setBubbbleSize(bubbleSize: Int) {
+        self.bubbleSize = bubbleSize
+    }
+    
+    func getBubbleSize() -> Int {
+        return bubbleSize
     }
 }

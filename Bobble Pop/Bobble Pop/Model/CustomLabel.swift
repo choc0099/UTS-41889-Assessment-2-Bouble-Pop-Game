@@ -29,12 +29,13 @@ class CountDownLabel: UILabel {
     func flash() {
         let flash = CABasicAnimation(keyPath: "opacity")
         flash.duration = 0.5
-        flash.fromValue = 1
-        flash.toValue = 0
+        flash.fromValue = 0
+        flash.toValue = 1
         flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        //flash.autoreverses = true
+        flash.autoreverses = true
         flash.repeatCount = 0
         
         layer.add(flash, forKey: nil)
+        self.alpha = 0
     }
 }
