@@ -26,11 +26,24 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //updates the settings values including the sliders and switches.
+        restrictBubbleSize()
         retrieveSettings()
         
         clearScoresButton.setTitle("Clear score", for: .normal)
         //clearScoresButton.high
         
+    }
+    
+    //the maximun bubble size are reduced on devices with smaller screen sizes.
+    func restrictBubbleSize()
+    {
+        let gameSettings = game.getGameSettings()
+        let screenWidth = gameSettings.getDeviceWidth()
+        let screenHeight = gameSettings.getDeviceHeight()
+        
+        if screenWidth < 370 || screenHeight < 630 {
+            bubbleSizeSlider.maximumValue = 50
+        }
     }
     
     func retrieveSettings() {

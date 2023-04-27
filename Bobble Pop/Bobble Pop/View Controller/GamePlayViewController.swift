@@ -47,6 +47,7 @@ class GamePlayViewController: UIViewController {
     }
     
     func initiateGameData() {
+        let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
         remainingTimeLabel.text = String(gamePlayRemainingTime)
