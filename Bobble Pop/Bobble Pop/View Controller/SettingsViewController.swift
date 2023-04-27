@@ -84,6 +84,23 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
+        var alert = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
+        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.handleClearScores()
+        })
+        
+        let noButton = UIAlertAction(title: "No", style: .cancel, handler: { (action) -> Void in
+            return
+        })
+        
+           
+        alert.addAction(yesButton)
+        alert.addAction(noButton)
+        self.present(alert, animated: true)
+        
+    }
+    
+    func handleClearScores() {
         HighScoreManager.clearScores()
         game.clearAllPlayers()
         clearScoresButton.setTitle("Score cleard.", for: .normal)
@@ -102,7 +119,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
-        
+        changeSettings()
     }
     
 }
