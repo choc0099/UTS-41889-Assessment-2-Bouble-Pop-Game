@@ -56,6 +56,9 @@ class GamePlayViewController: UIViewController {
         gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
         //needed to display the first sequence of the countdown before the timer initiates.
         self.generateCountDownLabel()
+        
+
+        
         gameStartTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gameStarttimer in
             self.gameStartCountDown()
@@ -111,9 +114,9 @@ class GamePlayViewController: UIViewController {
     }
     
     func renderBubbles(numberOfBubbles: Int) {
-        //if bubbleCounter > 0 {
+        if game.getAllBubbles().count > 0 {
             removeSomeBubbles()
-        //}
+        }
         addSomeBubbles(numberOfBubbles: numberOfBubbles)
     }
         
@@ -143,7 +146,7 @@ class GamePlayViewController: UIViewController {
         //print(numberOfBubbles)
         //var numbersOfOverlaps = 0 //counts the number of times the bubbles overlaps during a loop
         var numberOfBubblesGenerated = 0
-        while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 100 {
+        while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 50 {
             //print(numbersOfOverlaps)
             //sets the x and y positions of the bubble.
             
@@ -172,10 +175,18 @@ class GamePlayViewController: UIViewController {
         //passes the game session to the bubble class
         bubble.initiateGameSession(gameSession: game)
         //generates the random positions.
-        let xPosition = Int.random(in: 20...screenWidth - 60)
-        let yPosition = Int.random(in: 170...screenHeight - 100)
+        let bubbleSize = gameSettings.getBubbleSize()
+        var rightBounds = 60
+        var bottomBounds = 100
+        if bubbleSize > 50 {
+            rightBounds = 100
+            bottomBounds = 80
+        }
+        
+        let xPosition = Int.random(in: 20...screenWidth - rightBounds)
+        let yPosition = Int.random(in: 170...screenHeight - bottomBounds)
         //due to init does not work on the bubble class, I had to create a seperate function to set the position.
-        bubble.setPositionAndSize(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition, bubbleSize: gameSettings.getBubbleSize())
+        bubble.setPositionAndSize(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition, bubbleSize: bubbleSize)
         
         //this will add labels to the button if the user has enabled it or not.
         bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
@@ -185,6 +196,7 @@ class GamePlayViewController: UIViewController {
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
         if !bubbleManager.isOverlap(newBubble: bubble) {
+            overlapCounter = 0
             bubbleId += 1 // this is for the unique bubble identifier.
             //sets the bubble id in the bubble class.
             bubble.setBubbleId(bubbleId: bubbleId)
@@ -193,7 +205,7 @@ class GamePlayViewController: UIViewController {
             //bubble.moveBubblePos()
             game.storeBubble(bubble: bubble)
             bubbleCounter += 1
-            overlapCounter = 0
+            
         }
         else
         {
