@@ -87,7 +87,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
+        let confirmClear = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
             self.handleClearScores()
         })
@@ -97,9 +97,9 @@ class SettingsViewController: UIViewController {
         })
         
            
-        alert.addAction(yesButton)
-        alert.addAction(noButton)
-        self.present(alert, animated: true)
+        confirmClear.addAction(yesButton)
+        confirmClear.addAction(noButton)
+        self.present(confirmClear, animated: true)
         
     }
     

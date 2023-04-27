@@ -137,7 +137,7 @@ class GamePlayViewController: UIViewController {
         
         overlapCounter = 0
         var numberOfBubblesGenerated = 0
-        while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 50 {
+        while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 100 {
             generateBubble()
             numberOfBubblesGenerated += 1
         }

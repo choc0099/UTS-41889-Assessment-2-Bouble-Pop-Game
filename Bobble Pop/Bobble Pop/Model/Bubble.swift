@@ -135,20 +135,22 @@ class Bubble: UIButton {
         var movingDuration: Float = 0
         var movingSpeed: Double = 0
         
-        if remainingTimePercent < 50 && remainingTimePercent > 25 {
-            print("Less than 50% triggered.")
+        switch remainingTimePercent {
+        case 51...75:
+            print("Less than 75% triggered.")
             movingSpeed = 1.4
-            movingDuration = 0.7
-        }
-        else if remainingTimePercent < 25{
-            print("Less than 25% trigered.")
+            movingDuration = 0.8
+        case 26...50:
+            print("Less than 50% triggered.")
             movingSpeed = 1.7
             movingDuration = 0.8
-        }
-        else
-        {
-            movingSpeed = 1
-            movingDuration = 1
+        case 0...25:
+            print("Less than 25% trigered.")
+            movingSpeed = 2
+            movingDuration = 0.8
+        default:
+            movingSpeed = 1.2
+            movingDuration = 0.8
         }
         
         let moveAway = CABasicAnimation(keyPath: "position")
