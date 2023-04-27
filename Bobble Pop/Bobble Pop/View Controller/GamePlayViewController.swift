@@ -47,17 +47,9 @@ class GamePlayViewController: UIViewController {
     }
     
     func initiateGameData() {
-        //loads game settings set by the player.
-        let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
         remainingTimeLabel.text = String(gamePlayRemainingTime)
-        
-        //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
-        let currentViewWidth: Int = Int(self.view.bounds.width)
-        let currentViewHeight: Int = Int(self.view.bounds.height)
-        
-        gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
     }
     
     func startGame() {
@@ -104,7 +96,6 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func gameStartCountDown() {
-        print(gameStartRemainingTime)
         gameStartRemainingTime -= 1
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
         gameStartCountDownLabel.flash()

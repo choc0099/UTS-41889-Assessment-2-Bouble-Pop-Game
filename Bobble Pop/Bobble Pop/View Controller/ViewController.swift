@@ -18,6 +18,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
       
         self.initializeGame()
+        self.setScreenDimensions()
+    }
+    
+    func setScreenDimensions() {
+        //loads game settings set by the player.
+        let gameSettings = game.getGameSettings()
+        
+        //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
+        let currentViewWidth: Int = Int(self.view.bounds.width)
+        let currentViewHeight: Int = Int(self.view.bounds.height)
+        print(currentViewWidth)
+        print(currentViewHeight)
+        gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
     }
     
     //a function that will prevent the game from overwriting the highscores when the app is restarted.

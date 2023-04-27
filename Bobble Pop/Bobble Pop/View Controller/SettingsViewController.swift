@@ -25,6 +25,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //updates the settings values including the sliders and switches.
         retrieveSettings()
         
         clearScoresButton.setTitle("Clear score", for: .normal)
