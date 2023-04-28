@@ -14,7 +14,7 @@ class GameSettings {
     var deviceHeight: Int = 0
     var isColorBlind: Bool = false
     var bubbleSize: Int = 50
-    var isAnimated: Bool = false
+    var isAnimated: Bool = true
     
     
     func setTimer(howLong newTimerSet: Int)
