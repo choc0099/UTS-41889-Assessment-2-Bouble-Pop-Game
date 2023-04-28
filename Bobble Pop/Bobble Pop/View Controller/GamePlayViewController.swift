@@ -192,6 +192,9 @@ class GamePlayViewController: UIViewController {
         case 77...100:
             rightBounds = 160
             bottomBounds = 190
+        case 30...40:
+            rightBounds = 45
+            bottomBounds = 80
         default:
             rightBounds = 60
             bottomBounds = 100
