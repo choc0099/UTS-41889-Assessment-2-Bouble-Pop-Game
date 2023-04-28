@@ -437,27 +437,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="center" semanticContentAttribute="spatial" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="odL-RM-yZW">
-                                <rect key="frame" x="10" y="64" width="300" height="45.5"/>
+                                <rect key="frame" x="10" y="64" width="300" height="53"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WNc-Gw-n4n">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ose-0k-Idr">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="21.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="29"/>
+                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGP-ll-NnI">
-                                                <rect key="frame" x="150" y="0.0" width="150" height="21.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="150" y="0.0" width="150" height="29"/>
+                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Heavy" family="Avenir Next Condensed" pointSize="21"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <progressView opaque="NO" contentMode="center" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pa1-8k-JDm">
-                                        <rect key="frame" x="0.0" y="41.5" width="300" height="4"/>
+                                        <rect key="frame" x="0.0" y="49" width="300" height="4"/>
                                     </progressView>
                                 </subviews>
                             </stackView>
