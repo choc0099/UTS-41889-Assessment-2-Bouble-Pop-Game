@@ -121,6 +121,7 @@ class GamePlayViewController: UIViewController {
         self.view.addSubview(gameStartCountDownLabel)
         gameStartCountDownLabel.flash()
     }
+    
     //Initiates the 3 2 1 gameStart countdown and updates the countDownLabel.
     @objc func gameStartCountDown() {
         gameStartRemainingTime -= 1
@@ -141,6 +142,7 @@ class GamePlayViewController: UIViewController {
         }
         addSomeBubbles(numberOfBubbles: numberOfBubbles)
     }
+    
     // A helper function that randomly decides how many bubbles to remove.
     func removeSomeBubbles() {
         let randomBubblesToRemove = Int.random(in: 0...game.getAllBubbles().count)
@@ -163,6 +165,7 @@ class GamePlayViewController: UIViewController {
         }
     }
     
+    //generates a bubble
     func generateBubble() {
         //iniates the bubble manager class
         let bubbleManager = BubbleManager(game: game)
@@ -226,7 +229,7 @@ class GamePlayViewController: UIViewController {
             overlapCounter += 1 //the overlap counter prevents infinite loops.
         }
     }
-     //updates the current score and high score.
+    //updates the current score and high score.
     func updateUI() {
         currentScoreLabel.text = String(Int(currentScore))
         highScoreLabel.text = String(playerHighScore)
@@ -282,6 +285,7 @@ class GamePlayViewController: UIViewController {
         }
     }
     
+    //creates the animation for the scores during gampley.
     func currentScoreAnimation() {
         let bloopingAnimation = CASpringAnimation(keyPath: "transform.scale")
         bloopingAnimation.fromValue = 1

@@ -9,7 +9,7 @@
 import Foundation
 
 class HighScoreManager {
-  
+    //Reads the game high scores.
     static func readHighScroes() -> [GameScore] {
         // Read from User Defaults
         // This should happen at the HighScrollViewController
@@ -24,7 +24,8 @@ class HighScoreManager {
             return []
         }
     }
-        
+    
+    //writes the game's highScore
     static func writeHighScore(gameSession game: Game) {
         // Write high scores to User Defautls
         let defaults = UserDefaults.standard;

@@ -36,8 +36,10 @@ class Bubble: UIButton {
     }
     
     func setPositionAndSize(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int, bubbleSize: Int) {
+        // sets the position and dimentions.
         self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: bubbleSize, height: bubbleSize)
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
+        //stores it on the bubble class
         storedXPos = superViewWidth
         storedYPos = superViewHeight
         
@@ -52,8 +54,6 @@ class Bubble: UIButton {
         default:
             self.titleLabel?.font = .boldSystemFont(ofSize: 21)
         }
-        
-        
     }
     
     func setDeviceWidthAndHeight(deviceWidth: Int, deviceHeight: Int) {
@@ -65,10 +65,9 @@ class Bubble: UIButton {
         let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleInAnnimation.fromValue = 0
         scaleInAnnimation.toValue = 1
-        scaleInAnnimation.duration = 0.35
-        scaleInAnnimation.speed = 1
-        //scaleInAnnimation.initialVelocity = 0.
-        //scaleInAnnimation.damping = 0.5
+        scaleInAnnimation.duration = 0.3
+        scaleInAnnimation.initialVelocity = 0.3
+        scaleInAnnimation.damping = 0.3
         layer.add(scaleInAnnimation, forKey: nil)
     }
     
@@ -76,13 +75,13 @@ class Bubble: UIButton {
         let scaleOutAnnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
-        scaleOutAnnimation.duration = 0.5
-        //scaleOutAnnimation.speed = 1
+        scaleOutAnnimation.duration = 0.3
         layer.add(scaleOutAnnimation, forKey: nil)
         removeAfterAnimation(timeInterval: 0.4)
     }
     
     func moveAwayAnimation(remainingTimePercent: Int) {
+        //gets the screen dimensions that is stored on the game's settings.
         let gameSettings = game.gameSettings
         let screenHeight = gameSettings.getDeviceHeight()
         let screenWidth = gameSettings.getDeviceWidth()
@@ -100,20 +99,16 @@ class Bubble: UIButton {
         }
         
         var movingDuration: Double = 0
-     
         var movingTimeInterval: Float = 0
         
         switch remainingTimePercent {
         case 51...75:
-            print("Less than 75% triggered.")
             movingDuration = 1.3
             movingTimeInterval = 1.3
         case 26...50:
-            print("Less than 50% triggered.")
             movingDuration = 0.7
             movingTimeInterval = 0.7
         case 0...25:
-            print("Less than 25% trigered.")
             movingDuration = 0.2
             movingTimeInterval = 0.2
         default:
@@ -121,6 +116,7 @@ class Bubble: UIButton {
             movingTimeInterval = 1.8
         }
         
+        //configure animation
         let moveAway = CABasicAnimation(keyPath: "position")
         moveAway.fromValue = [storedXPos, storedYPos]
         moveAway.toValue = [toValueXPos, toValueYPos]

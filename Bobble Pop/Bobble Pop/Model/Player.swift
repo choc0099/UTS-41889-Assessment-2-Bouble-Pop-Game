@@ -11,8 +11,7 @@ class Player {
     let playerName: String?
     let score = Score()
     
-    init(playerName: String)
-    {
+    init(playerName: String)  {
         self.playerName = playerName 
     }
     

@@ -20,8 +20,7 @@ class CountDownLabel: UILabel {
         fatalError("Init(coder: ) has not been implemented")
     }
     
-    func setNumber(number: Int)
-    {
+    func setNumber(number: Int) {
         self.text = String(number)
     }
     
