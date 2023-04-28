@@ -65,9 +65,7 @@ class Bubble: UIButton {
         let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleInAnnimation.fromValue = 0
         scaleInAnnimation.toValue = 1
-        scaleInAnnimation.duration = 0.3
-        scaleInAnnimation.initialVelocity = 0.3
-        scaleInAnnimation.damping = 0.3
+        scaleInAnnimation.duration = 0.3        
         layer.add(scaleInAnnimation, forKey: nil)
     }
     
