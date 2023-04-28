@@ -193,9 +193,8 @@ class GamePlayViewController: UIViewController {
             //scale in bubble animation
             bubble.scaleIn()
         }
-        
+        // programatically adds a button press listener.
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
-        //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
         if !bubbleManager.isOverlap(newBubble: bubble) {
             overlapCounter = 0
             bubbleId += 1 // this is for the unique bubble identifier.

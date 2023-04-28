@@ -8,69 +8,37 @@
 import Foundation
 import UIKit
 
-
-//let KEY_HIGH_SCORE = "highScore"
 class HighScoreViewController: UIViewController {
-
-   var game = Game()
-
+    var game = Game() declars a game object.
     @IBOutlet weak var highScoreTableView: UITableView!
-    
-    var highScores: [GameScore] = []
-    
     @IBOutlet weak var returnButton: UIButton!
-    var isReturnButtonHidden: Bool = false
     
-    //var gamePlayers = copyPlayers()
+    var isReturnButtonHidden: Bool = false
+    var highScores: [GameScore] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         hideHomeButton(hideIt: isReturnButtonHidden)
-           
+         // reads the high score date from the HighScoreManager
         highScores = HighScoreManager.readHighScroes()
-        
         //sorts the array with the highest score
         highScores.sort(by: {
             $0.score > $1.score
         })
-        
-        print(highScores)
     }
     
     @IBAction func returnButtonPressed(_ sender: UIButton) {
-        //let VC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! ViewController
-        //VC.game = game
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
-    func hideHomeButton(hideIt isHidden: Bool)
-    {
-        if isHidden{
+    //this hides the Home button on this view when you press "High Score" from the main screen.
+    func hideHomeButton(hideIt isHidden: Bool) {
+        if isHidden {
             returnButton.alpha = 0
         }
     }
-    /*
-    func readHighScroes() -> [GameScore] {
-        // Read from User Defaults
-        // This should happen at the HighScrollViewController
-        
-        let defaults = UserDefaults.standard;
-        
-        if let savedArrayData = defaults.value(forKey:Game.KEY_HIGH_SCORE) as? Data {
-            if let array = try? PropertyListDecoder().decode(Array<GameScore>.self, from: savedArrayData) {
-                return array
-            } else {
-                return []
-            }
-        } else {
-            return []
-        }
-    }*/
-    
 }
 
 extension HighScoreViewController:UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // When a cell is selected, say hello
         let index = indexPath.row;
@@ -98,6 +66,5 @@ extension HighScoreViewController:UITableViewDataSource {
         
         // Return the cell to TableView
         return cell;
-        
     }
 }
