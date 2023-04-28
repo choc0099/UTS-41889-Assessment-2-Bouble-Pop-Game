@@ -70,10 +70,12 @@ class Bubble: UIButton {
     }
     
     func scaleOutAndRemove() {
+        //configure annimation.
         let scaleOutAnnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
         scaleOutAnnimation.duration = 0.3
+        //adds the annimation to the bubble
         layer.add(scaleOutAnnimation, forKey: nil)
         removeAfterAnimation(timeInterval: 0.4)
     }
@@ -101,17 +103,17 @@ class Bubble: UIButton {
         
         switch remainingTimePercent {
         case 51...75:
-            movingDuration = 1.3
-            movingTimeInterval = 1.3
+            movingDuration = 1
+            movingTimeInterval = 1
         case 26...50:
-            movingDuration = 0.7
-            movingTimeInterval = 0.7
+            movingDuration = 0.6
+            movingTimeInterval = 0.6
         case 0...25:
             movingDuration = 0.2
             movingTimeInterval = 0.2
         default:
-            movingDuration = 1.8
-            movingTimeInterval = 1.8
+            movingDuration = 1.5
+            movingTimeInterval = 1.5
         }
         
         //configure animation
@@ -120,6 +122,7 @@ class Bubble: UIButton {
         moveAway.toValue = [toValueXPos, toValueYPos]
         moveAway.duration = movingDuration
         moveAway.isRemovedOnCompletion = true
+        //adds the animation to the bubble.
         layer.add(moveAway, forKey: nil)
         removeAfterAnimation(timeInterval: Double(movingTimeInterval))
     }
@@ -198,8 +201,7 @@ class Bubble: UIButton {
     }
     
     //passes the game class object to the bubble class.
-    func initiateGameSession(gameSession game: Game)
-    {
+    func initiateGameSession(gameSession game: Game) {
         self.game = game
     }
 }

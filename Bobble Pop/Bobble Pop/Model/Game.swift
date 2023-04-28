@@ -26,7 +26,7 @@ class Game {
     //gets the game players.
     func getPlayers() -> [Player] {
         var gamePlayers: [Player] = []
-        
+        //adds all the gamePlayers and returns it as an array.
         for player in players {
             gamePlayers.append(player)
         }
@@ -46,21 +46,14 @@ class Game {
     }
     
     func removeBubble(bubbleId: Int) {
-        
         var indexCounter = 0
         for bubble in storedBubbles {
             if bubble.getBubbleId() == bubbleId {
                 storedBubbles.remove(at: indexCounter)
                 break
             }
-            else {
-                //print("Bubble not removed from array.")
-            }
             indexCounter += 1
         }
-        
-        // remove the particular bubble from the array
-        
     }
     
     func getAllBubbles() -> [Bubble] {
@@ -70,7 +63,4 @@ class Game {
     func removeAllBubbles() {
         storedBubbles.removeAll()
     }
-    
 }
-    
-    

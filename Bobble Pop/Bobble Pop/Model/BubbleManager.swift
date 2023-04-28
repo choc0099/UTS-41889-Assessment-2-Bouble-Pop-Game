@@ -8,11 +8,9 @@
 import Foundation
 
 class BubbleManager {
-    
     let game: Game
-    
-    init(game: Game)
-    {
+    //initialise the game object.
+    init(game: Game) {
         self.game = game
     }
     
