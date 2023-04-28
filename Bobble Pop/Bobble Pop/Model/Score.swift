@@ -9,33 +9,19 @@ import Foundation
 
 class Score {
     
-    //let player: Player?
     var highScore: Int = 0
-    //let playerId: Int
     
-    /*init(_ playerId: Int)
-    {
-        self.playerId = playerId
-    }*/
-    
+    //computes the high score when the bubble is pressed by adding up the current score to the high scores.
     func computeHighScore(currentScore: Int)
     {
         highScore += currentScore
     }
     
-    func setScore(currentScore: Int)
-    {
+    func setScore(currentScore: Int) {
         highScore = currentScore
     }
     
-    func getHighScore() -> Int
-    {
+    func getHighScore() -> Int {
         return highScore
     }
-
-    /*
-    func addHighScore(player: Player, highScore: Double) {
-        highScores[player.getPlayerName()!] = highScore
-    }*/
-
 }

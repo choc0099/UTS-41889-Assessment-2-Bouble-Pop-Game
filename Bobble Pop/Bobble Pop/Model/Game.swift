@@ -23,6 +23,7 @@ class Game {
         players.append(player)
     }
     
+    //gets the game players.
     func getPlayers() -> [Player] {
         var gamePlayers: [Player] = []
         
@@ -49,9 +50,7 @@ class Game {
         var indexCounter = 0
         for bubble in storedBubbles {
             if bubble.getBubbleId() == bubbleId {
-                //print("bubble \(bubble.getBubbleId()) is pressed.")
                 storedBubbles.remove(at: indexCounter)
-                //print("\(bubbleId) is pressed at index \(indexCounter)")
                 break
             }
             else {

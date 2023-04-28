@@ -8,24 +8,14 @@
 import Foundation
 import UIKit
 
-enum animationDirection {
-    case left
-    case right
-    case up
-    case down
-}
 
 class Bubble: UIButton {
-    
-    //let xPosition = Int.random(in: 20...310)
-    //let yPosition = Int.random(in: 170...700)
     var storedXPos = 0
     var storedYPos = 0
     var bubbleId = 0
     var points = 0
     var deviceWidth = 0
     var deviceHeight = 0
-    let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
    
     var animationRemainingTime = 1
     var removeBubbleTimer = Timer()
@@ -36,7 +26,6 @@ class Bubble: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let randomNumber = Int.random(in: 0...1000)
-        //print(randomNumber) // debug
         self.selectAttributes(randomOnly: randomNumber)
         self.titleLabel?.font = .boldSystemFont(ofSize: 21)
         self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -59,7 +48,7 @@ class Bubble: UIButton {
         case 77...100:
             self.titleLabel?.font = .boldSystemFont(ofSize: 34)
         case 25...40:
-            self.titleLabel?.font = .boldSystemFont(ofSize: 18)
+            self.titleLabel?.font = .boldSystemFont(ofSize: 16)
         default:
             self.titleLabel?.font = .boldSystemFont(ofSize: 21)
         }
@@ -88,11 +77,10 @@ class Bubble: UIButton {
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
         scaleOutAnnimation.duration = 0.5
-        scaleOutAnnimation.speed = 0.8
-        scaleOutAnnimation.initialVelocity = 0.7
+        scaleOutAnnimation.speed = 1
+        scaleOutAnnimation.initialVelocity = 0.2
         //scaleOutAnnimation.damping = 1
         layer.add(scaleOutAnnimation, forKey: nil)
-        
         removeAfterAnimation(timeInterval: 0.5)
     }
     
@@ -119,13 +107,11 @@ class Bubble: UIButton {
         var toValueXPos: Int = 0
         var toValueYPos: Int = 0
         
-        if storedXPos > screenWidth / 2
-        {
+        if storedXPos > screenWidth / 2 {
             toValueXPos = screenWidth + 50
         }
         
-        if storedYPos > screenHeight / 2
-        {
+        if storedYPos > screenHeight / 2 {
             toValueYPos = screenHeight + 100
         }
         
@@ -135,18 +121,18 @@ class Bubble: UIButton {
         switch remainingTimePercent {
         case 51...75:
             print("Less than 75% triggered.")
-            movingSpeed = 1.4
+            movingSpeed = 1.7
             movingDuration = 0.8
         case 26...50:
             print("Less than 50% triggered.")
-            movingSpeed = 1.7
-            movingDuration = 0.8
+            movingSpeed = 2
+            movingDuration = 0.6
         case 0...25:
             print("Less than 25% trigered.")
-            movingSpeed = 2
-            movingDuration = 0.8
+            movingSpeed = 2.75
+            movingDuration = 0.6
         default:
-            movingSpeed = 1.2
+            movingSpeed = 1.3
             movingDuration = 0.8
         }
         
@@ -232,6 +218,7 @@ class Bubble: UIButton {
     func getBubbleId() -> Int {
         return bubbleId
     }
+    
     //passes the game class object to the bubble class.
     func initiateGameSession(gameSession game: Game)
     {

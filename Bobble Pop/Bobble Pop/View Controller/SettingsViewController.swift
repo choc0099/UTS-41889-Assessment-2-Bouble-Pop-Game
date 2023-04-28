@@ -47,7 +47,6 @@ class SettingsViewController: UIViewController {
         
         if screenWidth < 370 || screenHeight < 630 {
             bubbleSizeSlider.maximumValue = 65
-           
         }
         else if screenWidth > 570 || screenHeight > 1150 { //allows even larger bubbles on an iPad.
             bubbleSizeSlider.maximumValue = 100

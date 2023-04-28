@@ -206,8 +206,7 @@ class GamePlayViewController: UIViewController {
             //scale in bubble animation
             bubble.scaleIn()
         }
-       
-        //bubble.moveBubblePos() //not yet ready - still in development.
+        
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
         if !bubbleManager.isOverlap(newBubble: bubble) {
@@ -220,16 +219,12 @@ class GamePlayViewController: UIViewController {
             //bubble.moveBubblePos()
             game.storeBubble(bubble: bubble)
             bubbleCounter += 1
-            
         }
         else
         {
             overlapCounter += 1
             print("Number of overlaps: \(overlapCounter)")
         }
-        
-     
-        //print("Current X Pos: \(currentXPositionMarker), current Y Pos: \(currentYPositionMarker)") //debug
     }
       
     func updateUI() {
