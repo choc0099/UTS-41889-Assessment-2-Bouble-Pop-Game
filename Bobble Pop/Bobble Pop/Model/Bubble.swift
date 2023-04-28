@@ -79,21 +79,7 @@ class Bubble: UIButton {
         scaleOutAnnimation.duration = 0.5
         //scaleOutAnnimation.speed = 1
         layer.add(scaleOutAnnimation, forKey: nil)
-        removeAfterAnimation(timeInterval: 0.4, isMoving: false)
-    }
-    
-    func flyOutAndRemove() {
-        let flyOutAnimation = CABasicAnimation(keyPath: "position.y")
-        
-        flyOutAnimation.fromValue = getStoredYPos()
-        flyOutAnimation.toValue = -50
-        flyOutAnimation.duration = 1
-        flyOutAnimation.speed = 1
-        
-        layer.add(flyOutAnimation, forKey: nil)
-        //self.frame = CGRect(x: 0, y: 0, width: 0, height: 0) //this is used to prevent bubbles stuck on the top of the screen after is animated
-        removeAfterAnimation(timeInterval: 1, isMoving: false)
-        //game.removeBubble(bubbleId: self.getBubbleId())
+        removeAfterAnimation(timeInterval: 0.4)
     }
     
     func moveAwayAnimation(remainingTimePercent: Int) {
@@ -114,27 +100,23 @@ class Bubble: UIButton {
         }
         
         var movingDuration: Double = 0
-        var movingSpeed: Float = 0
+     
         var movingTimeInterval: Float = 0
         
         switch remainingTimePercent {
         case 51...75:
             print("Less than 75% triggered.")
-            movingSpeed = 1.5
             movingDuration = 1.3
             movingTimeInterval = 1.3
         case 26...50:
             print("Less than 50% triggered.")
-            movingSpeed = 1.7
             movingDuration = 0.7
             movingTimeInterval = 0.7
         case 0...25:
             print("Less than 25% trigered.")
-            movingSpeed = 2
             movingDuration = 0.2
             movingTimeInterval = 0.2
         default:
-            movingSpeed = 1
             movingDuration = 1.8
             movingTimeInterval = 1.8
         }
@@ -143,26 +125,22 @@ class Bubble: UIButton {
         moveAway.fromValue = [storedXPos, storedYPos]
         moveAway.toValue = [toValueXPos, toValueYPos]
         moveAway.duration = movingDuration
-        //moveAway.speed = movingSpeed
         moveAway.isRemovedOnCompletion = true
         layer.add(moveAway, forKey: nil)
-        removeAfterAnimation(timeInterval: Double(movingTimeInterval), isMoving: true)
+        removeAfterAnimation(timeInterval: Double(movingTimeInterval))
     }
     
-    func removeAfterAnimation(timeInterval: Double, isMoving: Bool) {
+    func removeAfterAnimation(timeInterval: Double) {
         removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true)  {
             removeBubbleTimer in
-            self.timeToRemove(isMoving: isMoving)
+            self.timeToRemove()
         }
     }
 
-    @objc func timeToRemove(isMoving: Bool) {
+    @objc func timeToRemove() {
         animationRemainingTime -= 1
         if animationRemainingTime == 0 {
             removeBubbleTimer.invalidate()
-            //if isMoving {
-              //  game.removeBubble(bubbleId: self.bubbleId)
-            //}
             self.removeFromSuperview()
         }
     }

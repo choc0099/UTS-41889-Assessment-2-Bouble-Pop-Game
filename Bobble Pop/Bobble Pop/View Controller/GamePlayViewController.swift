@@ -275,25 +275,14 @@ class GamePlayViewController: UIViewController {
         if isAnimated {
             if isPressed {
                 bubble.scaleOutAndRemove()
-                game.removeBubble(bubbleId: bubble.getBubbleId())
-                //game.removeBubble(bubbleId: bubble.getBubbleId())
-                //bubble.removeFromSuperview()
             }
             else {
                 bubble.moveAwayAnimation(remainingTimePercent: Int(gamePlayRemainingTimePercent))
             }
         }
         else {
-            game.removeBubble(bubbleId: bubble.getBubbleId())
-            //bubble.removeFromSuperview()
+            bubble.removeFromSuperview()
         }
-        
-        //unmark the x and y positions
-        //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
-      
-        //print(bubbleIndex)
-        
-        //bubble.removeFromSuperview()
     }
     
     func currentScoreAnimation() {
@@ -315,12 +304,5 @@ class GamePlayViewController: UIViewController {
         flash.speed = 0.8
         
         highScoreLabel.layer.add(flash, forKey: nil)
-    }
-    
-    func resetScore() {
-        currentScore = 0
-        previousBubblePoints = 0
-        //set timer for current score to be displayed in the UI.
-        //updateUI()
     }
 }
