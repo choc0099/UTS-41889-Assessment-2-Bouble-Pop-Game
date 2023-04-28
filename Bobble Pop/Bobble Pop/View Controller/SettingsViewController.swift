@@ -39,8 +39,7 @@ class SettingsViewController: UIViewController {
     }
     
     //the maximun bubble size are reduced on devices with smaller screen sizes.
-    func optimizeScreenSize()
-    {
+    func optimizeScreenSize() {
         let gameSettings = game.getGameSettings()
         let screenWidth = gameSettings.getDeviceWidth()
         let screenHeight = gameSettings.getDeviceHeight()

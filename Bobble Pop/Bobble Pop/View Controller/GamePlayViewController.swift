@@ -86,18 +86,34 @@ class GamePlayViewController: UIViewController {
     @objc func gamePlayCountDown() {
         gamePlayRemainingTime -= 1
         updateTimerProgress() //updates the timer progress view.
-
         if gamePlayRemainingTime == 0 {
             gamePlayTimer.invalidate()
             // writes the game score to the userDefaults database
             HighScoreManager.writeHighScore(gameSession: self.game)
             self.game.removeAllBubbles() //clears all the bubbles stored in the array so it is ready for another game session.
-            //this is used to go to the high score view
-            let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
-            self.navigationController?.pushViewController(VC, animated: true)
-            VC.navigationItem.setHidesBackButton(true, animated: true)
+            self.generateGameOverAlert()
         }
     }
+    
+    func generateGameOverAlert() {
+        let gameOverAlert = UIAlertController(title: "Game Over!", message: nil, preferredStyle: .alert)
+        //add an alert action
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: {
+            (action) -> Void in
+            self.goToHighScoreView()
+        })
+        gameOverAlert.addAction(okButton)
+        self.present(gameOverAlert, animated: true)
+    }
+    
+    //helper function to go to the HighScore view
+    func goToHighScoreView() {
+        //this is used to go to the high score view
+        let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
+        self.navigationController?.pushViewController(VC, animated: true)
+        VC.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
     // A helper function used to generate the game countdown label attributes.
     func generateCountDownLabel() {
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
