@@ -77,7 +77,7 @@ class Bubble: UIButton {
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
         scaleOutAnnimation.duration = 0.5
-        scaleOutAnnimation.speed = 1
+        //scaleOutAnnimation.speed = 1
         layer.add(scaleOutAnnimation, forKey: nil)
         removeAfterAnimation(timeInterval: 0.4, isMoving: false)
     }
@@ -121,22 +121,22 @@ class Bubble: UIButton {
         case 51...75:
             print("Less than 75% triggered.")
             movingSpeed = 1.5
-            movingDuration = 1
-            movingTimeInterval = 0.9
+            movingDuration = 1.3
+            movingTimeInterval = 1.3
         case 26...50:
             print("Less than 50% triggered.")
             movingSpeed = 1.7
-            movingDuration = 1
-            movingTimeInterval = 1
+            movingDuration = 0.7
+            movingTimeInterval = 0.7
         case 0...25:
             print("Less than 25% trigered.")
             movingSpeed = 2
-            movingDuration = 1
-            movingTimeInterval = 1
+            movingDuration = 0.2
+            movingTimeInterval = 0.2
         default:
             movingSpeed = 1
-            movingDuration = 2
-            movingTimeInterval = 0.9
+            movingDuration = 1.8
+            movingTimeInterval = 1.8
         }
         
         let moveAway = CABasicAnimation(keyPath: "position")
@@ -150,7 +150,7 @@ class Bubble: UIButton {
     }
     
     func removeAfterAnimation(timeInterval: Double, isMoving: Bool) {
-        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false)  {
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true)  {
             removeBubbleTimer in
             self.timeToRemove(isMoving: isMoving)
         }

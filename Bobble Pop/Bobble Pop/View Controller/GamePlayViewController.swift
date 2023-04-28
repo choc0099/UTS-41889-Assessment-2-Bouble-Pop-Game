@@ -288,9 +288,6 @@ class GamePlayViewController: UIViewController {
             //bubble.removeFromSuperview()
         }
         
-        
-    
-        
         //unmark the x and y positions
         //let bubbleIndex = getBubbleIndexById(bubbleId: bubble.getBubbleId())
       
