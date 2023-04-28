@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class HighScoreViewController: UIViewController {
-    var game = Game() declars a game object.
+    var game = Game() //declars a game object.
     @IBOutlet weak var highScoreTableView: UITableView!
     @IBOutlet weak var returnButton: UIButton!
     
@@ -38,7 +38,7 @@ class HighScoreViewController: UIViewController {
     }
 }
 
-extension HighScoreViewController:UITableViewDelegate {
+extension HighScoreViewController:UITableViewDelegate {  var highScores: [GameScore] = []
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // When a cell is selected, say hello
         let index = indexPath.row;
