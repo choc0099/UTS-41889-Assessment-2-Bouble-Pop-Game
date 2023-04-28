@@ -9,29 +9,28 @@ import Foundation
 import UIKit
 
 class GamePlayViewController: UIViewController {
-    
+    //variables to pass the game and player sessions.
     var game = Game()
     var currentPlayer = Player()
     
-    @IBOutlet weak var remainingTimeLabel: UILabel!
+    //IBOutlets for the UI elements
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet weak var gamePlayStack: UIStackView!
-    
     @IBOutlet weak var timerProgress: UIProgressView!
     
-    
+    //Progamaticaly creates a countdown label
     var gameStartCountDownLabel = CountDownLabel()
     
-    var bubbleId = 0
-
+    var bubbleId = 0 //unique bubble identifier
+    // stores the player scores into a variable
     var currentScore: Double = 0
     var playerHighScore = 0
     
     //timers
     var gamePlayTimer = Timer()
     var gameStartTimer = Timer()
-    
+    //game configuration
     var gameStartRemainingTime = 3
     var gamePlayRemainingTime = 0
     var numberOfBubbles = 0
@@ -45,7 +44,7 @@ class GamePlayViewController: UIViewController {
         // the game play stack is hidden when there is a countdown before the game starts.
         gamePlayStack.isHidden = true
         timerProgress.transform = timerProgress.transform.scaledBy(x: 1, y: 4)
-        
+        //loads configured game settings.
         initiateGameData()
         startGame() // starts the game timers, intiates countdown and generates bubbles.
     }
@@ -54,8 +53,8 @@ class GamePlayViewController: UIViewController {
         let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
-      
-        setTimerProgress()
+        // sets the inital timer progress to the maximum value before the timer kicks in.
+        updateTimerProgress()
     }
     
     func startGame() {
@@ -71,31 +70,28 @@ class GamePlayViewController: UIViewController {
         self.renderBubbles(numberOfBubbles: numberOfBubbles)
         gamePlayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             gamePlayerTimer in
-            //self.resetScore()
             self.renderBubbles(numberOfBubbles: self.numberOfBubbles)
             self.gamePlayCountDown()
-           // print("Number of bubbles on screen: \(self.bubbleCounter)")
         }
     }
-    
-    func setTimerProgress() {
+    //A helper function that updates the timerProgress based on current remaining time.
+    func updateTimerProgress() {
         let remainingTimeFloat: Float = Float(gamePlayRemainingTime)
         let gameSettings = game.getGameSettings()
         let gamePlayTimerSet: Float = Float(gameSettings.getTimer())
         let remainingTimePercantage: Float = remainingTimeFloat / gamePlayTimerSet
         timerProgress.setProgress(remainingTimePercantage, animated: true)
     }
-
+    //This is used for the gamePlay timer to work.
     @objc func gamePlayCountDown() {
         gamePlayRemainingTime -= 1
-        setTimerProgress()
-      
-        print("Number of stored bubbles \(game.getAllBubbles().count)")
+        updateTimerProgress() //updates the timer progress view.
+
         if gamePlayRemainingTime == 0 {
             gamePlayTimer.invalidate()
             // writes the game score to the userDefaults database
             HighScoreManager.writeHighScore(gameSession: self.game)
-            self.game.removeAllBubbles()
+            self.game.removeAllBubbles() //clears all the bubbles stored in the array so it is ready for another game session.
             //this is used to go to the high score view
             let VC = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
             self.navigationController?.pushViewController(VC, animated: true)
@@ -109,12 +105,12 @@ class GamePlayViewController: UIViewController {
         self.view.addSubview(gameStartCountDownLabel)
         gameStartCountDownLabel.flash()
     }
-    
+    //Initiates the 3 2 1 gameStart countdown and updates the countDownLabel.
     @objc func gameStartCountDown() {
         gameStartRemainingTime -= 1
         gameStartCountDownLabel.setNumber(number: gameStartRemainingTime)
         gameStartCountDownLabel.flash()
-        
+        //The gamePlay will begin once this timer ends.
         if gameStartRemainingTime == 0 {
             gameStartTimer.invalidate()
             gameStartCountDownLabel.removeFromSuperview()
@@ -124,16 +120,14 @@ class GamePlayViewController: UIViewController {
     }
     
     func renderBubbles(numberOfBubbles: Int) {
-        if game.getAllBubbles().count > 0 {
+        if game.getAllBubbles().count > 0 { //this will only call the removeSomeBubbles function if there is elements on the bubble array.
             removeSomeBubbles()
         }
         addSomeBubbles(numberOfBubbles: numberOfBubbles)
     }
-        
+    // A helper function that randomly decides how many bubbles to remove.
     func removeSomeBubbles() {
         let randomBubblesToRemove = Int.random(in: 0...game.getAllBubbles().count)
-       
-        //let bubbleIndex = getBubbleIndexById(bubbleId: randomBubble)
         while game.getAllBubbles().count > randomBubblesToRemove {
             let storedBubbles = game.getAllBubbles()
             let randomBubble = storedBubbles.randomElement()
@@ -141,23 +135,16 @@ class GamePlayViewController: UIViewController {
                 handleRemove(isPressed: false, bubble: unwrappedRandomBubble)
             }
         }
-        //print("Bubbles removed: \(randomToRemove) with \(bubbleCounter) left.")
-       
     }
     
     func addSomeBubbles(numberOfBubbles: Int) {
-        
         let randomBubblesToAdd = Int.random(in: 0...numberOfBubbles)
-        
-        overlapCounter = 0
+        overlapCounter = 0 //resets the overlap counter when a new set of bubbles needs to be added each second.
         var numberOfBubblesGenerated = 0
         while game.getAllBubbles().count < randomBubblesToAdd && overlapCounter < 100 {
             generateBubble()
             numberOfBubblesGenerated += 1
         }
-        
-        //print("Bubbles added: \(randomBubblesToAdd)")
-        //print("Total: \(bubbleCounter)")
     }
     
     func generateBubble() {
@@ -175,7 +162,7 @@ class GamePlayViewController: UIViewController {
         let bubbleSize = gameSettings.getBubbleSize()
         var rightBounds = 60
         var bottomBounds = 100
-        
+        //determines right and bottom screen bounds based on bubble sizes.
         switch bubbleSize {
         case 55...64:
             rightBounds = 90
@@ -191,16 +178,16 @@ class GamePlayViewController: UIViewController {
             bottomBounds = 100
         }
         
-  
-   
-        
+        //generates a random position.
         let xPosition = Int.random(in: 20...screenWidth - rightBounds)
         let yPosition = Int.random(in: 170...screenHeight - bottomBounds)
-        //due to init does not work on the bubble class, I had to create a seperate function to set the position.
+        //due to init does not work on the bubble class, I had to create a seperate function to set the position and bubble size.
         bubble.setPositionAndSize(randomNumberToHeightBounds: yPosition, randomNumberToWidthBounds: xPosition, bubbleSize: bubbleSize)
         
-        //this will add labels to the button if the user has enabled it or not.
-        bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
+        //this will add labels to the button if the user has enabled it.
+        let isColorBlind = gameSettings.getIsColorBlind()
+        bubble.enableColorBlindnessLabels(isColorBlind: isColorBlind)
+        //determines if the animation settings are turned on.
         let isAnimated = gameSettings.getIsAnimated()
         if isAnimated {
             //scale in bubble animation
@@ -220,13 +207,11 @@ class GamePlayViewController: UIViewController {
             game.storeBubble(bubble: bubble)
             bubbleCounter += 1
         }
-        else
-        {
-            overlapCounter += 1
-            print("Number of overlaps: \(overlapCounter)")
+        else {
+            overlapCounter += 1 //the overlap counter prevents infinite loops.
         }
     }
-      
+     //updates the current score and high score.
     func updateUI() {
         currentScoreLabel.text = String(Int(currentScore))
         highScoreLabel.text = String(playerHighScore)
@@ -235,9 +220,8 @@ class GamePlayViewController: UIViewController {
     }
     
     @IBAction func bubblePressed(_ sender: Bubble) {
-        print("pressed")
-        handleScore(bubble: sender)
-        updateUI()
+        handleScore(bubble: sender) // assigns the scores from the bubble and computes a highScore
+        updateUI() //updates the scores diplayed via the stackview.
         handleRemove(isPressed: true, bubble: sender)
         previousRemoveBubbleId = sender.getBubbleId()
         print("Number of elements: \(game.getAllBubbles().count)")
@@ -246,8 +230,6 @@ class GamePlayViewController: UIViewController {
     func handleScore(bubble: Bubble) {
         // current score at the time of the bubble been tapped.
         let currentPlayerScore = currentPlayer.getScore()
-     
-        //print("pressed points \(bubble.getPoints())")
         // if the same bubble colour is pressed after another, the score will increase by 1.5
         if previousBubblePoints == bubble.getPoints() {
             currentScore += 1.5 * currentScore
@@ -287,13 +269,11 @@ class GamePlayViewController: UIViewController {
     
     func currentScoreAnimation() {
         let bloopingAnimation = CASpringAnimation(keyPath: "transform.scale")
-        
         bloopingAnimation.fromValue = 1
         bloopingAnimation.toValue = 2
         bloopingAnimation.speed = 1
         bloopingAnimation.autoreverses = true
         currentScoreLabel.layer.add(bloopingAnimation, forKey: nil)
-        
     }
     
     func highScoreAnnimation() {
@@ -302,7 +282,6 @@ class GamePlayViewController: UIViewController {
         flash.toValue = 0
         flash.autoreverses = true
         flash.speed = 0.8
-        
         highScoreLabel.layer.add(flash, forKey: nil)
     }
 }
