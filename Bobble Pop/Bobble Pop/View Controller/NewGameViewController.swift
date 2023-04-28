@@ -76,15 +76,12 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     func disableButton(disabileIt isDisabled: Bool)
     {
         if isDisabled {
-            
             startButton.layer.opacity = 0.7
             startButton.isEnabled = false
             //startButton.setTitleColor(.white, for: UIControl.State.disabled)
             //startButton.tintColor = .red
-            
         }
-        else
-        {
+        else {
             startButton.layer.opacity = 1
             startButton.isEnabled = true
         }

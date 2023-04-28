@@ -175,10 +175,24 @@ class GamePlayViewController: UIViewController {
         let bubbleSize = gameSettings.getBubbleSize()
         var rightBounds = 60
         var bottomBounds = 100
-        if bubbleSize > 50 {
-            rightBounds = 100
-            bottomBounds = 80
+        
+        switch bubbleSize {
+        case 55...64:
+            rightBounds = 90
+            bottomBounds = 140
+        case 65...76:
+            rightBounds = 110
+            bottomBounds = 138
+        case 77...100:
+            rightBounds = 160
+            bottomBounds = 190
+        default:
+            rightBounds = 60
+            bottomBounds = 100
         }
+        
+  
+   
         
         let xPosition = Int.random(in: 20...screenWidth - rightBounds)
         let yPosition = Int.random(in: 170...screenHeight - bottomBounds)
