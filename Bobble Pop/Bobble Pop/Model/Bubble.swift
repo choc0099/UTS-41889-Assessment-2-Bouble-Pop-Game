@@ -65,23 +65,21 @@ class Bubble: UIButton {
         let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleInAnnimation.fromValue = 0
         scaleInAnnimation.toValue = 1
-        scaleInAnnimation.duration = 0.15
-        scaleInAnnimation.speed = 1
-        scaleInAnnimation.initialVelocity = 0.2
-        scaleInAnnimation.damping = 1
+        scaleInAnnimation.duration = 0.4
+        scaleInAnnimation.speed = 0.9
+        //scaleInAnnimation.initialVelocity = 0.
+        //scaleInAnnimation.damping = 0.5
         layer.add(scaleInAnnimation, forKey: nil)
     }
     
     func scaleOutAndRemove() {
-        let scaleOutAnnimation = CASpringAnimation(keyPath: "transform.scale")
+        let scaleOutAnnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleOutAnnimation.fromValue = 1
         scaleOutAnnimation.toValue = 0
         scaleOutAnnimation.duration = 0.5
         scaleOutAnnimation.speed = 1
-        scaleOutAnnimation.initialVelocity = 0.2
-        //scaleOutAnnimation.damping = 1
         layer.add(scaleOutAnnimation, forKey: nil)
-        removeAfterAnimation(timeInterval: 0.5)
+        removeAfterAnimation(timeInterval: 0.4)
     }
     
     func flyOutAndRemove() {
@@ -104,11 +102,11 @@ class Bubble: UIButton {
         let screenWidth = gameSettings.getDeviceWidth()
         
         //this is used to determin where the nearest edge is for the bubble to be removed.
-        var toValueXPos: Int = 0
-        var toValueYPos: Int = 0
+        var toValueXPos: Int = -100
+        var toValueYPos: Int = -100
         
         if storedXPos > screenWidth / 2 {
-            toValueXPos = screenWidth + 50
+            toValueXPos = screenWidth + 100
         }
         
         if storedYPos > screenHeight / 2 {
@@ -117,23 +115,28 @@ class Bubble: UIButton {
         
         var movingDuration: Float = 0
         var movingSpeed: Double = 0
+        var movingTimeInterval: Float = 0
         
         switch remainingTimePercent {
         case 51...75:
             print("Less than 75% triggered.")
             movingSpeed = 1.7
-            movingDuration = 0.8
+            movingDuration = 1
+            movingTimeInterval = 0.98
         case 26...50:
             print("Less than 50% triggered.")
             movingSpeed = 2
-            movingDuration = 0.6
+            movingDuration = 0.8
+            movingTimeInterval = 0.79
         case 0...25:
             print("Less than 25% trigered.")
-            movingSpeed = 2.75
-            movingDuration = 0.6
+            movingSpeed = 2.5
+            movingDuration = 0.55
+            movingTimeInterval = 0.68
         default:
             movingSpeed = 1.3
-            movingDuration = 0.8
+            movingDuration = 1
+            movingTimeInterval = 0.99
         }
         
         let moveAway = CABasicAnimation(keyPath: "position")
@@ -142,8 +145,7 @@ class Bubble: UIButton {
         moveAway.duration = movingSpeed
         moveAway.speed = movingDuration
         layer.add(moveAway, forKey: nil)
-        removeAfterAnimation(timeInterval: Double(movingDuration))
-        
+        removeAfterAnimation(timeInterval: Double(movingTimeInterval))
     }
     
     func removeAfterAnimation(timeInterval: Double) {
