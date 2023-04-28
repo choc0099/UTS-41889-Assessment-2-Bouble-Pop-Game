@@ -65,8 +65,8 @@ class Bubble: UIButton {
         let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
         scaleInAnnimation.fromValue = 0
         scaleInAnnimation.toValue = 1
-        scaleInAnnimation.duration = 0.4
-        scaleInAnnimation.speed = 0.9
+        scaleInAnnimation.duration = 0.35
+        scaleInAnnimation.speed = 1
         //scaleInAnnimation.initialVelocity = 0.
         //scaleInAnnimation.damping = 0.5
         layer.add(scaleInAnnimation, forKey: nil)
@@ -79,7 +79,7 @@ class Bubble: UIButton {
         scaleOutAnnimation.duration = 0.5
         scaleOutAnnimation.speed = 1
         layer.add(scaleOutAnnimation, forKey: nil)
-        removeAfterAnimation(timeInterval: 0.4)
+        removeAfterAnimation(timeInterval: 0.4, isMoving: false)
     }
     
     func flyOutAndRemove() {
@@ -92,7 +92,7 @@ class Bubble: UIButton {
         
         layer.add(flyOutAnimation, forKey: nil)
         //self.frame = CGRect(x: 0, y: 0, width: 0, height: 0) //this is used to prevent bubbles stuck on the top of the screen after is animated
-        removeAfterAnimation(timeInterval: 1)
+        removeAfterAnimation(timeInterval: 1, isMoving: false)
         //game.removeBubble(bubbleId: self.getBubbleId())
     }
     
@@ -113,52 +113,56 @@ class Bubble: UIButton {
             toValueYPos = screenHeight + 100
         }
         
-        var movingDuration: Float = 0
-        var movingSpeed: Double = 0
+        var movingDuration: Double = 0
+        var movingSpeed: Float = 0
         var movingTimeInterval: Float = 0
         
         switch remainingTimePercent {
         case 51...75:
             print("Less than 75% triggered.")
-            movingSpeed = 1.7
+            movingSpeed = 1.5
             movingDuration = 1
-            movingTimeInterval = 0.98
+            movingTimeInterval = 0.9
         case 26...50:
             print("Less than 50% triggered.")
-            movingSpeed = 2
-            movingDuration = 0.8
-            movingTimeInterval = 0.79
+            movingSpeed = 1.7
+            movingDuration = 1
+            movingTimeInterval = 1
         case 0...25:
             print("Less than 25% trigered.")
-            movingSpeed = 2.5
-            movingDuration = 0.55
-            movingTimeInterval = 0.68
-        default:
-            movingSpeed = 1.3
+            movingSpeed = 2
             movingDuration = 1
-            movingTimeInterval = 0.99
+            movingTimeInterval = 1
+        default:
+            movingSpeed = 1
+            movingDuration = 2
+            movingTimeInterval = 0.9
         }
         
         let moveAway = CABasicAnimation(keyPath: "position")
         moveAway.fromValue = [storedXPos, storedYPos]
         moveAway.toValue = [toValueXPos, toValueYPos]
-        moveAway.duration = movingSpeed
-        moveAway.speed = movingDuration
+        moveAway.duration = movingDuration
+        //moveAway.speed = movingSpeed
+        moveAway.isRemovedOnCompletion = true
         layer.add(moveAway, forKey: nil)
-        removeAfterAnimation(timeInterval: Double(movingTimeInterval))
+        removeAfterAnimation(timeInterval: Double(movingTimeInterval), isMoving: true)
     }
     
-    func removeAfterAnimation(timeInterval: Double) {
+    func removeAfterAnimation(timeInterval: Double, isMoving: Bool) {
         removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false)  {
             removeBubbleTimer in
-            self.timeToRemove()
+            self.timeToRemove(isMoving: isMoving)
         }
     }
 
-    @objc func timeToRemove() {
+    @objc func timeToRemove(isMoving: Bool) {
         animationRemainingTime -= 1
         if animationRemainingTime == 0 {
             removeBubbleTimer.invalidate()
+            //if isMoving {
+              //  game.removeBubble(bubbleId: self.bubbleId)
+            //}
             self.removeFromSuperview()
         }
     }
