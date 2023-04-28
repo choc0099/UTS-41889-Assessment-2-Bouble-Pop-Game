@@ -54,7 +54,7 @@ class GamePlayViewController: UIViewController {
         let gameSettings = game.getGameSettings()
         gamePlayRemainingTime = gameSettings.getTimer()
         numberOfBubbles = gameSettings.getNumberOfBubbles()
-        remainingTimeLabel.text = String(gamePlayRemainingTime)
+      
         setTimerProgress()
     }
     
@@ -89,7 +89,7 @@ class GamePlayViewController: UIViewController {
     @objc func gamePlayCountDown() {
         gamePlayRemainingTime -= 1
         setTimerProgress()
-        remainingTimeLabel.text = String(gamePlayRemainingTime)
+      
         print("Number of stored bubbles \(game.getAllBubbles().count)")
         if gamePlayRemainingTime == 0 {
             gamePlayTimer.invalidate()
@@ -187,8 +187,12 @@ class GamePlayViewController: UIViewController {
         
         //this will add labels to the button if the user has enabled it or not.
         bubble.enableColorBlindnessLabels(isColorBlind: gameSettings.getIsColorBlind())
-        //scale in bubble animation
-        bubble.scaleIn()
+        let isAnimated = gameSettings.getIsAnimated()
+        if isAnimated {
+            //scale in bubble animation
+            bubble.scaleIn()
+        }
+       
         //bubble.moveBubblePos() //not yet ready - still in development.
         bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
         //print("yPos: \(bubble.getStoredYPos()), xPos: \(bubble.getStoredXPos())")
@@ -257,17 +261,23 @@ class GamePlayViewController: UIViewController {
         let remainingTimeDouble: Double = Double(gamePlayRemainingTime)
         let timerSetDouble: Double =  Double(timerSet)
         let gamePlayRemainingTimePercent: Double = ((remainingTimeDouble / timerSetDouble) * 100)
+        let isAnimated = gameSettings.getIsAnimated()
         
-        if isPressed {
-            bubble.scaleOutAndRemove()
-            //game.removeBubble(bubbleId: bubble.getBubbleId())
-            //bubble.removeFromSuperview()
+        if isAnimated {
+            if isPressed {
+                bubble.scaleOutAndRemove()
+                //game.removeBubble(bubbleId: bubble.getBubbleId())
+                //bubble.removeFromSuperview()
+            }
+            else {
+                bubble.moveAwayAnimation(remainingTimePercent: Int(gamePlayRemainingTimePercent))
+            }
         }
         else {
-            bubble.moveAwayAnimation(remainingTimePercent: Int(gamePlayRemainingTimePercent))
-            
-            //bubble.removeFromSuperview()
+            bubble.removeFromSuperview()
         }
+        
+        
     
         
         //unmark the x and y positions

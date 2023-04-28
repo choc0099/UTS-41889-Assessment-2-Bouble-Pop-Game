@@ -14,7 +14,7 @@ class GameSettings {
     var deviceHeight: Int = 0
     var isColorBlind: Bool = false
     var bubbleSize: Int = 50
-    //init(deviceWidth: Int, deviceHeight: )
+    var isAnimated: Bool = false
     
     
     func setTimer(howLong newTimerSet: Int)
@@ -63,5 +63,15 @@ class GameSettings {
     
     func getBubbleSize() -> Int {
         return bubbleSize
+    }
+    
+    func setIsAnimated(isAnimated: Bool)
+    {
+        self.isAnimated = isAnimated
+    }
+    
+    func getIsAnimated() -> Bool
+    {
+        return isAnimated
     }
 }

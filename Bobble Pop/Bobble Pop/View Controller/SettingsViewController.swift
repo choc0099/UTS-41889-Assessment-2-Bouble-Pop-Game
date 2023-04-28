@@ -19,6 +19,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var bubbleSizeLabel: UILabel!
     @IBOutlet weak var bubbleSizeSlider: UISlider!
     @IBOutlet weak var isColorBlindSwitch: UISwitch!
+    
+    @IBOutlet weak var isAnimatedSwitch: UISwitch!
+    
+    
     var game = Game()
    
     @IBOutlet weak var clearScoresButton: UIButton!
@@ -69,6 +73,7 @@ class SettingsViewController: UIViewController {
         let isColorBlind = isColorBlindSwitch.isOn
         gameSettings.setColorBlind(isColorBlind: isColorBlind)
         gameSettings.setBubbbleSize(bubbleSize: Int(bubbleSizeSlider.value))
+        gameSettings.setIsAnimated(isAnimated: isAnimatedSwitch.isOn)
     }
     
     @IBAction func onBubbleSliderChange(_ sender: Any) {
@@ -126,5 +131,11 @@ class SettingsViewController: UIViewController {
     @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
         changeSettings()
     }
+    
+    
+    @IBAction func onAnimationToggle(_ sender: UISwitch) {
+        changeSettings()
+    }
+    
     
 }
