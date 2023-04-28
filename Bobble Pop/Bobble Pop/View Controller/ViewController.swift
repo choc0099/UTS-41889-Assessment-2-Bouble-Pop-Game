@@ -8,15 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    //var gameSettings = GameSettings()
-    
     let gameData = HighScoreManager.readHighScroes()
     var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        //loads game data
         self.initializeGame()
         self.setScreenDimensions()
     }
@@ -24,21 +21,16 @@ class ViewController: UIViewController {
     func setScreenDimensions() {
         //loads game settings set by the player.
         let gameSettings = game.getGameSettings()
-        
         //gets the view heights and widths when adding bubbles so it can work accross different screen sizes.
         let currentViewWidth: Int = Int(self.view.bounds.width)
         let currentViewHeight: Int = Int(self.view.bounds.height)
-        print(currentViewWidth)
-        print(currentViewHeight)
         gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
         
         //sets the bubble sizes if the screensize is different.
         if currentViewWidth < 370 || currentViewHeight < 630 {
-            
             gameSettings.setBubbbleSize(bubbleSize: 35)
         }
-        else if currentViewWidth > 570 || currentViewHeight > 1000 //allows even larger bubbles on an iPad.
-        {
+        else if currentViewWidth > 570 || currentViewHeight > 1000 { //allows even larger bubbles on an iPad.
             gameSettings.setBubbbleSize(bubbleSize: 75)
         }
     }
@@ -46,9 +38,10 @@ class ViewController: UIViewController {
     //a function that will prevent the game from overwriting the highscores when the app is restarted.
     func initializeGame() {
         if gameData.count > 0 { //prevents the app from crashing if there is nothing on userDefaults
+            // automattically adds stored game players and high scores to memory.
+            // this prevents overwriting data and allows it to be added onto the high score view.
             for storedPlayer in gameData {
                 let player = Player(playerName: storedPlayer.name)
-                //print(storedPlayer.name)
                 let playerScore = player.getScore()
                 playerScore.setScore(currentScore: storedPlayer.score)
                 game.addPlayer(player: player)

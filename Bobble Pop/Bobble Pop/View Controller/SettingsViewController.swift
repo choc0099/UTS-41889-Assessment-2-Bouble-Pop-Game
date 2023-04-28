@@ -96,7 +96,7 @@ class SettingsViewController: UIViewController {
         let noButton = UIAlertAction(title: "No", style: .cancel, handler: { (action) -> Void in
             return
         })
-           
+        //addes the actions to the alert view.
         confirmClear.addAction(yesButton)
         confirmClear.addAction(noButton)
         self.present(confirmClear, animated: true)
