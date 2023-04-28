@@ -77,8 +77,7 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
     {
         if isDisabled {
             
-            
-            startButton.backgroundColor = .red
+            startButton.layer.opacity = 0.7
             startButton.isEnabled = false
             //startButton.setTitleColor(.white, for: UIControl.State.disabled)
             //startButton.tintColor = .red
@@ -86,8 +85,7 @@ class NewGameViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
-            startButton.backgroundColor = .green
-            //startButton.titleLabel?.textColor = .black
+            startButton.layer.opacity = 1
             startButton.isEnabled = true
         }
     }
