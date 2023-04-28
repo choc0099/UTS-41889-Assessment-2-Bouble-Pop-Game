@@ -42,8 +42,7 @@ class Bubble: UIButton {
         self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     }
     
-    required init?(coder: NSCoder)
-    {
+    required init?(coder: NSCoder) {
         fatalError("Init(coder: ) has not been implemented")
     }
     
@@ -52,23 +51,25 @@ class Bubble: UIButton {
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
         storedXPos = superViewWidth
         storedYPos = superViewHeight
+        
+        //adjusts the colour label text sizes
+        switch bubbleSize {
+        case 65...76:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 26)
+        case 77...100:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 34)
+        case 25...40:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        default:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 21)
+        }
+        
+        
     }
     
     func setDeviceWidthAndHeight(deviceWidth: Int, deviceHeight: Int) {
         self.deviceWidth = deviceWidth
         self.deviceHeight = deviceHeight
-    }
-    
-    func animation() {
-        let springAnimation = CASpringAnimation(keyPath: "transform.scale")
-        springAnimation.duration = 0.6
-        springAnimation.fromValue = 0.1
-        springAnimation.toValue = 0.8
-        springAnimation.repeatCount = 1
-        //springAnimation.initialVelocity = 0.5
-        springAnimation.damping = 1
-        
-        layer.add(springAnimation, forKey: nil)
     }
     
     func scaleIn() {
@@ -80,7 +81,6 @@ class Bubble: UIButton {
         scaleInAnnimation.initialVelocity = 0.2
         scaleInAnnimation.damping = 1
         layer.add(scaleInAnnimation, forKey: nil)
-        
     }
     
     func scaleOutAndRemove() {
@@ -94,8 +94,6 @@ class Bubble: UIButton {
         layer.add(scaleOutAnnimation, forKey: nil)
         
         removeAfterAnimation(timeInterval: 0.5)
-        //game.removeBubble(bubbleId: self.getBubbleId())
-        
     }
     
     func flyOutAndRemove() {
@@ -112,8 +110,7 @@ class Bubble: UIButton {
         //game.removeBubble(bubbleId: self.getBubbleId())
     }
     
-    func moveAwayAnimation(remainingTimePercent: Int)
-    {
+    func moveAwayAnimation(remainingTimePercent: Int) {
         let gameSettings = game.gameSettings
         let screenHeight = gameSettings.getDeviceHeight()
         let screenWidth = gameSettings.getDeviceWidth()
@@ -178,45 +175,6 @@ class Bubble: UIButton {
         }
     }
     
-    //experimental function
-    func toValueXYPos() -> [Int] {
-        let randomDirection = animationDirectionArray.randomElement()
-        
-        var newXPos = storedXPos
-        var newYPos = storedYPos
-        
-        switch randomDirection {
-        case .left:
-            newXPos -= 150
-        case .right:
-            newXPos += 150
-        case .up:
-            newYPos -= 200
-        case .down:
-            newYPos += 200
-        default:
-            newXPos = 0
-            newYPos = 0
-        }
-        return [newXPos, newYPos]
-    }
-    
-    func moveBubblePos() {
-        let moveAnimation = CABasicAnimation(keyPath: "position")
-        
-        let currentXPos = getStoredXPos()
-        let currentYPos = getStoredYPos()
-        
-        moveAnimation.fromValue = [currentXPos, currentYPos]
-        moveAnimation.toValue = toValueXYPos()
-        moveAnimation.speed = 0.05
-        //moveAnimation.beginTime = 2
-        //moveAnimation.initialVelocity = 0.5
-        layer.add(moveAnimation, forKey: nil)
-        self.removeFromSuperview()
-        self.frame = CGRect(x: toValueXYPos()[0], y: toValueXYPos()[1], width: 50, height: 50)
-    }
-    
     //random colour helper function
     //is used to cater for problability of appearance
     func selectAttributes(randomOnly randomNumber: Int) {
@@ -274,7 +232,7 @@ class Bubble: UIButton {
     func getBubbleId() -> Int {
         return bubbleId
     }
-    
+    //passes the game class object to the bubble class.
     func initiateGameSession(gameSession game: Game)
     {
         self.game = game

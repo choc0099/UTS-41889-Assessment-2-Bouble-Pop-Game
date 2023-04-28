@@ -31,6 +31,16 @@ class ViewController: UIViewController {
         print(currentViewWidth)
         print(currentViewHeight)
         gameSettings.setDeviceWdihAndHeight(deviceWidth: currentViewWidth, deviceHeight: currentViewHeight)
+        
+        //sets the bubble sizes if the screensize is different.
+        if currentViewWidth < 370 || currentViewHeight < 630 {
+            
+            gameSettings.setBubbbleSize(bubbleSize: 35)
+        }
+        else if currentViewWidth > 570 || currentViewHeight > 1000 //allows even larger bubbles on an iPad.
+        {
+            gameSettings.setBubbbleSize(bubbleSize: 75)
+        }
     }
     
     //a function that will prevent the game from overwriting the highscores when the app is restarted.
@@ -57,15 +67,5 @@ class ViewController: UIViewController {
             VC.isReturnButtonHidden = true
         }
     }
-    /*
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            print("landscape")
-        }
-        else{
-            print("Portriat")
-        }
-    }*/
 }
 
