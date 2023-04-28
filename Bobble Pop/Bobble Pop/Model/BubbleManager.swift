@@ -16,6 +16,7 @@ class BubbleManager {
         self.game = game
     }
     
+    //A function to determine if the bubbles are overlapped towards another.
     func isOverlap(newBubble: Bubble) -> Bool {
         let storedBubbles = game.getAllBubbles()
         for bubble in storedBubbles {
