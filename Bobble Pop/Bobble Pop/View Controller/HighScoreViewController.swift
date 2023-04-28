@@ -38,7 +38,7 @@ class HighScoreViewController: UIViewController {
     }
 }
 
-extension HighScoreViewController:UITableViewDelegate {  var highScores: [GameScore] = []
+extension HighScoreViewController:UITableViewDelegate { 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // When a cell is selected, say hello
         let index = indexPath.row;
