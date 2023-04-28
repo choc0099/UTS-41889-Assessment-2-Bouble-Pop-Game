@@ -9,19 +9,15 @@ import Foundation
 
 class Player {
     let playerName: String?
-    //let playerId: Int?
     let score = Score()
     
-    init(playerName: String)
-    {
-        //self.playerId = playerId
+    init(playerName: String)  {
         self.playerName = playerName 
     }
     
     //empty initializer for the game view controllers
     init() {
         playerName = nil
-        //playerId = nil
     }
     
     func getPlayerName() -> String? {
@@ -32,11 +28,7 @@ class Player {
             return nil
         }
     }
-    /*
-    func getPlayerId() -> Int? {
-        return playerId
-    }*/
-    
+  
     func getScore() -> Score {
         return score
     }

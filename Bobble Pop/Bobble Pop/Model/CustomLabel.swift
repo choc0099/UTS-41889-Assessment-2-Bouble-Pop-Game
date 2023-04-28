@@ -14,27 +14,26 @@ class CountDownLabel: UILabel {
         self.frame = CGRect(x: 0, y: 0, width: 125 , height: 125)
         self.font = .boldSystemFont(ofSize: 96)
         self.textAlignment = .center
-        //self.backgroundColor = .systemGray
     }
     
     required init?(coder: NSCoder) {
         fatalError("Init(coder: ) has not been implemented")
     }
     
-    func setNumber(number: Int)
-    {
+    func setNumber(number: Int) {
         self.text = String(number)
     }
     
+    //this is an flash animation for the game countdown.
     func flash() {
         let flash = CABasicAnimation(keyPath: "opacity")
         flash.duration = 0.5
-        flash.fromValue = 1
-        flash.toValue = 0
+        flash.fromValue = 0
+        flash.toValue = 1
         flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        //flash.autoreverses = true
+        flash.autoreverses = true
         flash.repeatCount = 0
-        
         layer.add(flash, forKey: nil)
+        self.alpha = 0
     }
 }

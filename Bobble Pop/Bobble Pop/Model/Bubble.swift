@@ -8,54 +8,52 @@
 import Foundation
 import UIKit
 
-enum animationDirection {
-    case left
-    case right
-    case up
-    case down
-}
 
 class Bubble: UIButton {
-    
-    //let xPosition = Int.random(in: 20...310)
-    //let yPosition = Int.random(in: 170...700)
     var storedXPos = 0
     var storedYPos = 0
     var bubbleId = 0
     var points = 0
     var deviceWidth = 0
     var deviceHeight = 0
-    var storedRandomNumber = 0
-    let animationDirectionArray = [animationDirection.left, animationDirection.right, animationDirection.up, animationDirection.down]
+   
+    var animationRemainingTime = 1
+    var removeBubbleTimer = Timer()
     
-    override init(frame: CGRect){
+    //stores the game session to the Bubble class
+    var game = Game()
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
         let randomNumber = Int.random(in: 0...1000)
-        //print(randomNumber) // debug
-        self.backgroundColor = selectBubbleColor(randomOnly: randomNumber)
-        self.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        self.storedRandomNumber = randomNumber
-        //self.frame = CGRect(x: 0, y: 0, width: 50, height: 50 )
-      
-        
-        //assign the points to the bubble.
-        points = selectPoints(randomOnly: randomNumber)
-        //for testing only (vision impairmengt related)
-        //points = 10
+        self.selectAttributes(randomOnly: randomNumber)
+        self.titleLabel?.font = .boldSystemFont(ofSize: 21)
+        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     }
     
-  
-    required init?(coder: NSCoder)
-    {
+    required init?(coder: NSCoder) {
         fatalError("Init(coder: ) has not been implemented")
     }
     
-    func changePosition(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int)
-    {
-        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: 50, height: 50)
+    func setPositionAndSize(randomNumberToHeightBounds superViewHeight: Int, randomNumberToWidthBounds superViewWidth: Int, bubbleSize: Int) {
+        // sets the position and dimentions.
+        self.frame = CGRect(x: superViewWidth, y: superViewHeight, width: bubbleSize, height: bubbleSize)
         self.layer.cornerRadius = 0.50 * self.bounds.size.width
+        //stores it on the bubble class
         storedXPos = superViewWidth
         storedYPos = superViewHeight
+        
+        //adjusts the colour label text sizes
+        switch bubbleSize {
+        case 65...76:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 26)
+        case 77...100:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 34)
+        case 25...40:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        default:
+            self.titleLabel?.font = .boldSystemFont(ofSize: 21)
+        }
     }
     
     func setDeviceWidthAndHeight(deviceWidth: Int, deviceHeight: Int) {
@@ -63,115 +61,123 @@ class Bubble: UIButton {
         self.deviceHeight = deviceHeight
     }
     
-    func animation() {
-        let springAnimation = CASpringAnimation(keyPath: "transform.scale")
-        springAnimation.duration = 0.6
-        springAnimation.fromValue = 1
-        springAnimation.toValue = 0.8
-        springAnimation.repeatCount = 1
-        springAnimation.initialVelocity = 0.5
-        springAnimation.damping = 1
-        
-        layer.add(springAnimation, forKey: nil)
+    func scaleIn() {
+        let scaleInAnnimation = CASpringAnimation(keyPath: "transform.scale")
+        scaleInAnnimation.fromValue = 0
+        scaleInAnnimation.toValue = 1
+        scaleInAnnimation.duration = 0.3        
+        layer.add(scaleInAnnimation, forKey: nil)
     }
     
-    func flash() {
-        let flash = CABasicAnimation(keyPath: "opacity")
-        flash.duration = 0.2
-        flash.fromValue = 1
-        flash.toValue = 0.1
-        flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        flash.autoreverses = true
-        flash.repeatCount = 3
-        
-        layer.add(flash, forKey: nil)
+    func scaleOutAndRemove() {
+        let scaleOutAnnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleOutAnnimation.fromValue = 1
+        scaleOutAnnimation.toValue = 0
+        scaleOutAnnimation.duration = 0.3
+        layer.add(scaleOutAnnimation, forKey: nil)
+        removeAfterAnimation(timeInterval: 0.4)
     }
     
-    func moveBubblePos()
-    {
-        let moveAnimation = CABasicAnimation(keyPath: "position")
+    func moveAwayAnimation(remainingTimePercent: Int) {
+        //gets the screen dimensions that is stored on the game's settings.
+        let gameSettings = game.gameSettings
+        let screenHeight = gameSettings.getDeviceHeight()
+        let screenWidth = gameSettings.getDeviceWidth()
         
-        let currentXPos = getStoredXPos()
-        let currentYPos = getStoredYPos()
+        //this is used to determin where the nearest edge is for the bubble to be removed.
+        var toValueXPos: Int = -100
+        var toValueYPos: Int = -100
         
-        moveAnimation.fromValue = [currentXPos, currentYPos]
-        moveAnimation.toValue = [currentXPos + 100, currentYPos + 100]
-       
-        //moveAnimation.initialVelocity = 0.5
-        layer.add(moveAnimation, forKey: nil)
+        if storedXPos > screenWidth / 2 {
+            toValueXPos = screenWidth + 100
+        }
+        
+        if storedYPos > screenHeight / 2 {
+            toValueYPos = screenHeight + 100
+        }
+        
+        var movingDuration: Double = 0
+        var movingTimeInterval: Float = 0
+        
+        switch remainingTimePercent {
+        case 51...75:
+            movingDuration = 1.3
+            movingTimeInterval = 1.3
+        case 26...50:
+            movingDuration = 0.7
+            movingTimeInterval = 0.7
+        case 0...25:
+            movingDuration = 0.2
+            movingTimeInterval = 0.2
+        default:
+            movingDuration = 1.8
+            movingTimeInterval = 1.8
+        }
+        
+        //configure animation
+        let moveAway = CABasicAnimation(keyPath: "position")
+        moveAway.fromValue = [storedXPos, storedYPos]
+        moveAway.toValue = [toValueXPos, toValueYPos]
+        moveAway.duration = movingDuration
+        moveAway.isRemovedOnCompletion = true
+        layer.add(moveAway, forKey: nil)
+        removeAfterAnimation(timeInterval: Double(movingTimeInterval))
+    }
+    
+    func removeAfterAnimation(timeInterval: Double) {
+        removeBubbleTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true)  {
+            removeBubbleTimer in
+            self.timeToRemove()
+        }
+    }
+
+    @objc func timeToRemove() {
+        animationRemainingTime -= 1
+        if animationRemainingTime == 0 {
+            removeBubbleTimer.invalidate()
+            self.removeFromSuperview()
+        }
     }
     
     //random colour helper function
     //is used to cater for problability of appearance
-    func selectBubbleColor(randomOnly randomNumber: Int) -> UIColor {
+    func selectAttributes(randomOnly randomNumber: Int) {
         switch randomNumber {
         case 0...50:
-            //print("Black bubble added")
-            return .black
+            self.backgroundColor = .black
+            self.points = 10
+            self.setTitle("BK", for: .normal)
         case 51...150:
-            //print("Blue bubble added")
-            return .blue
+            self.backgroundColor = .blue
+            self.points = 8
+            self.setTitle("B", for: .normal)
+            self.setTitleColor(.black, for: .normal)
         case 151...300:
-            //print("Green button added")
-            return .green
+            self.backgroundColor = .green
+            self.points = 5
+            self.setTitle("G", for: .normal)
+            self.setTitleColor(.black, for: .normal)
         case 301...600:
-            //print("Pink button added.")
-            return .systemPink
+            self.backgroundColor = .systemPink
+            self.points = 2
+            self.setTitle("P", for: .normal)
         default:
-            //print("Red button added")
-            return .red
+            self.backgroundColor = .red
+            self.points = 1
+            self.setTitle("R", for: .normal)
         }
     }
     
-    //helper function to select the points based on button color
-    func selectPoints(randomOnly randomNumber: Int) -> Int
-    {
-        switch randomNumber {
-        case 0...50:
-            return 10
-        case 51...150:
-            return 8
-        case 151...300:
-            return 5
-        case 301...600:
-            return 2
-        default:
-            return 1
-        }
-    }
     
     //accessibility features
-    //function to display letters for colour blindness
-    func addButtonTitles() -> String
-    {
-        
-        switch storedRandomNumber {
-        case 0...50:
-            //self.setTitleColor(.white, for: .normal)
-            return "BK"
-        case 51...150:
-            self.setTitleColor(.black, for: .normal)
-            return "B"
-        case 151...300:
-            self.setTitleColor(.black, for: .normal)
-            return "G"
-        case 301...600:
-            //self.setTitleColor(.black, for: .normal)
-            return "P"
-        default:
-            //self.setTitleColor(.white, for: .normal)
-            return "R"
-        }
-    }
-    
+    //function to clear the text labels if the user is not colour blind.
     func enableColorBlindnessLabels(isColorBlind: Bool) {
-        if isColorBlind {
-            self.setTitle(addButtonTitles(), for: .normal)
+        if !isColorBlind {
+            self.setTitle(nil, for: .normal)
         }
     }
     
-    func getPoints() -> Int
-    {
+    func getPoints() -> Int {
         return points
     }
     
@@ -183,8 +189,7 @@ class Bubble: UIButton {
         return storedYPos
     }
     
-    func setBubbleId(bubbleId: Int)
-    {
+    func setBubbleId(bubbleId: Int) {
         self.bubbleId = bubbleId
     }
     
@@ -192,7 +197,9 @@ class Bubble: UIButton {
         return bubbleId
     }
     
- 
+    //passes the game class object to the bubble class.
+    func initiateGameSession(gameSession game: Game)
+    {
+        self.game = game
+    }
 }
-
-

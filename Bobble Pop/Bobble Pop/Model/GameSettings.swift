@@ -8,14 +8,16 @@
 import Foundation
 
 class GameSettings {
+    //gameSettings configurations.
     var timer: Int = 60
     var numberOfBubbles: Int = 15
     var deviceWidth: Int = 0
     var deviceHeight: Int = 0
     var isColorBlind: Bool = false
-    //init(deviceWidth: Int, deviceHeight: )
+    var bubbleSize: Int = 50
+    var isAnimated: Bool = true
     
-    
+    //getters and setters
     func setTimer(howLong newTimerSet: Int)
     {
         self.timer = newTimerSet
@@ -54,5 +56,23 @@ class GameSettings {
     
     func getIsColorBlind() -> Bool {
         return isColorBlind
+    }
+    
+    func setBubbbleSize(bubbleSize: Int) {
+        self.bubbleSize = bubbleSize
+    }
+    
+    func getBubbleSize() -> Int {
+        return bubbleSize
+    }
+    
+    func setIsAnimated(isAnimated: Bool)
+    {
+        self.isAnimated = isAnimated
+    }
+    
+    func getIsAnimated() -> Bool
+    {
+        return isAnimated
     }
 }

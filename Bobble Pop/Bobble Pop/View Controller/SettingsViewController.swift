@@ -16,51 +16,121 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var timerSlider: UISlider!
     @IBOutlet weak var bubblesSlider: UISlider!
     
+    @IBOutlet weak var bubbleSizeLabel: UILabel!
+    @IBOutlet weak var bubbleSizeSlider: UISlider!
     @IBOutlet weak var isColorBlindSwitch: UISwitch!
+    
+    @IBOutlet weak var isAnimatedSwitch: UISwitch!
+    
+    
     var game = Game()
    
     @IBOutlet weak var clearScoresButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //updates the settings values including the sliders and switches.
+        optimizeScreenSize()
+        retrieveSettings()
+        
         clearScoresButton.setTitle("Clear score", for: .normal)
         //clearScoresButton.high
-        updateUI()
+        
     }
     
+    //the maximun bubble size are reduced on devices with smaller screen sizes.
+    func optimizeScreenSize() {
+        let gameSettings = game.getGameSettings()
+        let screenWidth = gameSettings.getDeviceWidth()
+        let screenHeight = gameSettings.getDeviceHeight()
+        
+        if screenWidth < 370 || screenHeight < 630 {
+            bubbleSizeSlider.maximumValue = 65
+        }
+        else if screenWidth > 570 || screenHeight > 1150 { //allows even larger bubbles on an iPad.
+            bubbleSizeSlider.maximumValue = 100
+        }
+    }
     
-    @IBAction func onTimerChanged(_ sender: UISlider) {
+    func retrieveSettings() {
+        let gameSettings = game.getGameSettings()
+        timerSlider.value = Float(gameSettings.getTimer())
+        bubblesSlider.value = Float(gameSettings.getNumberOfBubbles())
+        isColorBlindSwitch.isOn = gameSettings.getIsColorBlind()
+        bubbleSizeSlider.value = Float(gameSettings.getBubbleSize())
+        updateUILabels()
+    }
+    
+    func changeSettings() {
         let gameSettings = game.getGameSettings()
         gameSettings.setTimer(howLong: Int(timerSlider.value))
-        updateUI()
+        gameSettings.setNumberOfBubbles(howMany: Int(bubblesSlider.value))
+        let isColorBlind = isColorBlindSwitch.isOn
+        gameSettings.setColorBlind(isColorBlind: isColorBlind)
+        gameSettings.setBubbbleSize(bubbleSize: Int(bubbleSizeSlider.value))
+        gameSettings.setIsAnimated(isAnimated: isAnimatedSwitch.isOn)
+    }
+    
+    @IBAction func onBubbleSliderChange(_ sender: Any) {
+        changeSettings()
+        updateUILabels()
+    }
+    
+    @IBAction func onTimerChanged(_ sender: UISlider) {
+        changeSettings()
+        updateUILabels()
     }
     
     @IBAction func onBubblesChanged(_ sender: Any) {
-        let gameSettings = game.getGameSettings()
-        gameSettings.setNumberOfBubbles(howMany: Int(bubblesSlider.value))
-        updateUI()
+        changeSettings()
+        updateUILabels()
     }
     
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
+        //sets an alert prompt whether to clear the scores.
+        let confirmClear = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
+        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.handleClearScores()
+        })
+        
+        let noButton = UIAlertAction(title: "No", style: .cancel, handler: { (action) -> Void in
+            return
+        })
+        //addes the actions to the alert view.
+        confirmClear.addAction(yesButton)
+        confirmClear.addAction(noButton)
+        self.present(confirmClear, animated: true)
+    }
+    
+    func handleClearScores() {
         HighScoreManager.clearScores()
         game.clearAllPlayers()
         clearScoresButton.setTitle("Score cleard.", for: .normal)
     }
     
     
-    
-    func updateUI() {
-        //display the bubbles and timer value that has been set.
+    //Updates the UI labels that displays values based on the slider value.
+    func updateUILabels() {
+        //declares the timerSet and bubbleSet into an integer constant.
         let timerSet: Int = Int(timerSlider.value)
         let bubbleSet: Int = Int(bubblesSlider.value)
+        //to achieve between 0% and 100%, I calculated the bubbleSlider values takeAway the minimum value.
+        let bubbleSizeSet = bubbleSizeSlider.value - bubbleSizeSlider.minimumValue
+        let maxBubbleSize = bubbleSizeSlider.maximumValue - bubbleSizeSlider.minimumValue
+        let bubbleSizePercantge = ((bubbleSizeSet / maxBubbleSize) * 100)
+        //updates the UI labels
         timerLabel.text = String(timerSet)
         numberOfBubblesLabel.text = String(bubbleSet)
+        bubbleSizeLabel.text = "\(Int(bubbleSizePercantge))%"
     }
     
     @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
-        let gameSettings = game.getGameSettings()
-        let isColorBlind = isColorBlindSwitch.isOn
-        gameSettings.setColorBlind(isColorBlind: isColorBlind)
+        changeSettings()
     }
+    
+    @IBAction func onAnimationToggle(_ sender: UISwitch) {
+        changeSettings()
+    }
+    
     
 }

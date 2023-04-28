@@ -19,13 +19,12 @@ class Game {
         highScores[player.getPlayerName()!] = highScore
     }
     
-    func addPlayer(player: Player)
-    {
+    func addPlayer(player: Player) {
         players.append(player)
     }
     
-    func getPlayers() -> [Player]
-    {
+    //gets the game players.
+    func getPlayers() -> [Player] {
         var gamePlayers: [Player] = []
         
         for player in players {
@@ -47,27 +46,28 @@ class Game {
     }
     
     func removeBubble(bubbleId: Int) {
-        var bubbleIndex = 0
+        
         var indexCounter = 0
         for bubble in storedBubbles {
             if bubble.getBubbleId() == bubbleId {
-                //print("bubble \(bubble.getBubbleId()) is pressed.")
-                bubbleIndex = indexCounter
+                storedBubbles.remove(at: indexCounter)
+                break
+            }
+            else {
+                //print("Bubble not removed from array.")
             }
             indexCounter += 1
         }
-        //print("\(bubbleId) is pressed at index \(bubbleIndex)")
+        
         // remove the particular bubble from the array
-        storedBubbles.remove(at: bubbleIndex)
+        
     }
     
-    func getAllBubbles() -> [Bubble]
-    {
+    func getAllBubbles() -> [Bubble] {
         return storedBubbles
     }
     
-    func removeAllBubbles()
-    {
+    func removeAllBubbles() {
         storedBubbles.removeAll()
     }
     
