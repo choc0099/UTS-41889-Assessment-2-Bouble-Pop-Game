@@ -77,7 +77,7 @@ class Bubble: UIButton {
         scaleOutAnnimation.duration = 0.3
         //adds the annimation to the bubble
         layer.add(scaleOutAnnimation, forKey: nil)
-        removeAfterAnimation(timeInterval: 0.4)
+        removeAfterAnimation(timeInterval: 0.29)
     }
     
     func moveAwayAnimation(remainingTimePercent: Int) {
