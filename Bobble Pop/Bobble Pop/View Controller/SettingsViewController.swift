@@ -88,6 +88,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClearScoresPressed(_ sender: UIButton) {
+        //sets an alert prompt whether to clear the scores.
         let confirmClear = UIAlertController(title: "Clear High Scores", message: "Are you sure you want to clear all high scores", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
             self.handleClearScores()
@@ -96,12 +97,10 @@ class SettingsViewController: UIViewController {
         let noButton = UIAlertAction(title: "No", style: .cancel, handler: { (action) -> Void in
             return
         })
-        
            
         confirmClear.addAction(yesButton)
         confirmClear.addAction(noButton)
         self.present(confirmClear, animated: true)
-        
     }
     
     func handleClearScores() {
@@ -111,14 +110,16 @@ class SettingsViewController: UIViewController {
     }
     
     
-    
+    //Updates the UI labels that displays values based on the slider value.
     func updateUILabels() {
-        //display the bubbles and timer value that has been set.
+        //declares the timerSet and bubbleSet into an integer constant.
         let timerSet: Int = Int(timerSlider.value)
         let bubbleSet: Int = Int(bubblesSlider.value)
+        //to achieve between 0% and 100%, I calculated the bubbleSlider values takeAway the minimum value.
         let bubbleSizeSet = bubbleSizeSlider.value - bubbleSizeSlider.minimumValue
         let maxBubbleSize = bubbleSizeSlider.maximumValue - bubbleSizeSlider.minimumValue
         let bubbleSizePercantge = ((bubbleSizeSet / maxBubbleSize) * 100)
+        //updates the UI labels
         timerLabel.text = String(timerSet)
         numberOfBubblesLabel.text = String(bubbleSet)
         bubbleSizeLabel.text = "\(Int(bubbleSizePercantge))%"
@@ -127,7 +128,6 @@ class SettingsViewController: UIViewController {
     @IBAction func onIsColorBlindSwitchToggle(_ sender: UISwitch) {
         changeSettings()
     }
-    
     
     @IBAction func onAnimationToggle(_ sender: UISwitch) {
         changeSettings()
